@@ -16,3 +16,4 @@ use App\Http\Controllers\PublicController;
 */
 
 Route::get('/', [PublicController::class, 'home']);
+Route::get('/{search?}', [PublicController::class, 'search'])->name('search');

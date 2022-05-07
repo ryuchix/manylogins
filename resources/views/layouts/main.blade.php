@@ -28,7 +28,9 @@
 
         </div>   
 
+        <script src="{{ asset('js/jquery.min.js') }}"></script>
         <script src="{{ asset('js/script.js') }}"></script>
+        <script src="{{ asset('js/typeahead.bundle.js') }}"></script>
 
         @yield('script')
 
