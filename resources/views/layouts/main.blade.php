@@ -6,6 +6,8 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>@yield('title')</title>
+        <meta name="keyword" content="@yield('keyword')">
+        <meta name="description" content="@yield('description')">
 
         <meta name="msapplication-TileColor" content="#123f6e">
         <meta name="theme-color" content="#123f6e">
@@ -29,11 +31,12 @@
         </div>   
 
         <script src="{{ asset('js/jquery.min.js') }}"></script>
-        <script src="{{ asset('js/script.js') }}"></script>
-        <script src="{{ asset('js/typeahead.bundle.js') }}"></script>
 
         @yield('script')
 
-    </body>
+        <script src="{{ asset('js/script.js') }}"></script>
 
+        <script src="{{ asset('js/typeahead.bundle.js') }}"></script>
+
+    </body>
 </html>

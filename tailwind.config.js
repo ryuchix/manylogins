@@ -12,6 +12,7 @@ module.exports = {
                 'darkblue': '#0b2239',
                 'bodybg': '#f4f5f8',
                 'body': '#f8fafc',
+                'link': '#4ad295'
             },
         },
         screens: {

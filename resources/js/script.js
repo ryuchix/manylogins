@@ -13,16 +13,23 @@ $(function() {
         };
     };
 
-    var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
-        'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
-        'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
-        'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
-        'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
-        'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
-        'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
-        'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
-        'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
-    ];
+    let windowKeywords = '';
+
+    const keywords = new Bloodhound({
+        datumTokenizer: datum => Bloodhound.tokenizers.whitespace(datum.keywords),
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        remote: {
+            url: "http://127.0.0.1:8000/keywords/api/%QUERY",
+            wildcard: "%QUERY",
+            // Map the remote source JSON array to a JavaScript object array
+            filter: keywords => $.map(keywords, keywords => ({
+                keywords: keywords.keywords,
+                slug: keywords.slug
+            }))
+        }
+    });
+
+    keywords.initialize();
 
     $('#search-keyword .typeahead').typeahead({
             hint: true,
@@ -30,12 +37,30 @@ $(function() {
             minLength: 1
         },
         {
-            name: 'states',
-            source: substringMatcher(states)
+            name: 'mylogin-keywords',
+            display: 'keywords',
+            source: keywords.ttAdapter(),
+            templates: {                
+                suggestion: function (data) {
+                    return '<a class="list-group-item ">' + data.keywords + '</a>';
+                }
+            }
         }
     );
 
-     $('#search-keyword .typeahead').bind('typeahead:change', function(ev, suggestion) {
-        $('#keyword_search').attr('action', suggestion.split(' ').join('-'));
+    //  $('#search-keyword .typeahead').bind('typeahead:change', function(ev, suggestion) {
+    //     $('#keyword_search').attr('action', suggestion.split(' ').join('-'));
+    // });
+
+    $('#search-keyword .typeahead').bind('typeahead:select', function(ev, suggestion) {
+        windowKeywords = suggestion.slug;
+    });
+
+    $("#submitBtn").click( function(event) { 
+        if (windowKeywords == '') {
+            windowKeywords = $('#typeahead').val();
+        }
+        window.location = "http://127.0.0.1:8000" + '/' + windowKeywords ;
+        // $("#keyword_search").submit(); // Submit the form
     });
 });

@@ -1,7 +1,7 @@
 <footer class="shadow bg-darkblue">
     <div class="pt-10 md:pt-20 pb-5 px-4">
         <div class="flex justify-center">
-            <img src="{{ asset('image/logo2.png') }}" alt="Logo" class="h-36">
+            <a href="{{ route('home') }}"><img src="{{ asset('image/logo2.png') }}" alt="Logo" class="h-36"></a>
         </div>
         <div class="flex justify-center border-t border-gray-700 pt-5 mt-10 w-full max-w-5xl mx-auto">
             <div class="flex md:justify-between flex-col md:flex-row w-full space-y-3 md:space-y-0">

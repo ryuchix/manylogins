@@ -15,5 +15,9 @@ use App\Http\Controllers\PublicController;
 |
 */
 
-Route::get('/', [PublicController::class, 'home']);
+Route::get('/', [PublicController::class, 'home'])->name('home');
+
+Route::get('/keywords/api/{search}', [PublicController::class, 'keywordSearch'])->name('keywords');
+
 Route::get('/{search?}', [PublicController::class, 'search'])->name('search');
+Route::get('/{visit?}/{cid?}', [PublicController::class, 'visitPage'])->name('visit');
