@@ -92,7 +92,5 @@
 @endsection
 
 @section('script')
-    <script>
-        var home_url = "{{ route('home') }}";
-    </script>
+<script>var home_url = "{{ route('home') }}";</script>
 @endsection
