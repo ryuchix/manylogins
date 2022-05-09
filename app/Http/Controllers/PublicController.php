@@ -26,6 +26,7 @@ class PublicController extends Controller
     {
         $search = $request->search;
         $search_result = null;
+        $meta_keywords = '';
         $keywords = KeywordSearch::with('organic')
             ->with('relatedSearch')
             ->when(
@@ -37,33 +38,33 @@ class PublicController extends Controller
             ->get();
 
         if ($keywords->count() === 0) {
-            abort(404);
+            
+        } else {
+            if ($keywords->first()->organic->count() >= 1) {
+                $search_result = $keywords->first();
+            }
+
+            $keywords_related = $search_result
+                ->relatedSearch
+                ->pluck('keywords')
+                ->toArray();
+
+            array_unshift($keywords_related, $search_result->keywords);
+
+            $meta_keywords = implode(
+                ',',
+                $keywords_related
+            );
         }
 
-        if ($keywords->first()->organic->count() >= 1) {
-            $search_result = $keywords->first();
-        }
- 
-        $keywords_related = $search_result
-            ->relatedSearch
-            ->pluck('keywords')
-            ->toArray();
-
-        array_unshift($keywords_related, $search_result->keywords);
-
-        $meta_keywords = implode(
-            ',',
-            $keywords_related
-        );
-
-        $title = ucwords(str_replace('-', ' ', $search));
-
+        $title = (str_replace('-', ' ', $search));
+        
         return view('search', [
-            'title' => ucfirst($search_result->keywords),
+            'title' => ($title ?? ''),
             'search_result' => $search_result,
             'search' => $search,
             'keyword' => strip_tags($meta_keywords),
-            'description' => strip_tags($search_result->keywords)
+            'description' => strip_tags($search_result->keywords ?? '')
         ]);
     }
 
@@ -74,9 +75,12 @@ class PublicController extends Controller
         $hashids = new Hashids();
 
         $visit = $request->visit;
-
-		$result = OrganicResult::find($hashids->decode($request->cid)[0]);
-
+        if ($hashids->decode($request->cid) != null) {
+            $result = OrganicResult::find($hashids->decode($request->cid)[0]);
+        } else {
+            return redirect()->back();
+        }
+		
 		if ($result->first()->count() >= 1) {
 			$result_link = $result->first();
         }

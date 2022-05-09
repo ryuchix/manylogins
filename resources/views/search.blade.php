@@ -27,7 +27,7 @@
                 <ul class="flex">
                     <li><a href="{{ route('home') }}" class="underline font-semibold">Home</a></li>
                     <li><span class="mx-2">/</span></li>
-                    <li>{{ $title }}</li>
+                    <li>{{ $title ?? $search ?? '' }}</li>
                 </ul>
             </div>
 
@@ -35,7 +35,7 @@
                 {{ $title }}
             </div>
             
-            @if (count($search_result->relatedSearch) > 0)
+            @if ($search_result != null && count($search_result->relatedSearch) > 0)
             <div class="bg-white shadow rounded-md placeholder: mb-6 p-4 w-full w-full mt-5 ">
                 <div class="block text-xl text-gray-500">Related Search</div>
                 <div>
