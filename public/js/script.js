@@ -25,7 +25,7 @@ $(function () {
     },
     queryTokenizer: Bloodhound.tokenizers.whitespace,
     remote: {
-      url: "https://manylogins.com/keywords/api/%QUERY",
+      url: home_url + "/keywords/api/%QUERY",
       wildcard: "%QUERY",
       // Map the remote source JSON array to a JavaScript object array
       filter: function filter(keywords) {

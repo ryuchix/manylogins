@@ -15,28 +15,18 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
         @yield('styles')
-
     </head>
     
     <body onunload=""> 
-
         <div class="main">
-
             @include('partials.header')
-
             @yield('content')
-
             @include('partials.footer')
-
         </div>   
 
         <script src="{{ asset('js/jquery.min.js') }}"></script>
-
         @yield('script')
-
         <script src="{{ asset('js/script.js') }}"></script>
-
         <script src="{{ asset('js/typeahead.bundle.js') }}"></script>
-
     </body>
 </html>
