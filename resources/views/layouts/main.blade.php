@@ -12,7 +12,7 @@
         <meta name="msapplication-TileColor" content="#123f6e">
         <meta name="theme-color" content="#123f6e">
 
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/app.css?t='.time()) }}">
 
         @yield('styles')
     </head>
@@ -26,7 +26,7 @@
 
         <script src="{{ asset('js/jquery.min.js') }}"></script>
         @yield('script')
-        <script src="{{ asset('js/script.js') }}"></script>
+        <script src="{{ asset('js/script.js?t='.time()) }}"></script>
         <script src="{{ asset('js/typeahead.bundle.js') }}"></script>
     </body>
 </html>
