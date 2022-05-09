@@ -27,7 +27,7 @@
                 <ul class="flex">
                     <li><a href="{{ route('home') }}" class="underline font-semibold">Home</a></li>
                     <li><span class="mx-2">/</span></li>
-                    <li>{{ $title ?? $search ?? '' }}</li>
+                    <li>{{ $title ?? $search}}</li>
                 </ul>
             </div>
 
