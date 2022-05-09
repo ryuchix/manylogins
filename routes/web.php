@@ -21,3 +21,5 @@ Route::get('/keywords/api/{search}', [PublicController::class, 'keywordSearch'])
 
 Route::get('/{search?}', [PublicController::class, 'search'])->name('search');
 Route::get('/{visit?}/{cid?}', [PublicController::class, 'visitPage'])->name('visit');
+
+Route::get('/admin', [PublicController::class, 'admin'])->name('admin');

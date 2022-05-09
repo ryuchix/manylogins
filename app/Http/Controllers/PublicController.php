@@ -104,6 +104,11 @@ class PublicController extends Controller
         return response()->json($filterResult);
     }
 
+    public function admin()
+    {
+        return view('admin');
+    }
+
     public function test($test)
     {
         try {
