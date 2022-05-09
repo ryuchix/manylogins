@@ -60,7 +60,7 @@ $(function() {
         if (windowKeywords == '') {
             windowKeywords = $('#typeahead').val();
         }
-        window.location = "http://127.0.0.1:8000" + '/' + windowKeywords ;
+        window.location = home_url + '/' + windowKeywords ;
         // $("#keyword_search").submit(); // Submit the form
     });
 });
