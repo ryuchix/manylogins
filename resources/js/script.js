@@ -19,7 +19,7 @@ $(function() {
         datumTokenizer: datum => Bloodhound.tokenizers.whitespace(datum.keywords),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
         remote: {
-            url: "http://127.0.0.1:8000/keywords/api/%QUERY",
+            url: "https://manylogins.com/keywords/api/%QUERY",
             wildcard: "%QUERY",
             // Map the remote source JSON array to a JavaScript object array
             filter: keywords => $.map(keywords, keywords => ({
