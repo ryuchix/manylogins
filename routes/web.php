@@ -17,9 +17,9 @@ use App\Http\Controllers\PublicController;
 
 Route::get('/', [PublicController::class, 'home'])->name('home');
 
+Route::get('/admin', [PublicController::class, 'admin'])->name('admin');
+
 Route::get('/keywords/api/{search}', [PublicController::class, 'keywordSearch'])->name('keywords');
 
 Route::get('/{search?}', [PublicController::class, 'search'])->name('search');
 Route::get('/{visit?}/{cid?}', [PublicController::class, 'visitPage'])->name('visit');
-
-Route::get('/admin', [PublicController::class, 'admin'])->name('admin');
