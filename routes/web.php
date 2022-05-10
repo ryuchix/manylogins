@@ -20,10 +20,10 @@ Route::get('/', [PublicController::class, 'home'])->name('home');
 
 require __DIR__.'/auth.php';
 
-Route::prefix('admin')->group(function () {
-    Route::get('/', [UserController::class, 'admin'])->middleware(['auth'])->name('admin');
-    Route::get('/users', [UserController::class, 'index'])->middleware(['auth'])->name('users.index');
-    Route::get('/users/add', [UserController::class, 'create'])->middleware(['auth'])->name('users.add');
+Route::prefix('admin')->middleware(['auth'])->group(function () {
+    Route::get('/', [UserController::class, 'admin'])->name('admin');
+
+    Route::resource('users', UserController::class);
 });
 
 Route::get('/keywords/api/{search}', [PublicController::class, 'keywordSearch'])->name('keywords');
