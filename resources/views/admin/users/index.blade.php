@@ -12,7 +12,7 @@
                         <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                             <th class="py-3 px-6 text-left">Name</th>
                             <th class="py-3 px-6 text-left">Email</th>
-                            <th class="py-3 px-6 text-center">Type</th>
+                            <th class="py-3 px-6 text-left">Type</th>
                             <th class="py-3 px-6 text-center">Actions</th>
                         </tr>
                     </thead>
@@ -32,9 +32,9 @@
                                     <span>{{ $user->email }}</span>
                                 </div>
                             </td>
-                            <td class="py-3 px-6 text-center">
+                            <td class="py-3 px-6 text-left">
                                 <div class="flex items-center">
-                                    <span>{{ $user->role }}</span>
+                                    <span class="capitalize">{{ $user->role }}</span>
                                 </div>
                             </td>
                             <td class="py-3 px-6 text-center">
