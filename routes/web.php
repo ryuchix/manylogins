@@ -18,11 +18,14 @@ use App\Http\Controllers\UserController;
 
 Route::get('/', [PublicController::class, 'home'])->name('home');
 
-Route::get('/admin', [UserController::class, 'admin'])->middleware(['auth'])->name('admin');
-Route::get('/admin/users', [UserController::class, 'index'])->middleware(['auth'])->name('users.index');
+require __DIR__.'/auth.php';
+
+Route::prefix('admin')->group(function () {
+    Route::get('/', [UserController::class, 'admin'])->middleware(['auth'])->name('admin');
+    Route::get('/users', [UserController::class, 'index'])->middleware(['auth'])->name('users.index');
+});
 
 Route::get('/keywords/api/{search}', [PublicController::class, 'keywordSearch'])->name('keywords');
 Route::get('/{search?}', [PublicController::class, 'search'])->name('search');
 Route::get('/{visit?}/{cid?}', [PublicController::class, 'visitPage'])->name('visit');
 
-require __DIR__.'/auth.php';

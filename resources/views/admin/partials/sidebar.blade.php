@@ -37,6 +37,17 @@
                 <span class="ml-2 text-sm tracking-wide truncate">User Search</span>
                 </a>
             </li>
+            <li>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+
+                <x-dropdown-link :href="route('logout')"
+                        onclick="event.preventDefault();
+                                    this.closest('form').submit();">
+                    {{ __('Log Out') }}
+                </x-dropdown-link>
+            </form>
+            </li>
         </ul>
         <p class="mb-14 px-5 py-3 hidden md:block text-center text-xs">© 2022 ManyLogins.com</p>
     </div>
