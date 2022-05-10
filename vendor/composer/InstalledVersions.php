@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'ba1133a1322a50c214afbe16ccfce8a8d932da45',
+    'reference' => '29e46015e925fb24ce7bf7e7904ed5c005d9b790',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -453,6 +453,15 @@ private static $installed = array (
         0 => '*',
       ),
     ),
+    'laravel/breeze' => 
+    array (
+      'pretty_version' => 'v1.9.0',
+      'version' => '1.9.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '0d7633380c81d0827f40f6064d38f8884f5c5441',
+    ),
     'laravel/framework' => 
     array (
       'pretty_version' => 'v8.83.11',
@@ -469,7 +478,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'ba1133a1322a50c214afbe16ccfce8a8d932da45',
+      'reference' => '29e46015e925fb24ce7bf7e7904ed5c005d9b790',
     ),
     'laravel/sail' => 
     array (
@@ -841,8 +850,8 @@ private static $installed = array (
     array (
       'provided' => 
       array (
-        0 => '1.0|2.0',
-        1 => '1.0.0 || 2.0.0 || 3.0.0',
+        0 => '1.0.0 || 2.0.0 || 3.0.0',
+        1 => '1.0|2.0',
       ),
     ),
     'psr/simple-cache' => 

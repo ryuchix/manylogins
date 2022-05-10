@@ -9,9 +9,6 @@
         <meta name="keyword" content="@yield('keyword')">
         <meta name="description" content="@yield('description')">
 
-        <meta name="msapplication-TileColor" content="#123f6e">
-        <meta name="theme-color" content="#123f6e">
-
         <link rel="stylesheet" href="{{ asset('css/app.css?t='.time()) }}">
 
         <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('favicons') }}/apple-icon-57x57.png">

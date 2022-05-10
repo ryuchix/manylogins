@@ -17,8 +17,15 @@ mix.js('resources/js/app.js', 'public/js')
         require('tailwindcss'),
         require('autoprefixer'),
     ])
+    .postCss('resources/css/admin.css', 'public/css', [
+        require('postcss-import'),
+        require('tailwindcss'),
+        require('autoprefixer'),
+    ])
     .sass('resources/css/app.scss', 'public/css', [])
+    .sass('resources/css/admin.scss', 'public/css', [])
     .js('resources/js/script.js','public/js')
+    .js('resources/js/admin.js','public/js');
     
 if (mix.inProduction()) {
     mix.version()
