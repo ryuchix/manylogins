@@ -26,9 +26,13 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     Route::resource('users', UserController::class);
     Route::resource('posts', PostController::class);
+
+    Route::post('upload', [PostController::class, 'upload'])->name('admin.upload');
 });
 
 Route::get('/keywords/api/{search}', [PublicController::class, 'keywordSearch'])->name('keywords');
 Route::get('/{search?}', [PublicController::class, 'search'])->name('search');
 Route::get('/{visit?}/{cid?}', [PublicController::class, 'visitPage'])->name('visit');
+
+
 

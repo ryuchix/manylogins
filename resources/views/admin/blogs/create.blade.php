@@ -3,17 +3,41 @@
 @section('title', 'Create user')
 
 @section('style')
-<!-- Theme included stylesheets -->
-<link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-<link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('trumbowyg/dist/ui/trumbowyg.min.css') }}">
+<link href="{{ asset('css/select2.css') }}" rel="stylesheet" />
+
 <style>
+    h1 {
+        font-size: 3rem;
+        line-height: 1;
+    }
+
+    h2 {
+        font-size: 2.25rem;
+        line-height: 2.5rem;
+    }
+
+    h3 {
+        font-size: 1.875rem;
+        line-height: 2.25rem;
+    }
+
+    h4 {
+        font-size: 1.5rem;
+        line-height: 2rem;
+    }
     
+    p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+        margin-bottom: 15px;
+    }
 </style>
 @endsection
 @section('content')
 <div class="overflow-x-auto">
     <div class="min-w-screen bg-gray-100 flex flex-col bg-gray-100 font-sans overflow-hidden px-4 md:px-10">
-        <div class="mt-6 w-full justify-start items-center flex">
+        <div class="mt-6 w-full justify-start items-center flex text-xl">
             <span>Add Post</span>
         </div>
 
@@ -26,19 +50,10 @@
                 <!-- Title -->
                 <div>
                     <label class="block font-medium text-sm text-gray-700" for="title">
-                        Title
-                    </label>
-
-                    <input  class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full" id="title" type="text" name="title" required="required" autofocus="autofocus">
-                </div>
-
-                <!-- Headline -->
-                <div class="mt-4">
-                    <label class="block font-medium text-sm text-gray-700" for="email">
                         Headline
                     </label>
 
-                    <textarea class="editor rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full" name="excerpt" required="required" id="excerpt"></textarea>
+                    <input  class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full" id="title" type="text" name="title" required="required" autofocus="autofocus">
                 </div>
 
                 <!-- Content -->
@@ -47,16 +62,26 @@
                         Content
                     </label>
 
-                    <textarea class="editor rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full" name="content" required="required" id="content"></textarea>
+                    <textarea id="content" name="content" cols="30" rows="10" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"></textarea>
                 </div>
 
                 <!-- Cover -->
                 <div class="mt-4">
                     <label class="block font-medium text-sm text-gray-700 mb-2" for="cover">
-                        Cover
+                        Featured Image
                     </label>
                     <span class="sr-only">Choose File</span>
-                    <input type="file" name="cover" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"/>
+                    <input type="file" name="cover" class="block w-max text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"/>
+                </div>
+
+                <!-- Category -->
+                <div class="mt-4 w-full">
+                    <label class="block font-medium text-sm text-gray-700 mb-2" for="cover">
+                        Categories
+                    </label>
+                    <select class="select-category rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-1 w-1/2" name="categories[]" multiple="multiple">
+                        
+                    </select>
                 </div>
 
                 <!-- status -->
@@ -64,24 +89,17 @@
                     <label class="block font-medium text-sm text-gray-700" for="status">
                         Status
                     </label>
-                    <div class="relative rounded-full w-12 h-6 transition duration-200 ease-linear"
-                        :class="[status === '1' ? 'bg-green-400' : 'bg-gray-400']">
-                        <label for="status"
-                            class="absolute left-0 bg-white border-2 mb-2 w-6 h-6 rounded-full transition transform duration-100 ease-linear cursor-pointer"
-                            :class="[status === '1' ? 'translate-x-full border-green-400' : 'translate-x-0 border-gray-400']"></label>
-                        <input type="checkbox" id="status" name="status"
-                            class="appearance-none w-full h-full active:outline-none focus:outline-none"
-                            @click="status === '0' ? status = '1' : status = '0'"/>
-                    </div>
-
+                    <label class="inline-flex items-center mt-3 ml-1">
+                        <input id="status" type="checkbox" class="form-checkbox h-5 w-5 text-darkblue rounded-sm" checked><span class="ml-2 text-gray-700">Published</span>
+                    </label>
                 </div>
 
                 <div class="flex items-center justify-end mt-4">
                     <button type="reset" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 ml-4">
                         Clear
                     </button>
-                    <button type="submit" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 ml-4">
-                        Add user
+                    <button type="button" class="submit-btn inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 ml-4">
+                        Add post
                     </button>
                 </div>
             </form>
@@ -91,11 +109,65 @@
 @endsection
 
 @section('script')
-<script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
+<script src="{{ asset('trumbowyg/dist/trumbowyg.min.js') }}"></script>
+<script src="{{ asset('js/select2.min.js') }}"></script>
 
+<script src="{{ asset('trumbowyg/dist/jquery-resizable.min.js') }}"></script>
+<script src="{{ asset('trumbowyg/dist/plugins/upload/trumbowyg.upload.min.js') }}"></script>
+<script src="{{ asset('trumbowyg/dist/plugins/resizimg/trumbowyg.resizimg.min.js') }}"></script>
 <script>
-    $(document).ready(function () {
-        var editor = new Quill('.editor');
+    $(".select-category").select2({
+        tags: true,
+        placeholder: "Create or select a category",
+        tokenSeparators: [',', ' '],
+        width: 'resolve'
+    })
+
+    $('.submit-btn').on('click', function() {
+        var content = $('#content').trumbowyg('html');
+
+        console.log(content)
     });
+
+    $('#content').trumbowyg({
+        changeActiveDropdownIcon: true,
+        btns: [
+            ['viewHTML'],
+            ['undo', 'redo'],
+            ['formatting'],
+            ['strong', 'em', 'del'],
+            ['superscript', 'subscript'],
+            ['link'],
+            ['image'], // Our fresh created dropdown
+            ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+            ['unorderedList', 'orderedList'],
+            ['horizontalRule'],
+            ['removeformat'],
+            ['fullscreen']
+        ],
+        btnsDef: {
+            // Create a new dropdown
+            image: {
+                dropdown: ['insertImage', 'upload'],
+                ico: 'insertImage'
+            }
+        },
+        plugins: {
+            // Add imagur parameters to upload plugin for demo purposes
+            upload: {
+                serverPath: "{{ route('admin.upload') }}",
+                fileFieldName: 'image',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                urlPropertyName: 'link'
+            },
+            resizimg: {
+                minSize: 64,
+                step: 16,
+            }
+        }
+    });
+
 </script>
 @endsection

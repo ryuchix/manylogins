@@ -84,4 +84,22 @@ class PostController extends Controller
     {
         //
     }
+
+    public function upload(Request $request)
+    {
+        if ($request->hasFile('image')) {
+            $image = $request->image;
+            $imageName = time().'.'.$image->extension();  
+    
+            $image->move(public_path('images/posts'), $imageName);
+
+            $response = [
+                'success' => true,
+                'link' => asset('images/posts/'.$imageName)
+            ];
+
+            return response()->json($response);
+        }
+
+    }
 }
