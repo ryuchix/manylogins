@@ -48,9 +48,9 @@
             </div>     
 
             <div class="bg-white shadow rounded-md placeholder: mb-6 p-4 w-full w-full mt-10">
-                <div class="block text-2xl text-gray-800 font-bold">How do you collect data for {{ $title }}?</div>
+                <div class="block text-2xl text-gray-800 font-bold">How do you collect data for {{ e(str_replace('-', ' ', $visit)) }}?</div>
                 <div class="text-darkblue mt-2">
-                    We select pages with information related to {{ $title }}. These will include the official login link and all the information, notes, and requirements about the login.
+                        We research pages with information related to {{ e(str_replace('-', ' ', $visit)) }}. These will include the official login link along with the information for the login process and requirements about each login.
                 </div>
             </div>
     </section>
