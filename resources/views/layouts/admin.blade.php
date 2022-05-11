@@ -27,7 +27,7 @@
         <meta name="msapplication-TileImage" content="{{ asset('favicons') }}/ms-icon-144x144.png">
         <meta name="theme-color" content="#0b2239">
 
-        @yield('styles')
+        @yield('style')
     </head>
     
     <body onunload=""> 
@@ -43,9 +43,9 @@
         </div>
 
         <script src="{{ asset('js/jquery.min.js') }}"></script>
-        @yield('script')
         <script defer src="{{ asset('js/alpine.min.js') }}"></script>
         <script src="{{ asset('js/typeahead.bundle.js') }}"></script>
+        @yield('script')
 
         <script>
             function app() {

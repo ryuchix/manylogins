@@ -19,7 +19,7 @@ class PublicController extends Controller
 {
     public function home()
     {
-        return view('home');
+        return view('home.home');
     }
 
     public function search(Request $request)
@@ -63,7 +63,7 @@ class PublicController extends Controller
 
         $title = (str_replace('-', ' ', $search));
         
-        return view('search', [
+        return view('home.search', [
             'title' => ($title ?? ''),
             'search_result' => $search_result,
             'search' => $search,
@@ -89,7 +89,7 @@ class PublicController extends Controller
 			$result_link = $result->first();
         }
 		
-        return view('show', [
+        return view('home.show', [
             'title' => ucfirst($result->title),
             'result_link' => $result_link,
             'result' => $result,

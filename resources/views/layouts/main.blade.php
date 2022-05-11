@@ -29,7 +29,7 @@
         <meta name="msapplication-TileImage" content="{{ asset('favicons') }}/ms-icon-144x144.png">
         <meta name="theme-color" content="#0b2239">
 
-        @yield('styles')
+        @yield('style')
     </head>
     
     <body onunload=""> 

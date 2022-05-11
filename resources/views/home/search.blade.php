@@ -39,9 +39,12 @@
             <div class="bg-white shadow rounded-md placeholder: mb-6 p-4 w-full w-full mt-5 ">
                 <div class="block text-xl text-gray-500">Related Search</div>
                 <div>
-                    <ul class="gap-2 columns-1 md:columns-2 list-disc list-inside mt-1">
+                    <ul class="gap-2 columns-1 md:columns-2 list-inside mt-1">
                         <?php $__currentLoopData = $search_result->relatedSearch; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <li>
+                        <li class="flex space-x-2 items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-blue-500" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                            </svg>
                             <a class="text-blue-500 hover:text-blue-600" href="{{ route('search', str_replace(' ', '-', $item->keywords)) }}" class="" data-href="{{ route('search', str_replace(' ', '-', $item->keywords)) }}" title="{{ $item->keywords }}​">
                                 <?php echo e($item->keywords); ?>
                             </a>

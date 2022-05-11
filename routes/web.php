@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/', [UserController::class, 'admin'])->name('admin');
 
     Route::resource('users', UserController::class);
+    Route::resource('posts', PostController::class);
 });
 
 Route::get('/keywords/api/{search}', [PublicController::class, 'keywordSearch'])->name('keywords');
