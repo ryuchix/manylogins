@@ -33,6 +33,7 @@ return array(
     'App\\JSVars' => $baseDir . '/app/JSVars.php',
     'App\\Models\\KeywordSearch' => $baseDir . '/app/Models/KeywordSearch.php',
     'App\\Models\\OrganicResult' => $baseDir . '/app/Models/OrganicResult.php',
+    'App\\Models\\Post' => $baseDir . '/app/Models/Post.php',
     'App\\Models\\RelatedSearch' => $baseDir . '/app/Models/RelatedSearch.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',

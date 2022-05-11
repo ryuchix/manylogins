@@ -52,19 +52,29 @@ $(function () {
         return '<a class="list-group-item ">' + data.keywords + '</a>';
       }
     }
-  }); //  $('#search-keyword .typeahead').bind('typeahead:change', function(ev, suggestion) {
-  //     $('#keyword_search').attr('action', suggestion.split(' ').join('-'));
-  // });
-
+  });
   $('#search-keyword .typeahead').bind('typeahead:select', function (ev, suggestion) {
     windowKeywords = suggestion.slug;
   });
-  $("#submitBtn").click(function (event) {
+
+  var convertToSlug = function convertToSlug(s) {
+    return s.toString().normalize('NFD').replace(/[\u0300-\u036f]/g, "") //remove diacritics
+    .toLowerCase().replace(/\s+/g, '-') //spaces to dashes
+    .replace(/&/g, '-and-') //ampersand to and
+    .replace(/[^\w\-]+/g, '') //remove non-words
+    .replace(/\-\-+/g, '-') //collapse multiple dashes
+    .replace(/^-+/, '') //trim starting dash
+    .replace(/-+$/, ''); //trim ending dash
+  };
+
+  $(".search-form").on('submit', function (e) {
+    e.preventDefault();
+
     if (windowKeywords == '') {
-      windowKeywords = $('#typeahead').val();
+      windowKeywords = convertToSlug($('#typeahead').val());
     }
 
-    window.location = home_url + '/' + windowKeywords; // $("#keyword_search").submit(); // Submit the form
+    window.location = home_url + '/' + windowKeywords;
   });
 });
 /******/ })()

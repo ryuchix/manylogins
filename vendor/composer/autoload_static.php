@@ -581,6 +581,7 @@ class ComposerStaticInit8a983f4b5a04f5eaaa070565fa664316
         'App\\JSVars' => __DIR__ . '/../..' . '/app/JSVars.php',
         'App\\Models\\KeywordSearch' => __DIR__ . '/../..' . '/app/Models/KeywordSearch.php',
         'App\\Models\\OrganicResult' => __DIR__ . '/../..' . '/app/Models/OrganicResult.php',
+        'App\\Models\\Post' => __DIR__ . '/../..' . '/app/Models/Post.php',
         'App\\Models\\RelatedSearch' => __DIR__ . '/../..' . '/app/Models/RelatedSearch.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',

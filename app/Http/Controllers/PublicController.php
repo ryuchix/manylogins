@@ -44,17 +44,21 @@ class PublicController extends Controller
                 $search_result = $keywords->first();
             }
 
-            $keywords_related = $search_result
-                ->relatedSearch
-                ->pluck('keywords')
-                ->toArray();
+            $keywords_related = [];
 
-            array_unshift($keywords_related, $search_result->keywords);
+            if ($search_result != null) {
+                $keywords_related = $search_result
+                    ->relatedSearch
+                    ->pluck('keywords')
+                    ->toArray();
 
-            $meta_keywords = implode(
-                ',',
-                $keywords_related
-            );
+                array_unshift($keywords_related, $search_result->keywords);
+
+                $meta_keywords = implode(
+                    ',',
+                    $keywords_related
+                );
+            }
         }
 
         $title = (str_replace('-', ' ', $search));
