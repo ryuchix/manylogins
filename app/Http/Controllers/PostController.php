@@ -42,15 +42,17 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $request['slug'] = $this->getSlug($request->title);
+
         $request->validate([
             'title' => 'required|max:200',
             'content' => 'required',
             'category' => 'required',
+            'slug' => 'required|unique:posts,slug',
             'cover' => 'image|mimes:jpg,png,jpeg,gif,svg,webp|max:2048',
         ]);
 
         $data = array_filter($request->all());
-        $data['slug'] = $this->getSlug($request->title);
         $data['status'] = isset($request->status) && $request->status == 'on' ? 1 : 0;
 
         $post = Post::create([
@@ -104,7 +106,7 @@ class PostController extends Controller
         $category = Category::get();
 
         $selected_catogories = [];
-        
+
         foreach ($post->categories as $cat) {
             $selected_catogories[] = $cat->name;
         }
@@ -121,7 +123,49 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $request['slug'] = $this->getSlug($request->title);
+
+        $request->validate([
+            'title' => 'required|max:200',
+            'content' => 'required',
+            'category' => 'required',
+            'slug' => 'required|unique:posts,slug,'.$post->id,
+            'cover' => 'image|mimes:jpg,png,jpeg,gif,svg,webp|max:2048',
+        ]);
+
+        $data = array_filter($request->all());
+        $data['status'] = isset($request->status) && $request->status == 'on' ? 1 : 0;
+        $data['user_id'] = auth()->user()->id;
+
+        $post->update([
+            'title' => $data['title'],
+            'slug' => $data['slug'],
+            'content' => $data['content'],
+            'user_id' => $data['user_id'],
+        ]);
+
+        $post->categories()->detach();
+        
+        foreach ($request->category as $cat) {
+            $category = Category::where('name', $cat)->first();
+
+            if (!empty($category)) {
+                $post->categories()->attach($category);
+            } else {
+                $category = Category::create([
+                    'name' => $cat,
+                    'slug' => $this->getSlug($cat),
+                    'user_id' => auth()->user()->id
+                ]);
+                $post->categories()->attach($category);
+            }
+        }
+
+        if ($request->hasFile('cover')) {
+            $this->coverUpload($request->cover, $post->id);
+        }
+
+        return redirect()->route('posts.index')->with('success', 'Post updated successfully.');
     }
 
     /**

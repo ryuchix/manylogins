@@ -4,8 +4,9 @@
 
 @section('content')
 <div class="overflow-x-auto">
-    <div class="min-w-screen bg-gray-100 flex flex-col items-center justify-center bg-gray-100 font-sans overflow-hidden">
-        <div class="mt-6 w-full justify-end items-center px-4 md:px-10 flex">
+    <div class="min-w-screen bg-gray-100 dark:bg-gray-700 flex flex-col items-center justify-center bg-gray-100 font-sans overflow-hidden">
+        <div class="mt-6 w-full justify-between items-center px-4 md:px-10 flex">
+            <div>User Lists</div>
             <a href="{{ route('users.create') }}" class="flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />

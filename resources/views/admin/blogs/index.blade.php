@@ -4,8 +4,9 @@
 
 @section('content')
 <div class="overflow-x-auto">
-    <div class="min-w-screen bg-gray-100 flex flex-col items-center justify-center bg-gray-100 font-sans overflow-hidden">
-        <div class="mt-6 w-full justify-end items-center px-4 md:px-10 flex">
+    <div class="min-w-screen bg-gray-100 dark:bg-gray-700 flex flex-col items-center justify-center bg-gray-100 font-sans overflow-hidden">
+        <div class="mt-6 w-full justify-between items-center px-4 md:px-10 flex">
+            <div>Blog Lists</div>
             <a href="{{ route('posts.create') }}" class="flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
@@ -20,6 +21,7 @@
                     <thead>
                         <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                             <th class="py-3 px-6 text-left">Title</th>
+                            <th class="py-3 px-6 text-left">Url</th>
                             <th class="py-3 px-6 text-left">Added by</th>
                             <th class="py-3 px-6 text-left">Status</th>
                             <th class="py-3 px-6 text-center">Actions</th>
@@ -31,6 +33,11 @@
                             <td class="py-3 px-6 text-left whitespace-nowrap">
                                 <div class="flex items-center">
                                     <span class="font-medium">{{ $post->title }}</span>
+                                </div>
+                            </td>
+                            <td class="py-3 px-6 text-left whitespace-nowrap">
+                                <div class="flex items-center">
+                                    <span class="font-medium">{{ $post->slug }}</span>
                                 </div>
                             </td>
                             <td class="py-3 px-6 text-left">
@@ -46,13 +53,19 @@
                                 </div>
                             </td>
                             <td class="py-3 px-6 text-center">
-                                <div class="flex item-center justify-center">
-                                    <a href="{{ route('posts.edit', $post->id) }}" class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110 cursor-pointer">
+                                <div class="flex items-center justify-center">
+                                    <a href="#" class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110 cursor-pointer">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                        </svg>
+                                    </a>
+                                    <a href="{{ route('posts.edit', $post->id) }}" class="w-4 mr-1 transform hover:text-purple-500 hover:scale-110 cursor-pointer">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                                         </svg>
                                     </a>
-                                    <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
+                                    <form action="{{ route('posts.destroy', $post->id) }}" method="POST" class="flex items-center">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110 cursor-pointer">
