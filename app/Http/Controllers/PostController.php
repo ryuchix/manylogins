@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
+use App\Models\Category;
+use App\Models\CategoryPost;
+
 class PostController extends Controller
 {
     /**
@@ -26,7 +29,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.blogs.create');
+        $category = Category::get();
+
+        return view('admin.blogs.create', ['category' => $category]);
     }
 
     /**
@@ -37,7 +42,44 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:200',
+            'content' => 'required',
+            'category' => 'required',
+            'cover' => 'image|mimes:jpg,png,jpeg,gif,svg,webp|max:2048',
+        ]);
+
+        $data = array_filter($request->all());
+        $data['slug'] = $this->getSlug($request->title);
+        $data['status'] = isset($request->status) && $request->status == 'on' ? 1 : 0;
+
+        $post = Post::create([
+            'title' => $data['title'],
+            'slug' => $data['slug'],
+            'content' => $data['content'],
+            'user_id' => auth()->user()->id
+        ]);
+
+        foreach ($request->category as $cat) {
+            $category = Category::where('name', $cat)->first();
+
+            if (!empty($category)) {
+                $post->categories()->attach($category);
+            } else {
+                $category = Category::create([
+                    'name' => $cat,
+                    'slug' => $this->getSlug($cat),
+                    'user_id' => auth()->user()->id
+                ]);
+                $post->categories()->attach($category);
+            }
+        }
+
+        if ($request->hasFile('cover')) {
+            $this->coverUpload($request->cover, $post->id);
+        }
+
+        return redirect()->route('posts.index')->with('success', 'Post added successfully.');
     }
 
     /**
@@ -100,6 +142,21 @@ class PostController extends Controller
 
             return response()->json($response);
         }
+    }
 
+    public function coverUpload($image, $id)
+    {
+        $imageName = time().'.'.$image->extension();  
+   
+        $image->move(public_path('images/posts'), $imageName);
+
+        $user = Post::find($id);
+        $user->cover = $imageName;
+        $user->save();
+    }
+
+    public function getSlug($title)
+    {
+        return str_slug($title, '-');
     }
 }

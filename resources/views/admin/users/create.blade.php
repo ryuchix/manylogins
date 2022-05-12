@@ -5,7 +5,7 @@
 @section('content')
 <div class="overflow-x-auto">
     <div class="min-w-screen bg-gray-100 flex flex-col bg-gray-100 font-sans overflow-hidden px-4 md:px-10">
-        <div class="mt-6 w-full justify-start items-center flex">
+        <div class="mt-6 w-full justify-start items-center flex text-xl">
             <span>Add User</span>
         </div>
 

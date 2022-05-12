@@ -5,7 +5,7 @@
 @section('content')
 <div class="overflow-x-auto">
     <div class="min-w-screen bg-gray-100 flex flex-col bg-gray-100 font-sans overflow-hidden px-4 md:px-10">
-        <div class="mt-6 w-full justify-start items-center flex">
+        <div class="mt-6 w-full justify-start items-center flex text-xl">
             <span>Edit User</span>
         </div>
 
@@ -61,7 +61,7 @@
                         Picture
                     </label>
                     <span class="sr-only">Choose File</span>
-                    <input type="file" name="image" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"/>
+                    <input type="file" name="image" accept="image/*" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"/>
                 </div>
 
                 <div class="flex items-center justify-end mt-4">

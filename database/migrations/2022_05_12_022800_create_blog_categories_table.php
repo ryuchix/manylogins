@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddCategoryInPostsTable extends Migration
+class CreateBlogCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AddCategoryInPostsTable extends Migration
      */
     public function up()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            $table->text('category')->nullable()->after('user_id');
+        Schema::create('category_post', function (Blueprint $table) {
+            $table->id();
+            $table->integer('post_id');
+            $table->integer('category_id');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class AddCategoryInPostsTable extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('category_post');
     }
 }

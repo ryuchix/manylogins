@@ -5,10 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-use App\Models\User;
-use App\Models\Category;
+use App\Models\Post;
 
-class Post extends Model
+class Category extends Model
 {
     use HasFactory;
 
@@ -18,21 +17,14 @@ class Post extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'title',
+        'name',
         'slug',
-        'content',
-        'cover',
-        'user_id',
         'status',
+        'user_id'
     ];
 
-    public function user()
+    public function posts()
     {
-        return $this->belongsTo(User::class);
-    }
-
-    public function categories()
-    {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Post::class);
     }
 }

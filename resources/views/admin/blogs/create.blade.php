@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Create user')
+@section('title', 'Create post')
 
 @section('style')
 <link rel="stylesheet" href="{{ asset('trumbowyg/dist/ui/trumbowyg.min.css') }}">
@@ -42,7 +42,7 @@
         </div>
 
         <div class="bg-white mt-5 p-8 rounded-md">
-            <form method="POST" action="{{ route('posts.store') }}" x-data="{status: '0'}">
+            <form method="POST" action="{{ route('posts.store') }}" x-data="{status: '0'}" enctype="multipart/form-data">
                 @csrf
                 
                 @include('admin.partials.session-message')
@@ -71,16 +71,18 @@
                         Featured Image
                     </label>
                     <span class="sr-only">Choose File</span>
-                    <input type="file" name="cover" class="block w-max text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"/>
+                    <input type="file" accept="image/*" name="cover" class="block w-max text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"/>
                 </div>
 
                 <!-- Category -->
                 <div class="mt-4 w-full">
-                    <label class="block font-medium text-sm text-gray-700 mb-2" for="cover">
+                    <label class="block font-medium text-sm text-gray-700 mb-2" for="select-category">
                         Categories
                     </label>
-                    <select class="select-category rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-1 w-1/2" name="categories[]" multiple="multiple">
-                        
+                    <select class="select-category rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-1 w-1/2" name="category[]" multiple="multiple">
+                        @foreach ($category as $cat)
+                            <option value="{{ $cat->name }}">{{ $cat->name }}</option>
+                        @endforeach
                     </select>
                 </div>
 
@@ -90,7 +92,7 @@
                         Status
                     </label>
                     <label class="inline-flex items-center mt-3 ml-1">
-                        <input id="status" type="checkbox" class="form-checkbox h-5 w-5 text-darkblue rounded-sm" checked><span class="ml-2 text-gray-700">Published</span>
+                        <input id="status" name="status" type="checkbox" class="form-checkbox h-5 w-5 text-darkblue rounded-sm" checked><span class="ml-2 text-gray-700">Published</span>
                     </label>
                 </div>
 
@@ -98,7 +100,7 @@
                     <button type="reset" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 ml-4">
                         Clear
                     </button>
-                    <button type="button" class="submit-btn inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 ml-4">
+                    <button type="submit" class="submit-btn inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 ml-4">
                         Add post
                     </button>
                 </div>
@@ -119,14 +121,12 @@
     $(".select-category").select2({
         tags: true,
         placeholder: "Create or select a category",
-        tokenSeparators: [',', ' '],
+        tokenSeparators: [','],
         width: 'resolve'
     })
 
     $('.submit-btn').on('click', function() {
         var content = $('#content').trumbowyg('html');
-
-        console.log(content)
     });
 
     $('#content').trumbowyg({
