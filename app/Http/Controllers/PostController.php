@@ -214,6 +214,7 @@ class PostController extends Controller
 
     public function getSlug($title)
     {
-        return str_slug($title, '-');
+        $string = str_slug($title, '-');
+        return preg_replace('/[^A-Za-z0-9\-]/', '-', $string);
     }
 }

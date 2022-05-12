@@ -64,7 +64,7 @@ class KeywordApi
         $keyword_search->api_result = json_encode($result);
         $keyword_search->status = 1;
         $keyword_search->save();
-
+        
         self::insertOrganicResult($keyword_search->id, $result);
     
     }
