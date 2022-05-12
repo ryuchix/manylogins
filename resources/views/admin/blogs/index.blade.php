@@ -41,7 +41,7 @@
                             <td class="py-3 px-6 text-left">
                                 <div class="flex items-center">
                                     <span class="capitalize">
-                                        <div class="px-3 py-2 flex justify-center items-center {{ $post->status == 1 ? 'bg-green-600' : 'bg-gray-500' }} text-white">{{ $post->status == 1 ? 'published' : 'inactive' }}</div>
+                                        <div class="px-2 py-1 rounded text-xs flex justify-center items-center {{ $post->status == 1 ? 'bg-green-600' : 'bg-gray-500' }} text-white">{{ $post->status == 1 ? 'published' : 'inactive' }}</div>
                                     </span>
                                 </div>
                             </td>

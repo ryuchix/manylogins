@@ -101,7 +101,15 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $category = Category::get();
+
+        $selected_catogories = [];
+        
+        foreach ($post->categories as $cat) {
+            $selected_catogories[] = $cat->name;
+        }
+
+        return view('admin.blogs.edit', ['post' => $post, 'category' => $category, 'selected_catogories' => $selected_catogories]);
     }
 
     /**
@@ -124,7 +132,12 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        if (!empty($post)) {
+            $post->delete();
+            return redirect()->route('posts.index')->with('success', 'Post deleted successfully.');
+        }
+        
+        return redirect()->route('posts.index')->with('error', 'An error has occured.');
     }
 
     public function upload(Request $request)
