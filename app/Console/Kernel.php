@@ -5,6 +5,7 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Console\Commands\SerpMasterKeyword;
+use App\Console\Commands\GenerateSitemap;
 
 class Kernel extends ConsoleKernel
 {
@@ -15,6 +16,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         SerpMasterKeyword::class,
+        GenerateSitemap::class
     ];
 
     /**
@@ -26,6 +28,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('serpKeywords:master 1000')->daily();
+        $schedule->command('generate:sitemap')->daily();
     }
 
     /**

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SitemapController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,12 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resource('posts', PostController::class);
 
     Route::post('upload', [PostController::class, 'upload'])->name('admin.upload');
+
+    Route::resource('keywords', PostController::class);
+
 });
+
+Route::get('generate-sitemap', [SitemapController::class, 'create'])->name('create.sitemap');
 
 Route::get('/keywords/api/{search}', [PublicController::class, 'keywordSearch'])->name('keywords');
 Route::get('/{search?}', [PublicController::class, 'search'])->name('search');
