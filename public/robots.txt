@@ -1,2 +1,9 @@
 User-agent: *
-Disallow:
+Allow: /
+
+Disallow: /admin/
+Disallow: /admin?
+Disallow: /_/*
+
+Sitemap: https://manylogins.com/sitemap.xml
+Sitemap: https://www.manylogins.com/sitemap.xml
