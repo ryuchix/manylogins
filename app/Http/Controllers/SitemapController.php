@@ -61,7 +61,11 @@ class SitemapController extends Controller
             return redirect('sitemap.xml');
         
         } catch (\Exception $e) {
-            //
+            logger($e);
+        }  catch (\Throwable $e) {
+            logger($e);
+        } catch (\InvalidArgumentException $th) {
+            logger(json_encode($th));
         }
     }
 }
