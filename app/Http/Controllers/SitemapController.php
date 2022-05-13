@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
-use App;
 
 use App\Models\KeywordSearch;
 
@@ -19,7 +18,7 @@ class SitemapController extends Controller
                 ->get();
 
             // create new sitemap object
-            $sitemap = App::make('sitemap');
+            $sitemap = \App::make('sitemap');
 
             // counters
             $counter = 0;
