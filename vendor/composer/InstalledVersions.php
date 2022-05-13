@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '87a98c35e0224a0eaee85d7dc2a656c02ca5f3dd',
+    'reference' => 'fb6790fdab3ab4e8cde2424c0e144910c6bd7ef8',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -482,6 +482,15 @@ private static $installed = array (
         0 => 'v8.83.12',
       ),
     ),
+    'intervention/image' => 
+    array (
+      'pretty_version' => '2.7.1',
+      'version' => '2.7.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '744ebba495319501b873a4e48787759c72e3fb8c',
+    ),
     'kodova/hamcrest-php' => 
     array (
       'replaced' => 
@@ -523,7 +532,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '87a98c35e0224a0eaee85d7dc2a656c02ca5f3dd',
+      'reference' => 'fb6790fdab3ab4e8cde2424c0e144910c6bd7ef8',
     ),
     'laravel/sail' => 
     array (
@@ -597,6 +606,15 @@ private static $installed = array (
       ),
       'reference' => '094defdb4a7001845300334e7c1ee2335925ef99',
     ),
+    'league/glide' => 
+    array (
+      'pretty_version' => '2.0.x-dev',
+      'version' => '2.0.9999999.9999999-dev',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'e84ef237030817ab6034b2c17173dd3352a971e1',
+    ),
     'league/mime-type-detection' => 
     array (
       'pretty_version' => '1.11.0',
@@ -666,6 +684,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '0af4e3de4df9f1543534beab255ccf459e7a2c99',
+    ),
+    'nicmart/tree' => 
+    array (
+      'pretty_version' => '0.3.1',
+      'version' => '0.3.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'c55ba47c64a3cb7454c22e6d630729fc2aab23ff',
     ),
     'nikic/php-parser' => 
     array (
@@ -1104,6 +1131,69 @@ private static $installed = array (
       ),
       'reference' => 'c6c1022351a901512170118436c764e473f6de8c',
     ),
+    'spatie/browsershot' => 
+    array (
+      'pretty_version' => '3.53.0',
+      'version' => '3.53.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '3493f2ba9942c1811c3368c0c43978730316a059',
+    ),
+    'spatie/crawler' => 
+    array (
+      'pretty_version' => '6.0.2',
+      'version' => '6.0.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '276ecb429a770474695a1278a9ad3e719fbef259',
+    ),
+    'spatie/image' => 
+    array (
+      'pretty_version' => '2.0.0',
+      'version' => '2.0.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '1ffb276dd6528c6b308d5feb1573299c24fd9613',
+    ),
+    'spatie/image-optimizer' => 
+    array (
+      'pretty_version' => '1.6.2',
+      'version' => '1.6.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '6db75529cbf8fa84117046a9d513f277aead90a0',
+    ),
+    'spatie/laravel-sitemap' => 
+    array (
+      'pretty_version' => '5.9.2',
+      'version' => '5.9.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'df5c3db511e08a8e64a3d7e28613ab018a99e95d',
+    ),
+    'spatie/robots-txt' => 
+    array (
+      'pretty_version' => '1.0.10',
+      'version' => '1.0.10.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '8802a2bee670b3c13cfd21ede0322f72b3efb711',
+    ),
+    'spatie/temporary-directory' => 
+    array (
+      'pretty_version' => '1.3.0',
+      'version' => '1.3.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'f517729b3793bca58f847c5fd383ec16f03ffec6',
+    ),
     'swiftmailer/swiftmailer' => 
     array (
       'pretty_version' => 'v6.3.0',
@@ -1139,6 +1229,15 @@ private static $installed = array (
       array (
       ),
       'reference' => 'e8b495ea28c1d97b5e0c121748d6f9b53d075c66',
+    ),
+    'symfony/dom-crawler' => 
+    array (
+      'pretty_version' => 'v5.4.6',
+      'version' => '5.4.6.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'c0bda97480d96337bd3866026159a8b358665457',
     ),
     'symfony/error-handler' => 
     array (
