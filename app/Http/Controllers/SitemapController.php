@@ -58,7 +58,7 @@ class SitemapController extends Controller
             // generate new sitemapindex that will contain all generated sitemaps above
             $sitemap->store('sitemapindex', 'sitemap', '');
 
-            // return redirect('sitemap.xml');
+            return redirect('sitemap.xml');
         
         } catch (\Exception $e) {
             //
