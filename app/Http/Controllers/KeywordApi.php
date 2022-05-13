@@ -64,7 +64,7 @@ class KeywordApi
         $keyword_search->api_result = json_encode($result);
         $keyword_search->status = 1;
         $keyword_search->save();
-        
+
         self::insertOrganicResult($keyword_search->id, $result);
     
     }
@@ -76,8 +76,8 @@ class KeywordApi
     }
 
     public static function insertOrganicResult($id, $result) 
-    {
-        if (!is_null($result['results'][0])) {
+    {   
+        if ($result != null && !is_null($result['results'][0])) {
             $content = collect($result['results'][0]['content']['results']);
             $organic = collect($content['organic']);
 
@@ -105,7 +105,7 @@ class KeywordApi
 
     public static function insertRelatedSearches($id, $result) 
     {
-        if (isset($result['results'][0]['content']['results']['related_searches'])) {
+        if ($result != null && isset($result['results'][0]['content']['results']['related_searches'])) {
             $content = collect($result['results'][0]['content']['results']);
             $related = collect($content['related_searches']['related_searches']);
 
