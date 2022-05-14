@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\KeywordController;
+use App\Http\Controllers\UserSearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,21 +25,27 @@ Route::get('/', [PublicController::class, 'home'])->name('home');
 require __DIR__.'/auth.php';
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
+
     Route::get('/', [UserController::class, 'admin'])->name('admin');
 
     Route::resource('users', UserController::class);
+
     Route::resource('posts', PostController::class);
 
     Route::post('upload', [PostController::class, 'upload'])->name('admin.upload');
 
     Route::resource('keywords', KeywordController::class);
 
+    Route::resource('user-search', UserSearchController::class);
+
 });
 
 Route::get('generate-sitemap', [SitemapController::class, 'create'])->name('create.sitemap');
 
 Route::get('/keywords/api/{search}', [PublicController::class, 'keywordSearch'])->name('keywords');
+
 Route::get('/{search?}', [PublicController::class, 'search'])->name('search');
+
 Route::get('/{visit?}/{cid?}', [PublicController::class, 'visitPage'])->name('visit');
 
 

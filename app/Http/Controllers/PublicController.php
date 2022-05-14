@@ -8,6 +8,7 @@ use App\Http\Controllers\KeywordApi;
 
 use App\Models\KeywordSearch;
 use App\Models\OrganicResult;
+use App\Models\UserSearch;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
@@ -62,6 +63,12 @@ class PublicController extends Controller
         }
 
         $title = (str_replace('-', ' ', $search));
+
+        if ($search_result == null) {
+            UserSearch::firstOrCreate([
+                'keywords' => $search
+            ]);
+        }
         
         return view('home.search', [
             'title' => ($title ?? ''),

@@ -1,23 +1,25 @@
 <?php
 
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class KeywordSearch extends Migration
+class CreateUserSearchesTable extends Migration
 {
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
     public function up()
     {
-        Schema::create('keyword_search', function (Blueprint $table) {
+        Schema::create('user_searches', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('keywords')->nullable();
-            $table->text('slug')->nullable();
             $table->integer('status')->nullable();
-            $table->longText('api_result')->nullable();
+            $table->integer('keyword_search_id')->nullable();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->softDeletes(); 
             $table->index(['status']);
             $table->fulltext(['keywords']);
         });
@@ -30,6 +32,6 @@ class KeywordSearch extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('keyword_search');
+        Schema::dropIfExists('user_searches');
     }
 }
