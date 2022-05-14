@@ -20,6 +20,8 @@ class KeywordController extends Controller
                             } elseif ($request->status == 2) {
                                 $query->where('status', NULL); 
                             }
+                        })->when($request->search, function($query) use ($request) {
+                            $query->where('keywords', 'LIKE', "%{$request->search}%"); 
                         })->paginate(30);
 
         return view('admin.keywords.index', ['keywords' => $keywords]);

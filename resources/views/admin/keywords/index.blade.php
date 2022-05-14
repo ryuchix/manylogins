@@ -29,7 +29,7 @@
                             </path>
                         </svg>
                     </span>
-                    <input placeholder="Search" type="search"
+                    <input placeholder="Search" type="search" name="search"
                         class="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-200 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:outline-none focus:border focus:bg-white focus:border-[#2563eb]" />
                 </div>
                 <div class="block relative">
