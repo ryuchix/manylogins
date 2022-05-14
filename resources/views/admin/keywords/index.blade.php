@@ -73,6 +73,13 @@
                     </tbody>
                 </table>
             </div>
+            <div class='flex items-center justify-center mt-10 bg-gray-100'>
+                <div class="flex flex-col items-center mb-8 px-4 mx-auto mt-8">
+                    <div class="font-sans flex justify-end space-x-1 select-none">
+                        {!! $keywords->links() !!}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
