@@ -6,6 +6,7 @@ use App\Http\Controllers\PublicController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SitemapController;
+use App\Http\Controllers\KeywordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +31,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     Route::post('upload', [PostController::class, 'upload'])->name('admin.upload');
 
-    Route::resource('keywords', PostController::class);
+    Route::resource('keywords', KeywordController::class);
 
 });
 

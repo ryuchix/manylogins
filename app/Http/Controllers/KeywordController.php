@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\KeywordSearch;
 
 class KeywordController extends Controller
 {
@@ -13,7 +14,9 @@ class KeywordController extends Controller
      */
     public function index()
     {
-        //
+        $keywords = KeywordSearch::paginate(30);
+
+        return view('admin.keywords.index', ['keywords' => $keywords]);
     }
 
     /**
