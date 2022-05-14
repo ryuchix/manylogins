@@ -1,12 +1,12 @@
 @extends('layouts.admin')
 
-@section('title', 'Manage Keywords Search')
+@section('title', 'Manage User Search')
 
 @section('content')
 <div class="overflow-x-auto">
     <div class="min-w-screen bg-gray-100 dark:bg-gray-700 flex flex-col items-center justify-center bg-gray-100 font-sans overflow-hidden">
         <div class="mt-6 w-full justify-between items-center px-4 md:px-10 flex text-xl">
-            <div>Keywords Search Lists</div>
+            <div>User Search Lists</div>
         </div>
         <div class="w-full px-4 md:px-10">
             @include('admin.partials.session-message')
