@@ -10,7 +10,35 @@
         </div>
         <div class="w-full px-4 md:px-10">
             @include('admin.partials.session-message')
-            <div class="bg-white shadow-md rounded my-6 overflow-x-auto">
+            <form method="GET" action="{{ route('keywords.index') }}" class="my-2 flex sm:flex-row flex-col mt-4 items-center">
+                <div class="flex flex-row mb-1 sm:mb-0">
+                    <div class="relative">
+                        <select name="status"
+                            class="appearance-none h-full rounded-l rounded-r lg:rounded-r-none border-t border-r-1 lg:border-r-0 border-r border-b block appearance-none w-full bg-white border-gray-200 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:rounded lg:focus:border-r-2 focus:border-r focus:bg-white focus:border-[#2563eb]">
+                            <option value="0">All</option>
+                            <option value="1" {{ isset($_GET['status']) && $_GET['status'] == 1 ? 'selected' : '' }}>Scraped</option>
+                            <option value="2" {{ isset($_GET['status']) && $_GET['status'] == 2 ? 'selected' : '' }}>Pending</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="block relative">
+                    <span class="h-full absolute inset-y-0 left-0 flex items-center pl-2">
+                        <svg viewBox="0 0 24 24" class="h-4 w-4 fill-current text-gray-500">
+                            <path
+                                d="M10 4a6 6 0 100 12 6 6 0 000-12zm-8 6a8 8 0 1114.32 4.906l5.387 5.387a1 1 0 01-1.414 1.414l-5.387-5.387A8 8 0 012 10z">
+                            </path>
+                        </svg>
+                    </span>
+                    <input placeholder="Search" type="search"
+                        class="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-200 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:outline-none focus:border focus:bg-white focus:border-[#2563eb]" />
+                </div>
+                <div class="block relative">
+                    <button type="submit" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-sm font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 ml-2">
+                        Filter
+                    </button>
+                </div>
+            </form>
+            <div class="bg-white shadow-md rounded mb-6 mt-4 overflow-x-auto">
                 <table class="min-w-max w-full table-auto">
                     <thead>
                         <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
@@ -37,12 +65,12 @@
                             </td>
                             <td class="py-3 px-6 text-left whitespace-nowrap">
                                 <div class="flex items-center">
-                                    <span class="font-medium">{{ $keyword->slug }}</span>
+                                    <span class="font-medium">{{ count($keyword->organic) }}</span>
                                 </div>
                             </td>
-                            <td class="py-3 px-6 text-left">
+                            <td class="py-3 px-6 text-left whitespace-nowrap">
                                 <div class="flex items-center">
-                                    <span>{{ $keyword->slug }}</span>
+                                    <span class="font-medium">{{ count($keyword->relatedSearch) }}</span>
                                 </div>
                             </td>
                             <td class="py-3 px-6 text-left">
@@ -76,7 +104,7 @@
             <div class='flex items-center justify-center mt-10 bg-gray-100'>
                 <div class="flex flex-col items-center mb-8 px-4 mx-auto mt-8">
                     <div class="font-sans flex justify-end space-x-1 select-none">
-                        {!! $keywords->links() !!}
+                        {!! $keywords->appends(array('status' => request()->status))->links() !!}
                     </div>
                 </div>
             </div>

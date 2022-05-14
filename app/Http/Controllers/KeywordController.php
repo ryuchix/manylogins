@@ -12,9 +12,15 @@ class KeywordController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $keywords = KeywordSearch::paginate(30);
+    public function index(Request $request)
+    {   
+        $keywords = KeywordSearch::when($request->status, function($query) use ($request) {
+                            if ($request->status == 1) {
+                                $query->where('status', '=', 1); 
+                            } elseif ($request->status == 2) {
+                                $query->where('status', NULL); 
+                            }
+                        })->paginate(30);
 
         return view('admin.keywords.index', ['keywords' => $keywords]);
     }
