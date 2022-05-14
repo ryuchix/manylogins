@@ -27,8 +27,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('serpKeywords:master 1000')->daily();
-        $schedule->command('generate:sitemap')->daily();
+        $schedule->command('serpKeywords:master 1000')->daily()->withoutOverlapping();
+        $schedule->command('generate:sitemap')->daily()->withoutOverlapping();
     }
 
     /**
