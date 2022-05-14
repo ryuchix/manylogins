@@ -24,7 +24,7 @@ class PublicController extends Controller
     }
 
     public function search(Request $request)
-    {
+    {   
         $search = $request->search;
         $search_result = null;
         $meta_keywords = '';
@@ -66,7 +66,7 @@ class PublicController extends Controller
 
         if ($search_result == null) {
             UserSearch::firstOrCreate([
-                'keywords' => $search
+                'keywords' => $title
             ]);
         }
         
