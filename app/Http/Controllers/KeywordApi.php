@@ -52,7 +52,9 @@ class KeywordApi
         $keywords->each(
             function ($item, $key) {
                 $result = self::searchKeywords($item->keywords);
-                self::updateKeywords($item->id, $item->keywords, $result);
+                if ($result != null) {
+                    self::updateKeywords($item->id, $item->keywords, $result);
+                }
             }
         );
     }
