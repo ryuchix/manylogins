@@ -21,7 +21,7 @@
             </div>
 
             <div class="bg-white shadow rounded-md placeholder: mb-6 p-4 w-full mt-10">
-                <div class="block text-2xl text-gray-800 font-bold text-center">Customer Login</div>
+                <div class="block text-2xl text-gray-800 font-bold text-center">{{ $title }}</div>
 
                 <div class="text-center mt-3">
                     {{ $result->desc }}
