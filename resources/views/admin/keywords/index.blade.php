@@ -42,6 +42,7 @@
                 <table class="min-w-max w-full table-auto">
                     <thead>
                         <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                            <th class="py-3 px-6 text-left">ID</th>
                             <th class="py-3 px-6 text-left">Keyword</th>
                             <th class="py-3 px-6 text-left">Url</th>
                             <th class="py-3 px-6 text-left">Organic</th>
@@ -53,6 +54,11 @@
                     <tbody class="text-gray-600 text-sm font-light">
                         @foreach ($keywords as $keyword)
                         <tr class="border-b border-gray-200 hover:bg-gray-100">
+                            <td class="py-3 px-6 text-left whitespace-nowrap">
+                                <div class="flex items-center">
+                                    <span class="font-medium">{{ $keyword->id }}</span>
+                                </div>
+                            </td>
                             <td class="py-3 px-6 text-left whitespace-nowrap">
                                 <div class="flex items-center">
                                     <span class="font-medium">{{ $keyword->keywords }}</span>
