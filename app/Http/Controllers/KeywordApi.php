@@ -61,14 +61,16 @@ class KeywordApi
 
     public static function updateKeywords($id, $slug, $result) 
     {
-        $keyword_search = KeywordSearch::find($id);
-        $keyword_search->slug = self::clean($slug);
-        $keyword_search->api_result = json_encode($result);
-        $keyword_search->status = 1;
-        $keyword_search->save();
+        $keyword = KeywordSearch::find($id);
+        if ($keyword->slug != self::clean($slug)) {
+            $keyword_search = KeywordSearch::find($id);
+            $keyword_search->slug = self::clean($slug);
+            $keyword_search->api_result = json_encode($result);
+            $keyword_search->status = 1;
+            $keyword_search->save();
 
-        self::insertOrganicResult($keyword_search->id, $result);
-    
+            self::insertOrganicResult($keyword_search->id, $result);
+        }
     }
 
     public static function clean($string)
@@ -114,12 +116,16 @@ class KeywordApi
             $related_insert = collect();
             $related->each(
                 function ($item, $key) use ($id, $related_insert) {
-                    $related_insert->push(
-                        [
-                            'keyword_id' => $id,
-                            'keywords'=> $item,
-                        ]
-                    );
+                    $exists = RelatedSearch::where('keyword_id', $id)
+                                        ->where('keywords', $item)->exists();
+                    if (!$exists) {
+                        $related_insert->push(
+                            [
+                                'keyword_id' => $id,
+                                'keywords'=> $item,
+                            ]
+                        );
+                    }
                 }
             );
 
