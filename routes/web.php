@@ -36,6 +36,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     Route::resource('keywords', KeywordController::class);
 
+    Route::post('keywords/mass-delete', [KeywordController::class, 'massDelete'])->name('keywords.mass.delete');
+
     Route::resource('user-search', UserSearchController::class);
 
 });

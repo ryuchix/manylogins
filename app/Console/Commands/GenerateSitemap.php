@@ -44,6 +44,7 @@ class GenerateSitemap extends Command
 
             $productChunks = KeywordSearch::select(['slug', 'updated_at'])
                 ->where('status', 1)
+                ->where('deleted', '!=', 1)
                 ->orderBy('updated_at', 'desc')
                 ->chunk(25000, function ($products, $chunk) use ($sitemapIndex) {
                     $sitemapName = 'keywords_sitemap'.$chunk.'.xml';

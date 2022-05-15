@@ -37,6 +37,16 @@
                         Filter
                     </button>
                 </div>
+                <div class="block relative">
+                        <button type="button" class="mass-delete-btn hidden inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-sm font-semibold text-xs text-white uppercase tracking-widest hover:bg-opacity-80 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-[#2563eb] disabled:opacity-25 transition ease-in-out duration-150 ml-2">
+                            Mass Delete
+                        </button>
+                    </form>
+                </div>
+            </form>
+            <form id="mass-delete" class="hidden" method="POST" action="{{ route('keywords.mass.delete') }}">
+                @csrf
+                <input type="hidden" name="ids" class="deleted_ids">
             </form>
             <div class="bg-white shadow-md rounded mb-6 mt-4 overflow-x-auto">
                 <table class="min-w-max w-full table-auto">
@@ -44,8 +54,8 @@
                         <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                             <th class="py-3 px-6 text-left">
                                 <div class="flex items-center">
-                                    <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-darkblue bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-darkblue dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                    <label for="checkbox-all-search" class="sr-only">checkbox</label>
+                                    <input id="checkbox-all" type="checkbox" class="w-4 h-4 text-darkblue bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-darkblue dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="checkbox-all" class="sr-only">checkbox</label>
                                 </div>
                             </th>
                             <th class="py-3 px-6 text-left">ID</th>
@@ -61,8 +71,8 @@
                         @foreach ($keywords as $keyword)
                         <tr class="border-b border-gray-200 hover:bg-gray-100">
                             <td class="py-3 px-6 text-left whitespace-nowrap">
-							<div class="flex items-center">
-								<input id="checkbox-table-search-1" type="checkbox" class="w-4 h-4 text-darkblue bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-darkblue dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+							<div class="flex items-center chk">
+								<input value="{{ $keyword->id }}" name="chkid[]" type="checkbox" class="checkbox-id w-4 h-4 text-darkblue bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-darkblue dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
 								<label for="checkbox-table-search-1" class="sr-only">{{ $keyword->id }}</label>
 							</div>
                             </td>
@@ -129,4 +139,84 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+<script>
+    $(function() {
+        $('#btnSubmit').click(function() {
+            $('.row-select input:checked').each(function() {
+                var id, name;
+                id = $(this).closest('tr').find('.id').html();
+                name = $(this).closest('tr').find('.name').html();
+
+                alert('ID: ' + id + " | Name: " + name);
+            })
+        })
+
+
+        $('#checkbox-all').on('change', function() {
+            console.log($(this).is(':checked'))
+            if ($(this).is(':checked')) {
+                $('.mass-delete-btn').removeClass('hidden')
+                deletedIds = [];
+                $('.checkbox-id').each(function() {
+                    $(this).prop('checked', true);
+                    deletedIds.push($(this).val());
+                })
+            } else {
+                $('.mass-delete-btn').addClass('hidden')
+                $('.checkbox-id').each(function() {
+                    $(this).prop('checked', false);
+                    deletedIds = [];
+                })
+            }
+        })
+
+        $('.checkbox-id').on('change', function() {
+            if (!$(this).is(':checked')) {
+                $('#checkbox-all').prop('checked', false);
+
+                const index = deletedIds.indexOf($(this).val());
+                if (index > -1) {
+                    deletedIds.splice(index, 1);
+                }
+            } else {
+                $('.mass-delete-btn').removeClass('hidden');
+                deletedIds.push($(this).val())
+            }
+
+            var boxes = [];
+            $('.checkbox-id').each(function() {
+                boxes.push($(this).is(':checked'));
+            })
+
+            if (checker(boxes)) {
+                $('#checkbox-all').prop('checked', true);
+            }
+
+            if (checker2(boxes)) {
+                $('.mass-delete-btn').addClass('hidden')
+            }
+        })
+
+        let checker = arr => arr.every(v => v === true);
+        let checker2 = arr => arr.every(v => v === false);
+        let deletedIds = [];
+
+        $('.mass-delete-btn').on('click', function() {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'This process is permanent!',
+                showCancelButton: true,
+                confirmButtonText: 'Delete',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $('.deleted_ids').val(deletedIds);
+                    $('#mass-delete').trigger('submit');
+                }
+            })
+        })
+    })
+</script>
 @endsection

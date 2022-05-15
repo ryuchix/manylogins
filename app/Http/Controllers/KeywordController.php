@@ -92,4 +92,15 @@ class KeywordController extends Controller
     {
         //
     }
+
+    public function massDelete(Request $request)
+    {
+        $ids = explode(",", $request->ids);
+
+        foreach ($ids as $id) {
+            KeywordSearch::find($id)->delete();
+        }
+
+        return redirect()->back()->with('success', 'Keywords deleted successfully.');
+    }
 }

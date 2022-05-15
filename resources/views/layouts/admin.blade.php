@@ -46,6 +46,8 @@
         <script defer src="{{ asset('js/alpine.min.js') }}"></script>
         <script src="{{ asset('js/typeahead.bundle.js') }}"></script>
         <script src="{{ asset('js/admin.js') }}"></script>
+        <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
+
         @yield('script')
 
         <script>
