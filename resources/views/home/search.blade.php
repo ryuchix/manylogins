@@ -57,7 +57,7 @@
 
             @if ($search_result === null)
                 <h2 class="text-2xl mt-2">
-                    0 results found for: <span class="text-darkblue">{{ $search }}</span>
+                    0 results found for: <span class="text-darkblue">{{ e(str_replace('-', ' ', $search)) }}</span>
                 </h2>
             @else
                 <h2 class="text-2xl mt-2">
