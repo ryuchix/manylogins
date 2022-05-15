@@ -10,8 +10,8 @@
         </div>
         <div class="w-full px-4 md:px-10">
             @include('admin.partials.session-message')
-            <form method="GET" action="{{ route('keywords.index') }}" class="my-2 flex sm:flex-row flex-col mt-4 items-center">
-                <div class="flex flex-row mb-1 sm:mb-0">
+            <form method="GET" action="{{ route('keywords.index') }}" class="my-2 flex md:flex-row flex-col mt-4 items-center space-y-2 md:space-y-0">
+                <div class="flex flex-row">
                     <div class="relative">
                         <select name="status"
                             class="appearance-none h-full rounded-l rounded-r lg:rounded-r-none border-t border-r-1 lg:border-r-0 border-r border-b block appearance-none w-full bg-white border-gray-200 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:rounded lg:focus:border-r-2 focus:border-r focus:bg-white focus:border-[#2563eb]">
@@ -33,7 +33,7 @@
                         class="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-200 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:outline-none focus:border focus:bg-white focus:border-[#2563eb]" />
                 </div>
                 <div class="block relative">
-                    <button type="submit" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-sm font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 ml-2">
+                    <button type="submit" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-sm font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-[#2563eb] disabled:opacity-25 transition ease-in-out duration-150 ml-2">
                         Filter
                     </button>
                 </div>
@@ -42,6 +42,12 @@
                 <table class="min-w-max w-full table-auto">
                     <thead>
                         <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                            <th class="py-3 px-6 text-left">
+                                <div class="flex items-center">
+                                    <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-darkblue bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-darkblue dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="checkbox-all-search" class="sr-only">checkbox</label>
+                                </div>
+                            </th>
                             <th class="py-3 px-6 text-left">ID</th>
                             <th class="py-3 px-6 text-left">Keyword</th>
                             <th class="py-3 px-6 text-left">Url</th>
@@ -54,6 +60,12 @@
                     <tbody class="text-gray-600 text-sm font-light">
                         @foreach ($keywords as $keyword)
                         <tr class="border-b border-gray-200 hover:bg-gray-100">
+                            <td class="py-3 px-6 text-left whitespace-nowrap">
+							<div class="flex items-center">
+								<input id="checkbox-table-search-1" type="checkbox" class="w-4 h-4 text-darkblue bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-darkblue dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+								<label for="checkbox-table-search-1" class="sr-only">{{ $keyword->id }}</label>
+							</div>
+                            </td>
                             <td class="py-3 px-6 text-left whitespace-nowrap">
                                 <div class="flex items-center">
                                     <span class="font-medium">{{ $keyword->id }}</span>

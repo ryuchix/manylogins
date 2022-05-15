@@ -10,8 +10,8 @@
         </div>
         <div class="w-full px-4 md:px-10">
             @include('admin.partials.session-message')
-            <form method="GET" action="{{ route('user-search.index') }}" class="my-2 flex sm:flex-row flex-col mt-4 items-center">
-                <div class="flex flex-row mb-1 sm:mb-0">
+            <form method="GET" action="{{ route('user-search.index') }}" class="my-2 flex md:flex-row flex-col mt-4 items-center space-y-2 md:space-y-0">
+                <div class="flex flex-row">
                     <div class="relative">
                         <select name="status"
                             class="appearance-none h-full rounded-l rounded-r lg:rounded-r-none border-t border-r-1 lg:border-r-0 border-r border-b block appearance-none w-full bg-white border-gray-200 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:rounded lg:focus:border-r-2 focus:border-r focus:bg-white focus:border-[#2563eb]">
@@ -33,7 +33,7 @@
                         class="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-200 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:outline-none focus:border focus:bg-white focus:border-[#2563eb]" />
                 </div>
                 <div class="block relative">
-                    <button type="submit" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-sm font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 ml-2">
+                    <button type="submit" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-sm font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-[#2563eb] disabled:opacity-25 transition ease-in-out duration-150 ml-2">
                         Filter
                     </button>
                 </div>
