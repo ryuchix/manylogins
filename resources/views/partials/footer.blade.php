@@ -6,7 +6,7 @@
         <div class="flex justify-center border-t border-gray-700 pt-5 mt-10 w-full max-w-5xl mx-auto">
             <div class="flex md:justify-between flex-col md:flex-row w-full space-y-3 md:space-y-0">
                 <div class="font-light text-gray-400 md:text-left text-center">
-                    © 2022 ManyLogins, All Rights Reserved
+                    {{ $setting->copyright_text }}
                 </div>
                 <div class="flex space-x-3 justify-center md:justify-end">
                     <a href="{{ $setting->facebook_url }}">
