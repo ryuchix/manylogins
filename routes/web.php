@@ -8,6 +8,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\KeywordController;
 use App\Http\Controllers\UserSearchController;
+use App\Http\Controllers\SettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::post('keywords/mass-update', [KeywordController::class, 'massUpdate'])->name('keywords.mass.update');
 
     Route::resource('user-search', UserSearchController::class);
+
+    Route::resource('settings', SettingController::class);
 
 });
 
