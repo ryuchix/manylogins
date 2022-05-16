@@ -37,16 +37,27 @@
                         Filter
                     </button>
                 </div>
-                <div class="block relative">
+                <div class="block relative flex flex-col md:flex-row items-center space-y-2 md:space-y-0">
+                    <div class="block relative">
                         <button type="button" class="mass-delete-btn hidden inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-sm font-semibold text-xs text-white uppercase tracking-widest hover:bg-opacity-80 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-[#2563eb] disabled:opacity-25 transition ease-in-out duration-150 ml-2">
                             Mass Delete
                         </button>
-                    </form>
+                    </div>
+                    <div class="block relative">
+                        <button type="button" class="mass-update-btn hidden inline-flex items-center px-4 py-2 bg-gray-400 border border-transparent rounded-sm font-semibold text-xs text-white uppercase tracking-widest hover:bg-opacity-80 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-[#2563eb] disabled:opacity-25 transition ease-in-out duration-150 ml-2">
+                            Mass Update
+                        </button>
+                    </div>
                 </div>
             </form>
             <form id="mass-delete" class="hidden" method="POST" action="{{ route('keywords.mass.delete') }}">
                 @csrf
                 <input type="hidden" name="ids" class="deleted_ids">
+            </form>
+            <form id="mass-update" class="hidden" method="POST" action="{{ route('keywords.mass.update') }}">
+                @csrf
+                <input type="hidden" name="ids" class="updated_ids">
+                <input type="hidden" name="status" class="updated_status">
             </form>
             <div class="bg-white shadow-md rounded mb-6 mt-4 overflow-x-auto">
                 <table class="min-w-max w-full table-auto">
@@ -144,21 +155,46 @@
 @section('script')
 <script>
     $(function() {
-        $('#btnSubmit').click(function() {
-            $('.row-select input:checked').each(function() {
-                var id, name;
-                id = $(this).closest('tr').find('.id').html();
-                name = $(this).closest('tr').find('.name').html();
 
-                alert('ID: ' + id + " | Name: " + name);
+        const showMassUpdate = async () => {
+            const { value: fruit } = await Swal.fire({
+                title: 'Select a status',
+                text: 'Selected Ids will be updated based on selected status.',
+                input: 'select',
+                confirmButtonText: 'Update',
+                inputOptions: {
+                    '1': 'Scraped',
+                    '2': 'Pending'
+                },
+                inputPlaceholder: 'Select a status',
+                showCancelButton: true,
+                inputAttributes: {
+                    'class': 'appearance-none'
+                },
+                inputValidator: (value) => {
+                    return new Promise((resolve) => {
+                        if (value != '') {
+                            $('.updated_ids').val(deletedIds);
+                            $('.updated_status').val(value);
+                            $('#mass-update').trigger('submit');
+                            resolve()
+                        } else {
+                            resolve('Please select a status, if you want to continue.')
+                        }
+                    })
+                }
             })
-        })
+        }
 
+        $('.mass-update-btn').on('click', function() {
+             showMassUpdate()
+        })
 
         $('#checkbox-all').on('change', function() {
             console.log($(this).is(':checked'))
             if ($(this).is(':checked')) {
                 $('.mass-delete-btn').removeClass('hidden')
+                $('.mass-update-btn').removeClass('hidden')
                 deletedIds = [];
                 $('.checkbox-id').each(function() {
                     $(this).prop('checked', true);
@@ -166,6 +202,7 @@
                 })
             } else {
                 $('.mass-delete-btn').addClass('hidden')
+                $('.mass-update-btn').addClass('hidden')
                 $('.checkbox-id').each(function() {
                     $(this).prop('checked', false);
                     deletedIds = [];
@@ -183,6 +220,7 @@
                 }
             } else {
                 $('.mass-delete-btn').removeClass('hidden');
+                $('.mass-update-btn').removeClass('hidden');
                 deletedIds.push($(this).val())
             }
 
@@ -197,6 +235,7 @@
 
             if (checker2(boxes)) {
                 $('.mass-delete-btn').addClass('hidden')
+                $('.mass-update-btn').addClass('hidden')
             }
         })
 

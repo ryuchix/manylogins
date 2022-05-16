@@ -103,4 +103,18 @@ class KeywordController extends Controller
 
         return redirect()->back()->with('success', 'Keywords deleted successfully.');
     }
+
+    public function massUpdate(Request $request)
+    {
+        $ids = explode(",", $request->ids);
+        $status = $request->status;
+
+        foreach ($ids as $id) {
+            KeywordSearch::where('id', $id)->update([
+                'status' => $status
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Keywords updated successfully.');
+    }
 }
