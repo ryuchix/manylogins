@@ -5,9 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>@yield('title', 'Many Logins') - Many Logins</title>
-        <meta name="keyword" content="@yield('keyword')">
-        <meta name="description" content="@yield('description')">
+        <title>@yield('title', $setting->site_title)</title>
+        <meta name="keyword" content="@yield('keyword', $setting->site_keywords)">
+        <meta name="description" content="@yield('description', $setting->site_description)">
 
         <link rel="stylesheet" href="{{ asset('css/app.css?t='.time()) }}">
 

@@ -9,6 +9,7 @@ use App\Http\Controllers\KeywordApi;
 use App\Models\KeywordSearch;
 use App\Models\OrganicResult;
 use App\Models\UserSearch;
+use App\Models\Setting;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
@@ -20,7 +21,9 @@ class PublicController extends Controller
 {
     public function home()
     {
-        return view('home.home');
+        $setting = Setting::find(1);
+        
+        return view('home.home', ['setting' => $setting]);
     }
 
     public function search(Request $request)
@@ -69,9 +72,12 @@ class PublicController extends Controller
                 'keywords' => $title
             ]);
         }
+
+        $setting = Setting::find(1);
         
         return view('home.search', [
             'title' => ($title ?? ''),
+            'setting' => $setting,
             'search_result' => $search_result,
             'search' => $search,
             'keyword' => strip_tags($meta_keywords),
@@ -96,8 +102,11 @@ class PublicController extends Controller
 			$result_link = $result->first();
         }
 		
+        $setting = Setting::find(1);
+
         return view('home.show', [
             'title' => ucfirst($result->title),
+            'setting' => $setting,
             'result_link' => $result_link,
             'result' => $result,
             'visit' => $visit,
@@ -117,27 +126,5 @@ class PublicController extends Controller
             ->get(['slug', 'keywords']);
 
         return response()->json($filterResult);
-    }
-
-    public function test($test)
-    {
-        try {
-            $response = Http::withBasicAuth(
-                config('serpmaster.serp_master_username'),
-                config('serpmaster.serp_master_password')
-            )->post(
-                'https://rt.serpmaster.com/', 
-                [
-                'q' => $test,
-                'parse' => true,
-                ]
-            );
-                            
-            return ($response->successful()) ? $response->json() : null;
-        } catch (\InvalidArgumentException $th) {
-            logger('payment page error ' . json_encode($th));
-        } catch (\InvalidArgumentException $e) {
-            logger('payment page error ' . json_encode($e));
-        }
     }
 }
