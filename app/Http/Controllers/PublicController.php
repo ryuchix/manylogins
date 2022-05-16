@@ -33,6 +33,7 @@ class PublicController extends Controller
         $meta_keywords = '';
         $keywords = KeywordSearch::with('organic')
             ->with('relatedSearch')
+            ->where('status', 1)
             ->when(
                 $request->search, 
                 function ($query, $search) {
