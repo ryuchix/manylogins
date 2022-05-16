@@ -65,15 +65,23 @@ class PublicController extends Controller
             }
         }
 
+        $setting = Setting::find(1);
+
+        $bannedWords = explode(',', trim($setting->banned_keywords));
+
         $title = (str_replace('-', ' ', $search));
 
-        if ($search_result == null) {
+        $checker = [];
+
+        foreach ($bannedWords as $key => $bannedWord) {
+            $checker[] = str_contains($title, trim($bannedWord));
+        }
+
+        if ($search_result == null && !in_array(true, $checker)) {
             UserSearch::firstOrCreate([
                 'keywords' => $title
             ]);
         }
-
-        $setting = Setting::find(1);
         
         return view('home.search', [
             'title' => ($title ?? ''),
