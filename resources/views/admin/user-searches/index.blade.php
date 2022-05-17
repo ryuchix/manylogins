@@ -16,8 +16,9 @@
                         <select name="status"
                             class="appearance-none h-full rounded-l rounded-r lg:rounded-r-none border-t border-r-1 lg:border-r-0 border-r border-b block appearance-none w-full bg-white border-gray-200 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:rounded lg:focus:border-r-2 focus:border-r focus:bg-white focus:border-[#2563eb]">
                             <option value="0">All</option>
-                            <option value="1" {{ isset($_GET['status']) && $_GET['status'] == 1 ? 'selected' : '' }}>Scraped</option>
+                            <option value="1" {{ isset($_GET['status']) && $_GET['status'] == 1 ? 'selected' : '' }}>Active</option>
                             <option value="2" {{ isset($_GET['status']) && $_GET['status'] == 2 ? 'selected' : '' }}>Pending</option>
+                            <option value="3" {{ isset($_GET['status']) && $_GET['status'] == 3 ? 'selected' : '' }}>Disabled</option>
                         </select>
                     </div>
                 </div>

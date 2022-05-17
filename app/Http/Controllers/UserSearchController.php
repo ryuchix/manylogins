@@ -14,15 +14,20 @@ class UserSearchController extends Controller
      */
     public function index(Request $request)
     {
-        $user_searches = UserSearch::when($request->status, function($query) use ($request) {
+        $status = $request->status ?? 2;
+
+        $user_searches = UserSearch::when($status, function($query) use ($request) {
                             if ($request->status == 1) {
                                 $query->where('status', '=', 1); 
-                            } elseif ($request->status == 2) {
-                                $query->where('status', NULL); 
+                            } elseif ($request->status == 3) {
+                                $query->where('status', 3); 
+                            } else {
+                                $query->where('status', 2); 
                             }
                         })->when($request->search, function($query) use ($request) {
                             $query->where('keywords', 'LIKE', "%{$request->search}%"); 
-                        })->paginate(30);
+                        })
+                        ->paginate(30);
 
         return view('admin.user-searches.index', ['user_searches' => $user_searches]);
     }
