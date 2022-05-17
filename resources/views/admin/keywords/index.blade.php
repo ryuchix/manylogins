@@ -16,7 +16,7 @@
                         <select name="status"
                             class="appearance-none h-full rounded-l rounded-r lg:rounded-r-none border-t border-r-1 lg:border-r-0 border-r border-b block appearance-none w-full bg-white border-gray-200 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:rounded lg:focus:border-r-2 focus:border-r focus:bg-white focus:border-[#2563eb]">
                             <option value="0">All</option>
-                            <option value="1" {{ isset($_GET['status']) && $_GET['status'] == 1 ? 'selected' : '' }}>Scraped</option>
+                            <option value="1" {{ isset($_GET['status']) && $_GET['status'] == 1 ? 'selected' : '' }}>Active</option>
                             <option value="2" {{ isset($_GET['status']) && $_GET['status'] == 2 ? 'selected' : '' }}>Pending</option>
                         </select>
                     </div>
@@ -82,10 +82,10 @@
                         @foreach ($keywords as $keyword)
                         <tr class="border-b border-gray-200 hover:bg-gray-100">
                             <td class="py-3 px-6 text-left whitespace-nowrap">
-							<div class="flex items-center chk">
-								<input value="{{ $keyword->id }}" name="chkid[]" type="checkbox" class="checkbox-id w-4 h-4 text-darkblue bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-darkblue dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-								<label for="checkbox-table-search-1" class="sr-only">{{ $keyword->id }}</label>
-							</div>
+                                <div class="flex items-center chk">
+                                    <input value="{{ $keyword->id }}" name="chkid[]" type="checkbox" class="checkbox-id w-4 h-4 text-darkblue bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-darkblue dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="checkbox-table-search-1" class="sr-only">{{ $keyword->id }}</label>
+                                </div>
                             </td>
                             <td class="py-3 px-6 text-left whitespace-nowrap">
                                 <div class="flex items-center">
@@ -115,7 +115,7 @@
                             <td class="py-3 px-6 text-left">
                                 <div class="flex items-center">
                                     <span class="capitalize">
-                                        <div class="px-2 py-1 rounded text-xs flex justify-center items-center {{ $keyword->status == 1 ? 'bg-green-600' : 'bg-gray-500' }} text-white">{{ $keyword->status == 1 ? 'Scraped' : 'Pending' }}</div>
+                                        <div class="px-2 py-1 rounded text-xs flex justify-center items-center {{ $keyword->status == 1 ? 'bg-green-500' : 'bg-yellow-500' }} text-white">{{ $keyword->status == 1 ? 'Active' : 'Pending' }}</div>
                                     </span>
                                 </div>
                             </td>
@@ -163,7 +163,7 @@
                 input: 'select',
                 confirmButtonText: 'Update',
                 inputOptions: {
-                    '1': 'Scraped',
+                    '1': 'Active',
                     '2': 'Pending'
                 },
                 inputPlaceholder: 'Select a status',

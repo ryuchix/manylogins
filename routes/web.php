@@ -43,6 +43,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     Route::resource('user-search', UserSearchController::class);
 
+    Route::post('user-search/mass-update', [UserSearchController::class, 'massUpdate'])->name('user_search.mass.update');
+
     Route::resource('settings', SettingController::class);
 
 });

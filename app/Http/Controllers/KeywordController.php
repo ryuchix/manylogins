@@ -115,6 +115,6 @@ class KeywordController extends Controller
             ]);
         }
 
-        return redirect()->back()->with('success', 'Keywords updated successfully.');
+        return redirect()->back()->with('success', 'Status updated successfully.');
     }
 }

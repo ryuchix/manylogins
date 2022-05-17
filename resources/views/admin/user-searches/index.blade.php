@@ -37,11 +37,30 @@
                         Filter
                     </button>
                 </div>
+                <div class="block relative flex flex-col md:flex-row items-center space-y-2 md:space-y-0">
+                    <div class="block relative">
+                        <button type="button" class="mass-update-btn hidden inline-flex items-center px-4 py-2 bg-gray-400 border border-transparent rounded-sm font-semibold text-xs text-white uppercase tracking-widest hover:bg-opacity-80 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-[#2563eb] disabled:opacity-25 transition ease-in-out duration-150 ml-2">
+                            Mass Update
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <form id="mass-update" class="hidden" method="POST" action="{{ route('user_search.mass.update') }}">
+                @csrf
+                <input type="hidden" name="ids" class="updated_ids">
+                <input type="hidden" name="status" class="updated_status">
             </form>
             <div class="bg-white shadow-md rounded mb-6 mt-4 overflow-x-auto">
                 <table class="min-w-max w-full table-auto">
                     <thead>
                         <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                            <th class="py-3 px-6 text-left">
+                                <div class="flex items-center">
+                                    <input id="checkbox-all" type="checkbox" class="w-4 h-4 text-darkblue bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-darkblue dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="checkbox-all" class="sr-only">checkbox</label>
+                                </div>
+                            </th>
+                            <th class="py-3 px-6 text-left">ID</th>
                             <th class="py-3 px-6 text-left">Keyword</th>
                             <th class="py-3 px-6 text-left">Status</th>
                             <th class="py-3 px-6 text-center">Actions</th>
@@ -49,8 +68,18 @@
                     </thead>
                     <tbody class="text-gray-600 text-sm font-light">
                         @foreach ($user_searches as $keyword)
-
-                        <tr class="border-b border-gray-200 hover:bg-gray-100">
+                        <tr class="border-b border-gray-200 hover:bg-gray-100"> 
+                            <td class="py-3 px-6 text-left whitespace-nowrap">
+                                <div class="flex items-center chk">
+                                    <input value="{{ $keyword->id }}" name="chkid[]" type="checkbox" class="checkbox-id w-4 h-4 text-darkblue bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-darkblue dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="checkbox-table-search-1" class="sr-only">{{ $keyword->id }}</label>
+                                </div>
+                            </td>
+                            <td class="py-3 px-6 text-left whitespace-nowrap">
+                                <div class="flex items-center">
+                                    <span class="font-medium">{{ $keyword->id }}</span>
+                                </div>
+                            </td>
                             <td class="py-3 px-6 text-left whitespace-nowrap">
                                 <div class="flex items-center">
                                     <span class="font-medium">{{ $keyword->keywords }}</span>
@@ -59,7 +88,7 @@
                             <td class="py-3 px-6 text-left">
                                 <div class="flex items-center">
                                     <span class="capitalize">
-                                        <div class="px-2 py-1 rounded text-xs flex justify-center items-center {{ $keyword->status == 1 ? 'bg-green-600' : 'bg-gray-500' }} text-white">{{ $keyword->status == 1 ? 'Scraped' : 'Pending' }}</div>
+                                        <div class="px-2 py-1 rounded text-xs flex justify-center items-center {{ $keyword->status == 1 ? 'bg-green-500' : ($keyword->status == 2 ? 'bg-yellow-500' : 'bg-red-500') }} text-white">{{ $keyword->status == 1 ? 'Active' : ($keyword->status == 2 ? 'Pending' : 'Disabled') }}</div>
                                     </span>
                                 </div>
                             </td>
@@ -94,4 +123,112 @@
         </div>
     </div>
 </div>
+@endsection
+@section('script')
+<script>
+    $(function() {
+
+        const showMassUpdate = async () => {
+            const { value: fruit } = await Swal.fire({
+                title: 'Select a status',
+                text: 'Selected Ids will be updated based on selected status.',
+                input: 'select',
+                confirmButtonText: 'Update',
+                inputOptions: {
+                    '1': 'Active',
+                    '2': 'Pending',
+                    '3': 'Disabled',
+                },
+                inputPlaceholder: 'Select a status',
+                showCancelButton: true,
+                inputAttributes: {
+                    'class': 'appearance-none'
+                },
+                inputValidator: (value) => {
+                    return new Promise((resolve) => {
+                        if (value != '') {
+                            $('.updated_ids').val(deletedIds);
+                            $('.updated_status').val(value);
+                            $('#mass-update').trigger('submit');
+                            resolve()
+                        } else {
+                            resolve('Please select a status, if you want to continue.')
+                        }
+                    })
+                }
+            })
+        }
+
+        $('.mass-update-btn').on('click', function() {
+             showMassUpdate()
+        })
+
+        $('#checkbox-all').on('change', function() {
+            console.log($(this).is(':checked'))
+            if ($(this).is(':checked')) {
+                $('.mass-delete-btn').removeClass('hidden')
+                $('.mass-update-btn').removeClass('hidden')
+                deletedIds = [];
+                $('.checkbox-id').each(function() {
+                    $(this).prop('checked', true);
+                    deletedIds.push($(this).val());
+                })
+            } else {
+                $('.mass-delete-btn').addClass('hidden')
+                $('.mass-update-btn').addClass('hidden')
+                $('.checkbox-id').each(function() {
+                    $(this).prop('checked', false);
+                    deletedIds = [];
+                })
+            }
+        })
+
+        $('.checkbox-id').on('change', function() {
+            if (!$(this).is(':checked')) {
+                $('#checkbox-all').prop('checked', false);
+
+                const index = deletedIds.indexOf($(this).val());
+                if (index > -1) {
+                    deletedIds.splice(index, 1);
+                }
+            } else {
+                $('.mass-delete-btn').removeClass('hidden');
+                $('.mass-update-btn').removeClass('hidden');
+                deletedIds.push($(this).val())
+            }
+
+            var boxes = [];
+            $('.checkbox-id').each(function() {
+                boxes.push($(this).is(':checked'));
+            })
+
+            if (checker(boxes)) {
+                $('#checkbox-all').prop('checked', true);
+            }
+
+            if (checker2(boxes)) {
+                $('.mass-delete-btn').addClass('hidden')
+                $('.mass-update-btn').addClass('hidden')
+            }
+        })
+
+        let checker = arr => arr.every(v => v === true);
+        let checker2 = arr => arr.every(v => v === false);
+        let deletedIds = [];
+
+        $('.mass-delete-btn').on('click', function() {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'This process is permanent!',
+                showCancelButton: true,
+                confirmButtonText: 'Delete',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $('.deleted_ids').val(deletedIds);
+                    $('#mass-delete').trigger('submit');
+                }
+            })
+        })
+    })
+</script>
 @endsection

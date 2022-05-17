@@ -92,4 +92,18 @@ class UserSearchController extends Controller
     {
         //
     }
+
+    public function massUpdate(Request $request)
+    {
+        $ids = explode(",", $request->ids);
+        $status = $request->status;
+
+        foreach ($ids as $id) {
+            UserSearch::where('id', $id)->update([
+                'status' => $status
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Status updated successfully.');
+    }
 }
