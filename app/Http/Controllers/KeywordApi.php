@@ -132,8 +132,4 @@ class KeywordApi
             RelatedSearch::insert($related_insert->toArray());
         } 
     }
-
-
-    
-
 }
