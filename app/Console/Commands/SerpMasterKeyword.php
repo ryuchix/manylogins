@@ -12,7 +12,7 @@ class SerpMasterKeyword extends Command
      *
      * @var string
      */
-    protected $signature = 'serpKeywords:master {limit}';
+    protected $signature = 'serpKeyword:master {limit}';
 
     /**
      * The console command description.
