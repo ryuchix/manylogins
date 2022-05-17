@@ -52,6 +52,7 @@ Route::get('generate-sitemap', [SitemapController::class, 'create'])->name('crea
 Route::get('/keywords/api/{search}', [PublicController::class, 'keywordSearch'])->name('keywords');
 
 Route::get('/{search?}', [PublicController::class, 'search'])->name('search');
+Route::post('search', [PublicController::class, 'processSearch'])->name('search.post');
 
 Route::get('/{visit?}/{cid?}', [PublicController::class, 'visitPage'])->name('visit');
 

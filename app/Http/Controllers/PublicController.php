@@ -68,9 +68,35 @@ class PublicController extends Controller
 
         $setting = Setting::find(1);
 
-        $bannedWords = explode(',', trim($setting->banned_keywords));
+        return view('home.search', [
+            'title' => ucwords($search_result->keywords ?? str_replace('-', ' ', $search)),
+            'setting' => $setting,
+            'search_result' => $search_result,
+            'search' => $search,
+            'keyword' => strip_tags($meta_keywords),
+            'description' => strip_tags($search_result->keywords ?? '')
+        ]);
+    }
 
-        $title = (str_replace('-', ' ', $search));
+    public function processSearch(Request $request)
+    {
+        $title = $request->user_input;
+
+        $search_result = null;
+        $meta_keywords = '';
+        $keywords = KeywordSearch::with('organic')
+            ->with('relatedSearch')
+            ->when(
+                $request->user_input, 
+                function ($query, $search) {
+                    $query->where('slug', self::clean($search));
+                }
+            )
+            ->first();
+
+        $setting = Setting::find(1);
+
+        $bannedWords = explode(',', trim($setting->banned_keywords));
 
         $checker = [];
 
@@ -78,20 +104,13 @@ class PublicController extends Controller
             $checker[] = str_contains($title, trim($bannedWord));
         }
 
-        if ($search_result == null && !in_array(true, $checker)) {
+        if ($keywords == null && !in_array(true, $checker)) {
             UserSearch::firstOrCreate([
                 'keywords' => $title
             ]);
         }
-        
-        return view('home.search', [
-            'title' => ($title ?? ''),
-            'setting' => $setting,
-            'search_result' => $search_result,
-            'search' => $search,
-            'keyword' => strip_tags($meta_keywords),
-            'description' => strip_tags($search_result->keywords ?? '')
-        ]);
+
+        return redirect()->route('search', ['search' => self::clean($title)]);
     }
 
     public function visitPage(Request $request)
@@ -135,5 +154,11 @@ class PublicController extends Controller
             ->get(['slug', 'keywords']);
 
         return response()->json($filterResult);
+    }
+
+    public static function clean($string)
+    {
+        $string = str_replace(' ', '-', $string);
+        return preg_replace('/[^A-Za-z0-9\-]/', '-', strtolower($string));
     }
 }

@@ -4,6 +4,8 @@ var __webpack_exports__ = {};
   !*** ./resources/js/script.js ***!
   \********************************/
 $(function () {
+  var _this = this;
+
   var substringMatcher = function substringMatcher(strs) {
     return function findMatches(q, cb) {
       var matches, substringRegex;
@@ -68,13 +70,12 @@ $(function () {
   };
 
   $(".search-form").on('submit', function (e) {
-    e.preventDefault();
-
     if (windowKeywords == '') {
       windowKeywords = convertToSlug($('#typeahead').val());
     }
 
-    window.location = home_url + '/' + windowKeywords;
+    $('.user_input').val($('#typeahead').val());
+    $(_this).trigger('submit');
   });
 });
 /******/ })()

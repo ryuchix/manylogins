@@ -64,10 +64,10 @@ $(function() {
     };
 
     $(".search-form").on('submit', (e) => { 
-        e.preventDefault();
         if (windowKeywords == '') {
             windowKeywords = convertToSlug($('#typeahead').val())
         }
-        window.location = home_url + '/' + windowKeywords ;
+        $('.user_input').val($('#typeahead').val());
+        $(this).trigger('submit');
     });
 });
