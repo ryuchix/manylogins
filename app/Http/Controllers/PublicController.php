@@ -106,7 +106,8 @@ class PublicController extends Controller
 
         if ($keywords == null && !in_array(true, $checker)) {
             UserSearch::firstOrCreate([
-                'keywords' => $title
+                'keywords' => $title,
+                'status' => 2
             ]);
         }
 
