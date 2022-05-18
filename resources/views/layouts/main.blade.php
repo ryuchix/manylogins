@@ -51,11 +51,21 @@
     </head>
     
     <body onunload=""> 
-        <div class="main">
+        <div class="wrapper">
             @include('partials.header')
+            @if (\Request::route()->getName() == 'home')
             @yield('content')
+            @else
+            <div class="main flex mx-auto w-full justify-between max-w-8xl mx-auto lg:flex-row flex-col max-w-full">
+                @include('home.left')
+                <main class="content bg-bodybg order-1 lg:order-2 px-2">
+                    @yield('content')
+                </main>
+                @include('home.right')
+            </div>
+            @endif
             @include('partials.footer')
-        </div>   
+        </div>
 
         <script src="{{ asset('js/jquery.min.js') }}"></script>
         @yield('script')

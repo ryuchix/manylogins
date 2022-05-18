@@ -23,8 +23,8 @@ class ComposerStaticInit8a983f4b5a04f5eaaa070565fa664316
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
-        '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         'a1105708a18b76903365ca1c4aa61b02' => __DIR__ . '/..' . '/symfony/translation/Resources/functions.php',
+        '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         '23c18046f52bef3eea034657bafda50f' => __DIR__ . '/..' . '/symfony/polyfill-php81/bootstrap.php',
         '538ca81a9a966a6716601ecf48f4eaef' => __DIR__ . '/..' . '/opis/closure/functions.php',
         'e39a8b23c42d4e1452234d762b03835a' => __DIR__ . '/..' . '/ramsey/uuid/src/functions.php',
@@ -38,6 +38,7 @@ class ComposerStaticInit8a983f4b5a04f5eaaa070565fa664316
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         'ed962a97bd972bc82007176b647d4e36' => __DIR__ . '/..' . '/facade/ignition/src/helpers.php',
         '17d016dc52a631c1e74d2eb8fdd57342' => __DIR__ . '/..' . '/laravel/helpers/src/helpers.php',
+        '55939d295627a904f01d5f2ab92e8d67' => __DIR__ . '/..' . '/cyrildewit/eloquent-viewable/src/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -131,6 +132,7 @@ class ComposerStaticInit8a983f4b5a04f5eaaa070565fa664316
         'L' => 
         array (
             'League\\MimeTypeDetection\\' => 25,
+            'League\\Glide\\' => 13,
             'League\\Flysystem\\' => 17,
             'League\\Config\\' => 14,
             'League\\CommonMark\\' => 18,
@@ -139,6 +141,10 @@ class ComposerStaticInit8a983f4b5a04f5eaaa070565fa664316
             'Laravel\\Sanctum\\' => 16,
             'Laravel\\Sail\\' => 13,
             'Laravel\\Breeze\\' => 15,
+        ),
+        'J' => 
+        array (
+            'Jaybizzle\\CrawlerDetect\\' => 24,
         ),
         'I' => 
         array (
@@ -186,6 +192,7 @@ class ComposerStaticInit8a983f4b5a04f5eaaa070565fa664316
         ),
         'C' => 
         array (
+            'CyrildeWit\\EloquentViewable\\' => 28,
             'Cron\\' => 5,
             'Carbon\\' => 7,
         ),
@@ -435,6 +442,10 @@ class ComposerStaticInit8a983f4b5a04f5eaaa070565fa664316
         array (
             0 => __DIR__ . '/..' . '/league/mime-type-detection/src',
         ),
+        'League\\Glide\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/glide/src',
+        ),
         'League\\Flysystem\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/flysystem/src',
@@ -466,6 +477,10 @@ class ComposerStaticInit8a983f4b5a04f5eaaa070565fa664316
         'Laravel\\Breeze\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/breeze/src',
+        ),
+        'Jaybizzle\\CrawlerDetect\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jaybizzle/crawler-detect/src',
         ),
         'Intervention\\Image\\' => 
         array (
@@ -572,6 +587,10 @@ class ComposerStaticInit8a983f4b5a04f5eaaa070565fa664316
         array (
             0 => __DIR__ . '/../..' . '/database/factories',
         ),
+        'CyrildeWit\\EloquentViewable\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/cyrildewit/eloquent-viewable/src',
+        ),
         'Cron\\' => 
         array (
             0 => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron',
@@ -629,6 +648,7 @@ class ComposerStaticInit8a983f4b5a04f5eaaa070565fa664316
         'App\\Http\\Controllers\\KeywordController' => __DIR__ . '/../..' . '/app/Http/Controllers/KeywordController.php',
         'App\\Http\\Controllers\\PostController' => __DIR__ . '/../..' . '/app/Http/Controllers/PostController.php',
         'App\\Http\\Controllers\\PublicController' => __DIR__ . '/../..' . '/app/Http/Controllers/PublicController.php',
+        'App\\Http\\Controllers\\SettingController' => __DIR__ . '/../..' . '/app/Http/Controllers/SettingController.php',
         'App\\Http\\Controllers\\SitemapController' => __DIR__ . '/../..' . '/app/Http/Controllers/SitemapController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'App\\Http\\Controllers\\UserSearchController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserSearchController.php',
@@ -766,6 +786,25 @@ class ComposerStaticInit8a983f4b5a04f5eaaa070565fa664316
         'Cron\\HoursField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/HoursField.php',
         'Cron\\MinutesField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MinutesField.php',
         'Cron\\MonthField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MonthField.php',
+        'CyrildeWit\\EloquentViewable\\CacheKey' => __DIR__ . '/..' . '/cyrildewit/eloquent-viewable/src/CacheKey.php',
+        'CyrildeWit\\EloquentViewable\\Contracts\\CrawlerDetector' => __DIR__ . '/..' . '/cyrildewit/eloquent-viewable/src/Contracts/CrawlerDetector.php',
+        'CyrildeWit\\EloquentViewable\\Contracts\\View' => __DIR__ . '/..' . '/cyrildewit/eloquent-viewable/src/Contracts/View.php',
+        'CyrildeWit\\EloquentViewable\\Contracts\\Viewable' => __DIR__ . '/..' . '/cyrildewit/eloquent-viewable/src/Contracts/Viewable.php',
+        'CyrildeWit\\EloquentViewable\\Contracts\\Views' => __DIR__ . '/..' . '/cyrildewit/eloquent-viewable/src/Contracts/Views.php',
+        'CyrildeWit\\EloquentViewable\\Contracts\\Visitor' => __DIR__ . '/..' . '/cyrildewit/eloquent-viewable/src/Contracts/Visitor.php',
+        'CyrildeWit\\EloquentViewable\\CooldownManager' => __DIR__ . '/..' . '/cyrildewit/eloquent-viewable/src/CooldownManager.php',
+        'CyrildeWit\\EloquentViewable\\CrawlerDetectAdapter' => __DIR__ . '/..' . '/cyrildewit/eloquent-viewable/src/CrawlerDetectAdapter.php',
+        'CyrildeWit\\EloquentViewable\\EloquentViewableServiceProvider' => __DIR__ . '/..' . '/cyrildewit/eloquent-viewable/src/EloquentViewableServiceProvider.php',
+        'CyrildeWit\\EloquentViewable\\Events\\ViewRecorded' => __DIR__ . '/..' . '/cyrildewit/eloquent-viewable/src/Events/ViewRecorded.php',
+        'CyrildeWit\\EloquentViewable\\Exceptions\\InvalidPeriod' => __DIR__ . '/..' . '/cyrildewit/eloquent-viewable/src/Exceptions/InvalidPeriod.php',
+        'CyrildeWit\\EloquentViewable\\Exceptions\\ViewRecordException' => __DIR__ . '/..' . '/cyrildewit/eloquent-viewable/src/Exceptions/ViewRecordException.php',
+        'CyrildeWit\\EloquentViewable\\InteractsWithViews' => __DIR__ . '/..' . '/cyrildewit/eloquent-viewable/src/InteractsWithViews.php',
+        'CyrildeWit\\EloquentViewable\\Support\\Period' => __DIR__ . '/..' . '/cyrildewit/eloquent-viewable/src/Support/Period.php',
+        'CyrildeWit\\EloquentViewable\\View' => __DIR__ . '/..' . '/cyrildewit/eloquent-viewable/src/View.php',
+        'CyrildeWit\\EloquentViewable\\ViewableObserver' => __DIR__ . '/..' . '/cyrildewit/eloquent-viewable/src/ViewableObserver.php',
+        'CyrildeWit\\EloquentViewable\\Views' => __DIR__ . '/..' . '/cyrildewit/eloquent-viewable/src/Views.php',
+        'CyrildeWit\\EloquentViewable\\ViewsFacade' => __DIR__ . '/..' . '/cyrildewit/eloquent-viewable/src/ViewsFacade.php',
+        'CyrildeWit\\EloquentViewable\\Visitor' => __DIR__ . '/..' . '/cyrildewit/eloquent-viewable/src/Visitor.php',
         'Database\\Factories\\UserFactory' => __DIR__ . '/../..' . '/database/factories/UserFactory.php',
         'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',
         'DeepCopy\\DeepCopy' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
@@ -1509,7 +1548,6 @@ class ComposerStaticInit8a983f4b5a04f5eaaa070565fa664316
         'Faker\\Provider\\cs_CZ\\Payment' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/cs_CZ/Payment.php',
         'Faker\\Provider\\cs_CZ\\Person' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/cs_CZ/Person.php',
         'Faker\\Provider\\cs_CZ\\PhoneNumber' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/cs_CZ/PhoneNumber.php',
-        'Faker\\Provider\\cs_CZ\\Text' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/cs_CZ/Text.php',
         'Faker\\Provider\\da_DK\\Address' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/da_DK/Address.php',
         'Faker\\Provider\\da_DK\\Company' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/da_DK/Company.php',
         'Faker\\Provider\\da_DK\\Internet' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/da_DK/Internet.php',
@@ -1548,7 +1586,6 @@ class ComposerStaticInit8a983f4b5a04f5eaaa070565fa664316
         'Faker\\Provider\\el_GR\\Payment' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/el_GR/Payment.php',
         'Faker\\Provider\\el_GR\\Person' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/el_GR/Person.php',
         'Faker\\Provider\\el_GR\\PhoneNumber' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/el_GR/PhoneNumber.php',
-        'Faker\\Provider\\el_GR\\Text' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/el_GR/Text.php',
         'Faker\\Provider\\en_AU\\Address' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/en_AU/Address.php',
         'Faker\\Provider\\en_AU\\Internet' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/en_AU/Internet.php',
         'Faker\\Provider\\en_AU\\PhoneNumber' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/en_AU/PhoneNumber.php',
@@ -1651,7 +1688,6 @@ class ComposerStaticInit8a983f4b5a04f5eaaa070565fa664316
         'Faker\\Provider\\fr_FR\\Payment' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/fr_FR/Payment.php',
         'Faker\\Provider\\fr_FR\\Person' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/fr_FR/Person.php',
         'Faker\\Provider\\fr_FR\\PhoneNumber' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/fr_FR/PhoneNumber.php',
-        'Faker\\Provider\\fr_FR\\Text' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/fr_FR/Text.php',
         'Faker\\Provider\\he_IL\\Address' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/he_IL/Address.php',
         'Faker\\Provider\\he_IL\\Company' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/he_IL/Company.php',
         'Faker\\Provider\\he_IL\\Payment' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/he_IL/Payment.php',
@@ -1667,7 +1703,6 @@ class ComposerStaticInit8a983f4b5a04f5eaaa070565fa664316
         'Faker\\Provider\\hu_HU\\Payment' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/hu_HU/Payment.php',
         'Faker\\Provider\\hu_HU\\Person' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/hu_HU/Person.php',
         'Faker\\Provider\\hu_HU\\PhoneNumber' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/hu_HU/PhoneNumber.php',
-        'Faker\\Provider\\hu_HU\\Text' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/hu_HU/Text.php',
         'Faker\\Provider\\hy_AM\\Address' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/hy_AM/Address.php',
         'Faker\\Provider\\hy_AM\\Color' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/hy_AM/Color.php',
         'Faker\\Provider\\hy_AM\\Company' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/hy_AM/Company.php',
@@ -1714,7 +1749,6 @@ class ComposerStaticInit8a983f4b5a04f5eaaa070565fa664316
         'Faker\\Provider\\ka_GE\\Payment' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/ka_GE/Payment.php',
         'Faker\\Provider\\ka_GE\\Person' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/ka_GE/Person.php',
         'Faker\\Provider\\ka_GE\\PhoneNumber' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/ka_GE/PhoneNumber.php',
-        'Faker\\Provider\\ka_GE\\Text' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/ka_GE/Text.php',
         'Faker\\Provider\\kk_KZ\\Address' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/kk_KZ/Address.php',
         'Faker\\Provider\\kk_KZ\\Color' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/kk_KZ/Color.php',
         'Faker\\Provider\\kk_KZ\\Company' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/kk_KZ/Company.php',
@@ -1770,7 +1804,6 @@ class ComposerStaticInit8a983f4b5a04f5eaaa070565fa664316
         'Faker\\Provider\\nl_BE\\Payment' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_BE/Payment.php',
         'Faker\\Provider\\nl_BE\\Person' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_BE/Person.php',
         'Faker\\Provider\\nl_BE\\PhoneNumber' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_BE/PhoneNumber.php',
-        'Faker\\Provider\\nl_BE\\Text' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_BE/Text.php',
         'Faker\\Provider\\nl_NL\\Address' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_NL/Address.php',
         'Faker\\Provider\\nl_NL\\Color' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_NL/Color.php',
         'Faker\\Provider\\nl_NL\\Company' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_NL/Company.php',
@@ -1817,7 +1850,6 @@ class ComposerStaticInit8a983f4b5a04f5eaaa070565fa664316
         'Faker\\Provider\\ru_RU\\Payment' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/ru_RU/Payment.php',
         'Faker\\Provider\\ru_RU\\Person' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/ru_RU/Person.php',
         'Faker\\Provider\\ru_RU\\PhoneNumber' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/ru_RU/PhoneNumber.php',
-        'Faker\\Provider\\ru_RU\\Text' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/ru_RU/Text.php',
         'Faker\\Provider\\sk_SK\\Address' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/sk_SK/Address.php',
         'Faker\\Provider\\sk_SK\\Company' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/sk_SK/Company.php',
         'Faker\\Provider\\sk_SK\\Internet' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/sk_SK/Internet.php',
@@ -1867,7 +1899,6 @@ class ComposerStaticInit8a983f4b5a04f5eaaa070565fa664316
         'Faker\\Provider\\uk_UA\\Payment' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/uk_UA/Payment.php',
         'Faker\\Provider\\uk_UA\\Person' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/uk_UA/Person.php',
         'Faker\\Provider\\uk_UA\\PhoneNumber' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/uk_UA/PhoneNumber.php',
-        'Faker\\Provider\\uk_UA\\Text' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/uk_UA/Text.php',
         'Faker\\Provider\\vi_VN\\Address' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/vi_VN/Address.php',
         'Faker\\Provider\\vi_VN\\Color' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/vi_VN/Color.php',
         'Faker\\Provider\\vi_VN\\Internet' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/vi_VN/Internet.php',
@@ -3225,6 +3256,11 @@ class ComposerStaticInit8a983f4b5a04f5eaaa070565fa664316
         'Intervention\\Image\\Point' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/Point.php',
         'Intervention\\Image\\Response' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/Response.php',
         'Intervention\\Image\\Size' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/Size.php',
+        'Jaybizzle\\CrawlerDetect\\CrawlerDetect' => __DIR__ . '/..' . '/jaybizzle/crawler-detect/src/CrawlerDetect.php',
+        'Jaybizzle\\CrawlerDetect\\Fixtures\\AbstractProvider' => __DIR__ . '/..' . '/jaybizzle/crawler-detect/src/Fixtures/AbstractProvider.php',
+        'Jaybizzle\\CrawlerDetect\\Fixtures\\Crawlers' => __DIR__ . '/..' . '/jaybizzle/crawler-detect/src/Fixtures/Crawlers.php',
+        'Jaybizzle\\CrawlerDetect\\Fixtures\\Exclusions' => __DIR__ . '/..' . '/jaybizzle/crawler-detect/src/Fixtures/Exclusions.php',
+        'Jaybizzle\\CrawlerDetect\\Fixtures\\Headers' => __DIR__ . '/..' . '/jaybizzle/crawler-detect/src/Fixtures/Headers.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
         'Laravel\\Breeze\\BreezeServiceProvider' => __DIR__ . '/..' . '/laravel/breeze/src/BreezeServiceProvider.php',
         'Laravel\\Breeze\\Console\\InstallCommand' => __DIR__ . '/..' . '/laravel/breeze/src/Console/InstallCommand.php',
@@ -3618,6 +3654,29 @@ class ComposerStaticInit8a983f4b5a04f5eaaa070565fa664316
         'League\\Flysystem\\Util\\ContentListingFormatter' => __DIR__ . '/..' . '/league/flysystem/src/Util/ContentListingFormatter.php',
         'League\\Flysystem\\Util\\MimeType' => __DIR__ . '/..' . '/league/flysystem/src/Util/MimeType.php',
         'League\\Flysystem\\Util\\StreamHasher' => __DIR__ . '/..' . '/league/flysystem/src/Util/StreamHasher.php',
+        'League\\Glide\\Exceptions\\FileNotFoundException' => __DIR__ . '/..' . '/league/glide/src/Exceptions/FileNotFoundException.php',
+        'League\\Glide\\Exceptions\\FilesystemException' => __DIR__ . '/..' . '/league/glide/src/Exceptions/FilesystemException.php',
+        'League\\Glide\\Exceptions\\SignatureException' => __DIR__ . '/..' . '/league/glide/src/Exceptions/SignatureException.php',
+        'League\\Glide\\Helpers\\Color' => __DIR__ . '/..' . '/league/glide/src/Helpers/Color.php',
+        'League\\Glide\\Helpers\\Dimension' => __DIR__ . '/..' . '/league/glide/src/Helpers/Dimension.php',
+        'League\\Glide\\Image' => __DIR__ . '/..' . '/league/glide/src/Image.php',
+        'League\\Glide\\Manipulators\\Background' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Background.php',
+        'League\\Glide\\Manipulators\\Blur' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Blur.php',
+        'League\\Glide\\Manipulators\\Border' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Border.php',
+        'League\\Glide\\Manipulators\\Brightness' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Brightness.php',
+        'League\\Glide\\Manipulators\\Contrast' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Contrast.php',
+        'League\\Glide\\Manipulators\\Crop' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Crop.php',
+        'League\\Glide\\Manipulators\\Encode' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Encode.php',
+        'League\\Glide\\Manipulators\\Filter' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Filter.php',
+        'League\\Glide\\Manipulators\\Gamma' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Gamma.php',
+        'League\\Glide\\Manipulators\\Manipulator' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Manipulator.php',
+        'League\\Glide\\Manipulators\\ManipulatorInterface' => __DIR__ . '/..' . '/league/glide/src/Manipulators/ManipulatorInterface.php',
+        'League\\Glide\\Manipulators\\Orientation' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Orientation.php',
+        'League\\Glide\\Manipulators\\Pixelate' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Pixelate.php',
+        'League\\Glide\\Manipulators\\Sharpen' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Sharpen.php',
+        'League\\Glide\\Manipulators\\Size' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Size.php',
+        'League\\Glide\\Manipulators\\Watermark' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Watermark.php',
+        'League\\Glide\\Server' => __DIR__ . '/..' . '/league/glide/src/Server.php',
         'League\\MimeTypeDetection\\EmptyExtensionToMimeTypeMap' => __DIR__ . '/..' . '/league/mime-type-detection/src/EmptyExtensionToMimeTypeMap.php',
         'League\\MimeTypeDetection\\ExtensionMimeTypeDetector' => __DIR__ . '/..' . '/league/mime-type-detection/src/ExtensionMimeTypeDetector.php',
         'League\\MimeTypeDetection\\ExtensionToMimeTypeMap' => __DIR__ . '/..' . '/league/mime-type-detection/src/ExtensionToMimeTypeMap.php',

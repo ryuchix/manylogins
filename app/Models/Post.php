@@ -4,13 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
 
 use App\Models\User;
 use App\Models\Category;
 
-class Post extends Model
+class Post extends Model implements Viewable
 {
-    use HasFactory;
+    use HasFactory, InteractsWithViews;
 
     /**
      * The attributes that are mass assignable.

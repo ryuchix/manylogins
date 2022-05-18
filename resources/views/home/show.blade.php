@@ -5,7 +5,7 @@
 @section('description', $description . ' ' . $keyword)
 
 @section('content')
-    <section class="bg-bodybg px-4 max-w-6xl mx-auto">
+    <section class="bg-bodybg px-4 w-full mx-auto">
         <div class="flex flex-col pb-10 pt-6 md:px-5 px-1 w-full ">
             <div class="pt-2 relative text-gray-600 flex flex-wrap justify-between flex-row w-full" id="keyword_search">
                 <form method="POST" action="{{ route('search.post') }}" class="search-form flex flex-initial justify-between md:flex-row border-2 bg-white items-center rounded-md w-full group" id="search-keyword">
@@ -54,6 +54,7 @@
                         We research pages with information related to {{ e(str_replace('-', ' ', $title)) }}. These will include the official login link along with the information for the login process and requirements about each login.
                 </div>
             </div>
+        </div>
     </section>
 @endsection
 

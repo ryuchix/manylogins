@@ -6,10 +6,12 @@ use App\Models\OrganicResult;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
 
-class KeywordSearch extends Model
+class KeywordSearch extends Model implements Viewable
 {
-    use SoftDeletes;
+    use SoftDeletes, InteractsWithViews;
     
     protected $table = 'keyword_search';
     public $timestamps = true;

@@ -10,6 +10,7 @@ use App\Models\KeywordSearch;
 use App\Models\OrganicResult;
 use App\Models\UserSearch;
 use App\Models\Setting;
+use App\Models\Post;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
@@ -23,7 +24,14 @@ class PublicController extends Controller
     {
         $setting = Setting::find(1);
         
-        return view('home.home', ['setting' => $setting]);
+        $popularSearch = KeywordSearch::orderByUniqueViews()->take(10)->get();
+        $posts = Post::where('status', 1)->limit(10)->get();
+
+        return view('home.home', [
+            'setting' => $setting,
+            'posts' => $posts,
+            'popular_posts' => $popularSearch
+        ]);
     }
 
     public function search(Request $request)
@@ -68,13 +76,28 @@ class PublicController extends Controller
 
         $setting = Setting::find(1);
 
+        $keyword = KeywordSearch::where('slug', $search)->first();
+
+        if (!empty($keyword)) {
+            $expiresAt = now()->addHours(1);
+            
+            views($keyword)
+                ->cooldown($expiresAt)
+                ->record();
+        }
+
+        $popularSearch = KeywordSearch::orderByUniqueViews()->take(10)->get();
+        $posts = Post::where('status', 1)->limit(10)->get();
+
         return view('home.search', [
             'title' => ucwords($search_result->keywords ?? str_replace('-', ' ', $search)),
             'setting' => $setting,
             'search_result' => $search_result,
             'search' => $search,
             'keyword' => strip_tags($meta_keywords),
-            'description' => strip_tags($search_result->keywords ?? '')
+            'description' => strip_tags($search_result->keywords ?? ''),
+            'posts' => $posts,
+            'popular_posts' => $popularSearch
         ]);
     }
 
@@ -133,6 +156,9 @@ class PublicController extends Controller
 		
         $setting = Setting::find(1);
 
+        $popularSearch = KeywordSearch::orderByUniqueViews()->take(10)->get();
+        $posts = Post::where('status', 1)->limit(10)->get();
+
         return view('home.show', [
             'title' => ucfirst($result->title),
             'setting' => $setting,
@@ -140,10 +166,10 @@ class PublicController extends Controller
             'result' => $result,
             'visit' => $visit,
             'keyword' => strip_tags(str_replace(' ', ',', $result->desc)),
-            'description' => strip_tags($result->desc)
+            'description' => strip_tags($result->desc),
+            'posts' => $posts,
+            'popular_posts' => $popularSearch
         ]);
-
-
     }
 
     public function keywordSearch(Request $request)
