@@ -31,7 +31,7 @@
                     </div>
                     <div class="px-4 py-4">
                         <h1 class="title-font text-lg font-medium mb-1"><a href="#" class="block text-xl text-link hover:text-opacity-80">{{ $post->title }}</a></h1>
-                        <div class="leading-relaxed mb-3 text-gray-500">{!! substr_replace($post->content, "...", 200); !!}</div>
+                        <div class="leading-relaxed mb-3 text-gray-500">{!! substr_replace($post->content, strlen($post->content) <= 200 ? "" : "...", 200); !!}</div>
                         <div class="flex items-center flex-wrap mt-1">
                             <a href="#" class="w-full flex items-center py-2 px-4 rounded-sm text-sm bg-link hover:bg-opacity-80 text-white shadow-md text-center justify-center">Read more...</a>
                         </div>
