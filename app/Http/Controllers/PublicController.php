@@ -23,14 +23,9 @@ class PublicController extends Controller
     public function home()
     {
         $setting = Setting::find(1);
-        
-        $popularSearch = KeywordSearch::orderByUniqueViews()->take(10)->get();
-        $posts = Post::where('status', 1)->limit(10)->get();
 
         return view('home.home', [
             'setting' => $setting,
-            'posts' => $posts,
-            'popular_posts' => $popularSearch
         ]);
     }
 
@@ -86,7 +81,7 @@ class PublicController extends Controller
                 ->record();
         }
 
-        $popularSearch = KeywordSearch::orderByUniqueViews()->take(10)->get();
+        $popularSearch = KeywordSearch::where('status', 1)->orderByViews()->take(10)->get();
         $posts = Post::where('status', 1)->limit(10)->get();
 
         return view('home.search', [
@@ -156,7 +151,7 @@ class PublicController extends Controller
 		
         $setting = Setting::find(1);
 
-        $popularSearch = KeywordSearch::orderByUniqueViews()->take(10)->get();
+        $popularSearch = KeywordSearch::where('status', 1)->orderByViews()->take(10)->get();
         $posts = Post::where('status', 1)->limit(10)->get();
 
         return view('home.show', [
