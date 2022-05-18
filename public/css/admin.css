@@ -122,6 +122,103 @@
     width: calc(100% - 16rem);
   }
 }
+.swal2-popup {
+  display: none;
+  position: relative;
+  box-sizing: border-box;
+  grid-template-columns: minmax(0, 100%);
+  width: 32em;
+  max-width: 100%;
+  padding: 0 0 1.25em;
+  border: none;
+  border-radius: 6px;
+  background: #fff;
+  color: #545454;
+  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !important;
+  font-size: 16px;
+}
+
+.swal2-actions:not(.swal2-loading) .swal2-styled:hover {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)) !important;
+}
+
+.swal2-actions:not(.swal2-loading) .swal2-styled:active {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)) !important;
+}
+
+.swal2-styled.swal2-confirm {
+  border: 0 !important;
+  border-radius: 4px !important;
+  background: initial !important;
+  background-color: hsl(171deg, 100%, 41%) !important;
+  color: hsl(0deg, 0%, 100%) !important;
+  font-size: 1rem !important;
+}
+
+.swal2-styled.swal2-confirm:focus {
+  box-shadow: 0 0 0 3px rgba(0, 209, 178, 0.5) !important;
+}
+
+.swal2-styled.swal2-deny {
+  border: 0 !important;
+  border-radius: 4px !important;
+  background: initial !important;
+  background-color: hsl(348deg, 86%, 61%) !important;
+  color: hsl(0deg, 0%, 100%) !important;
+  font-size: 1rem !important;
+}
+
+.swal2-styled.swal2-deny:focus {
+  box-shadow: 0 0 0 3px rgba(220, 55, 65, 0.5) !important;
+}
+
+.swal2-styled.swal2-cancel {
+  border: 1px solid hsl(0deg, 0%, 86%) !important;
+  border-radius: 4px !important;
+  background: initial !important;
+  background-color: hsl(0deg, 0%, 100%) !important;
+  color: hsl(0deg, 0%, 21%) !important;
+  font-size: 1rem !important;
+}
+
+.swal2-styled.swal2-cancel:focus {
+  box-shadow: 0 0 0 3px rgba(110, 120, 129, 0.5) !important;
+}
+
+.swal2-styled.swal2-default-outline:focus {
+  box-shadow: 0 0 0 3px rgba(100, 150, 200, 0.5) !important;
+}
+
+.swal2-html-container {
+  z-index: 1 !important;
+  justify-content: center !important;
+  margin: 1em 1.6em 0.3em !important;
+  padding: 0 !important;
+  overflow: auto !important;
+  color: inherit !important;
+  font-size: 16px !important;
+  font-weight: normal !important;
+  line-height: normal !important;
+  text-align: center !important;
+  word-wrap: break-word !important;
+  word-break: break-word !important;
+}
+
+body.swal2-shown .swal2-select {
+  -webkit-appearance: auto;
+  -moz-appearance: auto;
+  appearance: auto !important;
+  width: 90% !important;
+  margin: 15px auto 0 !important;
+  border: 1px solid #44d1b2 !important;
+  border-radius: 4px !important;
+}
+body.swal2-shown .swal2-select:focus {
+  border-color: #44d1b2;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  --tw-ring-color: #44d1b2;
+}
 /*
 ! tailwindcss v3.0.24 | MIT License | https://tailwindcss.com
 *//*

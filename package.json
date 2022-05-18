@@ -10,7 +10,9 @@
         "production": "mix --production"
     },
     "dependencies": {
-        "concurrently": "^7.0.0"
+        "@sweetalert2/themes": "^5.0.11",
+        "concurrently": "^7.0.0",
+        "sweetalert2": "^11.4.14"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.4.1",
