@@ -58,7 +58,7 @@
             @else
             <div class="main flex mx-auto w-full justify-between max-w-8xl mx-auto lg:flex-row flex-col max-w-full">
                 @include('home.left')
-                <main class="content bg-bodybg order-1 lg:order-2 px-2">
+                <main class="content bg-bodybg order-1 lg:order-2 px-2 w-full">
                     @yield('content')
                 </main>
                 @include('home.right')
