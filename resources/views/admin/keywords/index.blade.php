@@ -40,12 +40,12 @@
                 <div class="block relative flex flex-col md:flex-row items-center space-y-2 md:space-y-0">
                     <div class="block relative">
                         <button type="button" class="mass-delete-btn hidden inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-sm font-semibold text-xs text-white uppercase tracking-widest hover:bg-opacity-80 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-[#2563eb] disabled:opacity-25 transition ease-in-out duration-150 ml-2">
-                            Mass Delete
+                            Delete
                         </button>
                     </div>
                     <div class="block relative">
                         <button type="button" class="mass-update-btn hidden inline-flex items-center px-4 py-2 bg-gray-400 border border-transparent rounded-sm font-semibold text-xs text-white uppercase tracking-widest hover:bg-opacity-80 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-[#2563eb] disabled:opacity-25 transition ease-in-out duration-150 ml-2">
-                            Mass Update
+                            Update
                         </button>
                     </div>
                 </div>
