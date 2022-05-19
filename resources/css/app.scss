@@ -81,3 +81,17 @@ span.twitter-typeahead {
 .input-group span.twitter-typeahead .tt-menu {
     top: 2.375rem !important; 
 }
+
+.article {
+    -webkit-transition: -webkit-transform 250ms ease, box-shadow 250ms ease, color 250ms ease;
+    -webkit-transition: transform 250ms ease, box-shadow 250ms ease, color 250ms ease;
+    transition: transform 250ms ease, box-shadow 250ms ease, color 250ms ease;
+    box-shadow: 1px 1px 5px 0 rgb(1 1 1 / 5%);
+
+    &:hover {
+        -webkit-transform: translateY(-0.25rem);
+        -ms-transform: translateY(-0.25rem);
+        transform: translateY(-0.25rem);
+        box-shadow: 0px 2px 4px rgb(46 41 51 / 8%), 0px 5px 10px rgb(71 63 79 / 16%);
+    }
+}

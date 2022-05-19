@@ -65,11 +65,11 @@
         </h2>
 
         <?php $__currentLoopData = $search_result->organic; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-        <div class="bg-white shadow rounded-md placeholder: mb-1 p-4 w-full w-full mt-5 break-words">
+        <div class="bg-white shadow rounded-md placeholder: mb-1 p-4 w-full w-full mt-5 break-words ">
             <div class="block text-xl text-link hover:text-opacity-80">
                 <a href="{{ route('visit', ['visit' => $search, 'cid' => $hashids->encode($item->id)]) }}">{{ e($item->title) }}</a>
             </div>
-            <div class="text-blue-500 hover:text-blue-600 mt-1 break-words">
+            <div class="text-blue-500 hover:text-blue-600 mt-1 break-all">
                 <a href="{{ route('visit', ['visit' => $search, 'cid' => $hashids->encode($item->id)]) }}">{{ e($item->url) }}</a>
             </div>
             <div class="text-sm text-gray-500 font-light mt-1 break-words">

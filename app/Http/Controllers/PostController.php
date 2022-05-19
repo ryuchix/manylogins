@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 use App\Models\Category;
 use App\Models\CategoryPost;
+use App\Models\KeywordSearch;
+use App\Models\Setting;
 
 class PostController extends Controller
 {
@@ -216,5 +218,54 @@ class PostController extends Controller
     {
         $string = str_slug($title, '-');
         return preg_replace('/[^A-Za-z0-9\-]/', '-', $string);
+    }
+
+    public function blogLists()
+    {
+        $blogs = Post::where('status', 1)->paginate(10);
+
+        if (empty($blog)) {
+            return abort(404);
+        }
+
+        $popularSearch = KeywordSearch::where('status', 1)->orderByViews()->take(10)->get();
+
+        $posts = Post::where('status', 1)->limit(10)->get();
+
+        return view('home.blogs', [
+            'blog' => $blog,
+            'posts' => $posts,
+            'popular_posts' => $popularSearch
+        ]);
+    }
+
+    public function showBlog($blog)
+    {
+        $blog = Post::where('slug', $blog)->first();
+
+        if (empty($blog)) {
+            return abort(404);
+        }
+
+        $popularSearch = KeywordSearch::where('status', 1)->orderByViews()->take(10)->get();
+
+        $setting = Setting::find(1);
+
+        $posts = Post::where('status', 1)->orderByViews()->take(10)->get();
+
+        if (!empty($blog)) {
+            $expiresAt = now()->addHours(1);
+            
+            views($blog)
+                ->cooldown($expiresAt)
+                ->record();
+        }
+
+        return view('home.blog', [
+            'blog' => $blog,
+            'posts' => $posts,
+            'popular_posts' => $popularSearch,
+            'setting' => $setting
+        ]);
     }
 }

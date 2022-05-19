@@ -51,6 +51,9 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
 Route::get('generate-sitemap', [SitemapController::class, 'create'])->name('create.sitemap');
 
+Route::get('blogs', [PostController::class, 'blogLists'])->name('blog.lists');
+Route::get('blog/{blog}', [PostController::class, 'showBlog'])->name('show.blog');
+
 Route::get('/keywords/api/{search}', [PublicController::class, 'keywordSearch'])->name('keywords');
 
 Route::get('/{search?}', [PublicController::class, 'search'])->name('search');

@@ -24,6 +24,8 @@ mix.js('resources/js/app.js', 'public/js')
     ])
     .sass('resources/css/app.scss', 'public/css', [])
     .sass('resources/css/admin.scss', 'public/css', [])
+    .sass('resources/css/blog.scss', 'public/css', [])
+    .sass('resources/css/admin-blog.scss', 'public/css', [])
     .js('resources/js/script.js','public/js')
     .js('resources/js/admin.js','public/js');
     

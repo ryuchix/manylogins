@@ -5,50 +5,7 @@
 @section('style')
 <link rel="stylesheet" href="{{ asset('trumbowyg/dist/ui/trumbowyg.min.css') }}">
 <link href="{{ asset('css/select2.css') }}" rel="stylesheet" />
-
-<style>
-    p {
-        font-size: 1.1rem;
-        line-height: 1.5;
-        margin-bottom: 15px;
-    }
-
-    h1 {
-        font-size: 3rem;
-        line-height: 1.8;
-    }
-
-    h2 {
-        font-size: 2.25rem;
-        line-height: 1.5;
-    }
-
-    h3 {
-        font-size: 1.875rem;
-        line-height: 1.25;
-    }
-
-    h4 {
-        font-size: 1.5rem;
-        line-height: 1;
-    }
-
-    ul {
-        list-style-type: disc;
-    }
-
-    ul li {
-        margin-left: 30px;
-    }
-
-    ol {
-        list-style-type: decimal;
-    }
-
-    ol li {
-        margin-left: 30px;
-    }
-</style>
+<link rel="stylesheet" href="{{ asset('css/admin-blog.css?t='.time()) }}">
 @endsection
 @section('content')
 <div class="overflow-x-auto">
