@@ -222,16 +222,19 @@ class PostController extends Controller
 
     public function blogLists()
     {
-        $blogs = Post::where('status', 1)->paginate(10);
+        $blogs = Post::where('status', 1)->paginate(20);
 
         $popularSearch = KeywordSearch::where('status', 1)->orderByViews()->take(10)->get();
 
         $posts = Post::where('status', 1)->orderByViews()->take(10)->get();
 
+        $setting = Setting::find(1);
+
         return view('home.blogs', [
             'blogs' => $blogs,
             'posts' => $posts,
-            'popular_posts' => $popularSearch
+            'popular_posts' => $popularSearch,
+            'setting' => $setting
         ]);
     }
 

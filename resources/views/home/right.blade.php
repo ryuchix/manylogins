@@ -31,7 +31,7 @@
                                     <strong>{{ $post->user->name }}</strong>
                                 </div>
                                 <div class="metas">
-                                    @php $date = date_create($blog->created_at); @endphp
+                                    @php $date = date_create($post->created_at); @endphp
                                     <div class="date">{{ date_format($date,"M d, Y") }}</div>
                                 </div>
                             </div>
