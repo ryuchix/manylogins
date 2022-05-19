@@ -51,7 +51,7 @@ class SitemapController extends Controller
                         ->setLastModificationDate($post->updated_at));
             }
 
-            $sitemap->writeToFile(public_path($sitemapPageName));
+            $_sitemap->writeToFile(public_path($sitemapPageName));
             $sitemapIndex->add($sitemapPageName);
 
             $sitemapIndex->writeToFile(public_path('sitemap.xml'));
