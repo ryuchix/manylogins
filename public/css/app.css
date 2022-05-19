@@ -1897,6 +1897,10 @@ select {
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity));
 }
+.hover\:text-link:hover {
+  --tw-text-opacity: 1;
+  color: rgb(74 210 149 / var(--tw-text-opacity));
+}
 .hover\:text-blue-100:hover {
   --tw-text-opacity: 1;
   color: rgb(219 234 254 / var(--tw-text-opacity));
@@ -1908,10 +1912,6 @@ select {
 .hover\:text-gray-800:hover {
   --tw-text-opacity: 1;
   color: rgb(31 41 55 / var(--tw-text-opacity));
-}
-.hover\:text-link:hover {
-  --tw-text-opacity: 1;
-  color: rgb(74 210 149 / var(--tw-text-opacity));
 }
 .hover\:text-opacity-80:hover {
   --tw-text-opacity: 0.8;
