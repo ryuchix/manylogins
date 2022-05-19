@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\KeywordSearch;
-use App;
+use App\Models\Post;
 
 class GenerateSitemap extends Command
 {
@@ -42,9 +42,10 @@ class GenerateSitemap extends Command
         try {
             $sitemapIndex = SitemapIndex::create();
 
-            $productChunks = KeywordSearch::select(['slug', 'updated_at'])
+            $posts = Post::where('status', 1)->get();
+
+            $productChunks = KeywordSearch::select(['slug', 'updated_at'])->skip(0)->take(10)
                 ->where('status', 1)
-                ->where('deleted', NULL)
                 ->orderBy('updated_at', 'desc')
                 ->chunk(25000, function ($products, $chunk) use ($sitemapIndex) {
                     $sitemapName = 'keywords_sitemap'.$chunk.'.xml';
@@ -58,16 +59,32 @@ class GenerateSitemap extends Command
                     $sitemap->writeToFile(public_path($sitemapName));
                     $sitemapIndex->add($sitemapName);
                 });
+            $sitemapPageName = 'pages.xml';    
+            $_sitemap = Sitemap::create();
+
+            $_sitemap->add(Url::create('/')
+                    ->setLastModificationDate(Carbon::now()));
+
+            $_sitemap->add(Url::create('blogs')
+                    ->setLastModificationDate(Carbon::now()));
+
+            foreach ($posts as $post) {
+                $_sitemap->add(Url::create('blog/'.$post->slug)
+                        ->setLastModificationDate($post->updated_at));
+            }
+
+            $_sitemap->writeToFile(public_path($sitemapPageName));
+            $sitemapIndex->add($sitemapPageName);
 
             $sitemapIndex->writeToFile(public_path('sitemap.xml'));
 
             return redirect('sitemap.xml');
         } catch (\Exception $e) {
-            logger($e);
+            logger($e->getMessage());
         }  catch (\Throwable $e) {
-            logger($e);
+            logger($e->getMessage());
         } catch (\InvalidArgumentException $th) {
-            logger(json_encode($th));
+            logger(($th->getMessage()));
         }
     }
 }
