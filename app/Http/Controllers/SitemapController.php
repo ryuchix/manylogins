@@ -20,12 +20,12 @@ class SitemapController extends Controller
         try {
             $sitemapIndex = SitemapIndex::create();
 
-            $post = Post::where('status', 1)->get();
+            $posts = Post::where('status', 1)->get();
 
             $productChunks = KeywordSearch::select(['slug', 'updated_at'])
                 ->where('status', 1)
                 ->orderBy('updated_at', 'desc')
-                ->chunk(25000, function ($products, $chunk) use ($sitemapIndex) {
+                ->chunk(25000, function ($products, $chunk) use ($sitemapIndex, $posts) {
                     $sitemapName = 'keywords_sitemap'.$chunk.'.xml';
                     $sitemap = Sitemap::create();
 
@@ -35,7 +35,7 @@ class SitemapController extends Controller
                     $sitemap->add(Url::create('blogs')
                             ->setLastModificationDate(Carbon::now()));
 
-                    foreach ($post as $post) {
+                    foreach ($posts as $post) {
                         $sitemap->add(Url::create($post->slug)
                                 ->setLastModificationDate($post->updated_at));
                     }
