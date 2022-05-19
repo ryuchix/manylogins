@@ -22,23 +22,12 @@ class SitemapController extends Controller
 
             $posts = Post::where('status', 1)->get();
 
-            $productChunks = KeywordSearch::select(['slug', 'updated_at'])
+            $productChunks = KeywordSearch::select(['slug', 'updated_at'])->skip(0)->take(10)
                 ->where('status', 1)
                 ->orderBy('updated_at', 'desc')
-                ->chunk(25000, function ($products, $chunk) use ($sitemapIndex, $posts) {
+                ->chunk(25000, function ($products, $chunk) use ($sitemapIndex) {
                     $sitemapName = 'keywords_sitemap'.$chunk.'.xml';
                     $sitemap = Sitemap::create();
-
-                    $sitemap->add(Url::create('/')
-                            ->setLastModificationDate(Carbon::now()));
-
-                    $sitemap->add(Url::create('blogs')
-                            ->setLastModificationDate(Carbon::now()));
-
-                    foreach ($posts as $post) {
-                        $sitemap->add(Url::create($post->slug)
-                                ->setLastModificationDate($post->updated_at));
-                    }
 
                     foreach ($products as $product) {
                         $sitemap->add(Url::create($product->slug)
@@ -48,6 +37,22 @@ class SitemapController extends Controller
                     $sitemap->writeToFile(public_path($sitemapName));
                     $sitemapIndex->add($sitemapName);
                 });
+            $sitemapPageName = 'pages.xml';    
+            $_sitemap = Sitemap::create();
+
+            $_sitemap->add(Url::create('/')
+                    ->setLastModificationDate(Carbon::now()));
+
+            $_sitemap->add(Url::create('blogs')
+                    ->setLastModificationDate(Carbon::now()));
+
+            foreach ($posts as $post) {
+                $_sitemap->add(Url::create('blog/'.$post->slug)
+                        ->setLastModificationDate($post->updated_at));
+            }
+
+            $sitemap->writeToFile(public_path($sitemapPageName));
+            $sitemapIndex->add($sitemapPageName);
 
             $sitemapIndex->writeToFile(public_path('sitemap.xml'));
 
