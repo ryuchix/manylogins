@@ -224,16 +224,12 @@ class PostController extends Controller
     {
         $blogs = Post::where('status', 1)->paginate(10);
 
-        if (empty($blog)) {
-            return abort(404);
-        }
-
         $popularSearch = KeywordSearch::where('status', 1)->orderByViews()->take(10)->get();
 
-        $posts = Post::where('status', 1)->limit(10)->get();
+        $posts = Post::where('status', 1)->orderByViews()->take(10)->get();
 
         return view('home.blogs', [
-            'blog' => $blog,
+            'blogs' => $blogs,
             'posts' => $posts,
             'popular_posts' => $popularSearch
         ]);
@@ -253,6 +249,12 @@ class PostController extends Controller
 
         $posts = Post::where('status', 1)->orderByViews()->take(10)->get();
 
+        $related = Post::whereHas('categories', function ($q) use ($blog) {
+            return $q->whereIn('name', $blog->categories->pluck('name')); 
+        })
+        ->where('id', '!=', $blog->id) // So you won't fetch same post
+        ->get();
+
         if (!empty($blog)) {
             $expiresAt = now()->addHours(1);
             
@@ -265,7 +267,8 @@ class PostController extends Controller
             'blog' => $blog,
             'posts' => $posts,
             'popular_posts' => $popularSearch,
-            'setting' => $setting
+            'setting' => $setting,
+            'related' => $related
         ]);
     }
 }

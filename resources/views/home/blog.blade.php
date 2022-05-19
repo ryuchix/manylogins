@@ -55,6 +55,7 @@
         </div>
     </div>
 
+    @if (count($related) > 0)
     <div class="related-posts mt-10 ">
         <div class="text-lg text-link">
             Related Post
@@ -66,18 +67,19 @@
         <div class="related-lists">
 
             <div class="grid justify-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 lg:gap-7 mt-3 mb-10">
-                @foreach([1,2,3,4,5,6,7,8] as $ccc)
+                @foreach($related as $post)
                 <div class="article h-full rounded-md shadow-cla-pink bg-gradient-to-r from-fuchsia-50 to-pink-50 overflow-hidden">
-                    <img class="lg:h-42 md:h-28 w-full object-cover object-centertransition-all duration-400" src="{{ asset('images/posts/'.$blog->cover) }}" alt="{{ $blog->title }}">
+                    <img class="lg:h-42 md:h-28 w-full object-cover object-centertransition-all duration-400" src="{{ asset('images/posts/'.$post->cover) }}" alt="{{ $post->title }}">
                     <div class="px-4 py-4">
-                        <h1 class="title-font text-base font-medium mb-1 line-clamp-none md:line-clamp-2"><a href="{{ route('show.blog', ['blog' => $blog->slug]) }}" class="block text-xl text-link hover:text-opacity-80">{{ $blog->title }}</a></h1>
-                        <div class="leading-relaxed mb-3 text-gray-500 text-sm">{!! substr_replace(strip_tags($blog->content), strlen($blog->content) <= 100 ? "" : "...", 100); !!}</div>
+                        <h1 class="title-font text-base font-medium mb-1 line-clamp-none md:line-clamp-2"><a href="{{ route('show.blog', ['blog' => $post->slug]) }}" class="block text-xl text-link hover:text-opacity-80">{{ $post->title }}</a></h1>
+                        <div class="leading-relaxed mb-3 text-gray-500 text-sm">{!! substr_replace(strip_tags($post->content), strlen($post->content) <= 100 ? "" : "...", 100); !!}</div>
                     </div>
                 </div>
                 @endforeach
             </div>
         </div>
     </div>
+    @endif
 </div>
 @endsection
 
