@@ -20,6 +20,8 @@ class SitemapController extends Controller
         try {
             $sitemapIndex = SitemapIndex::create();
 
+            $post = Post::where('status', 1)->get();
+
             $productChunks = KeywordSearch::select(['slug', 'updated_at'])
                 ->where('status', 1)
                 ->orderBy('updated_at', 'desc')
@@ -33,7 +35,7 @@ class SitemapController extends Controller
                     $sitemap->add(Url::create('blogs')
                             ->setLastModificationDate(Carbon::now()));
 
-                    foreach ($Post as $post) {
+                    foreach ($post as $post) {
                         $sitemap->add(Url::create($post->slug)
                                 ->setLastModificationDate($post->updated_at));
                     }
