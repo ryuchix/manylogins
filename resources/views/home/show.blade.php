@@ -48,10 +48,17 @@
 
             </div>     
 
-            <div class="bg-white shadow rounded-md placeholder: mb-6 p-4 w-full w-full mt-10">
+            <div class="bg-white shadow rounded-md placeholder: p-4 w-full w-full mt-10">
                 <div class="block text-2xl text-gray-800 font-bold">How do you collect data for {{ e(str_replace('-', ' ', $title)) }}?</div>
                 <div class="text-darkblue mt-2">
                         We research pages with information related to {{ e(str_replace('-', ' ', $title)) }}. These will include the official login link along with the information for the login process and requirements about each login.
+                </div>
+            </div> 
+
+            <div class="bg-white shadow rounded-md placeholder: mb-6 p-4 w-full w-full mt-5">
+                <div class="block text-2xl text-gray-800 font-bold"> Does Manylogins save my login credentials that I enter on the login pages?</div>
+                <div class="text-darkblue mt-2">
+                    <p>It varies on the third-party login page or interface. We just aggregate relevant data to help you find the login you're looking for quicker. We cannot be held accountable for any potential risks with your login or any problems you experience with third-party websites. All of these factors apply for {{ e(str_replace('-', ' ', $title)) }} too. </p>
                 </div>
             </div>
         </div>
