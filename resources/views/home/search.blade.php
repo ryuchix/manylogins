@@ -2,7 +2,7 @@
 
 @section('title', $title . ' - ' . $setting->site_title)
 @section('keyword', $search_result != null ? $keyword : $title)
-@section('description', $search_result != null ? $description : $title . ' ' . $keyword)
+@section('description', 'The easiest method to find ' . $title . '. Helping users access the login page while providing useful information for the login process.')
 
 @section('content')
 @php 
