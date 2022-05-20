@@ -25,7 +25,7 @@ class SitemapController extends Controller
 
             $productChunks = KeywordSearch::select(['slug', 'updated_at'])->skip(0)->take(100)
                 ->where('status', 1)
-                ->orderBy('updated_at', 'desc')
+                ->sortbydesc()
                 ->chunk(25000, function ($products, $chunk) use ($sitemapIndex) {
                     $sitemapName = 'keywords_sitemap'.$chunk.'.xml';
                     $sitemap = Sitemap::create();
