@@ -11,7 +11,7 @@
 @section('content')
 <div class="flex flex-col pb-10 pt-6 md:px-5 px-1 w-full blog-content ">
     <h1 class="title capitalize font-semibold text-gray-700">
-        Blogs
+        Guides
     </h1>
     <div class="grid justify-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-5 lg:gap-7 mt-3 mb-10">
         @foreach($blogs as $blog)

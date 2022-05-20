@@ -17,7 +17,7 @@
 
     @if (\Request::route()->getName() == 'blog.lists' || \Request::route()->getName() == 'show.blog')
     <div class="mt-4">
-        <div class="text-lg text-gray-700 p-2 w-full text-left font-semibold">Popular Blog</div>
+        <div class="text-lg text-gray-700 p-2 w-full text-left font-semibold">Popular Guides</div>
 
         <div class="blog_card flex space-y-4 flex-col">
             @foreach ($posts as $post)
@@ -44,7 +44,7 @@
     </div>
     @else 
     <div class="mt-4">
-        <div class="text-lg text-gray-700 p-2 w-full text-left font-semibold">Blogs</div>
+        <div class="text-lg text-gray-700 p-2 w-full text-left font-semibold">Guides</div>
         <div class="blogs">
             @foreach ($posts as $post)
             <div class="p-2 w-full flex-col space-y-4">
