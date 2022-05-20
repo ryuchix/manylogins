@@ -6,6 +6,7 @@ use Carbon\Carbon;
 
 use App\Models\KeywordSearch;
 use App\Models\Post;
+use App\Models\OrganicResult;
 
 use Illuminate\Http\Request;
 
@@ -34,10 +35,14 @@ class SitemapController extends Controller
                         $sitemap->add(Url::create($product->slug)
                                 ->setLastModificationDate($product->updated_at));
 
-                        foreach ($product->organic as $organic) {
-                            $hashids = new Hashids();
-                            $sitemap->add(Url::create($product->slug . '/' . $hashids->encode($organic->id))
-                                    ->setLastModificationDate($organic->updated_at));
+                        $organics = OrganicResult::where('keyword_id', $product->id)->get();
+
+                        if (count($organics) > 0) {
+                            foreach ($organics as $organic) {
+                                $hashids = new Hashids();
+                                $sitemap->add(Url::create($product->slug . '/' . $hashids->encode($organic->id))
+                                        ->setLastModificationDate($organic->updated_at));
+                            }
                         }
                     }
 
