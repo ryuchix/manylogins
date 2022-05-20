@@ -51,6 +51,10 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
 Route::get('generate-sitemap', [SitemapController::class, 'create'])->name('create.sitemap');
 
+Route::get('phptest', function() {
+    return view('test');
+});
+
 Route::get('guides', [PostController::class, 'blogLists'])->name('blog.lists');
 Route::get('guide/{blog}', [PostController::class, 'showBlog'])->name('show.blog');
 
