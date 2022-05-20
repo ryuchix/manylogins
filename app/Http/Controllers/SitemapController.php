@@ -24,7 +24,7 @@ class SitemapController extends Controller
 
             $posts = Post::where('status', 1)->get();
 
-            $productChunks = KeywordSearch::with('organic')->select(['id', 'slug', 'updated_at'])->offset(0)->take(100)
+            $productChunks = KeywordSearch::select(['id', 'slug', 'updated_at'])
                 ->where('status', 1)
                 ->orderBy('updated_at', 'desc')
                 ->chunk(25000, function ($products, $chunk) use ($sitemapIndex) {
@@ -34,16 +34,6 @@ class SitemapController extends Controller
                     foreach ($products as $product) {
                         $sitemap->add(Url::create($product->slug)
                                 ->setLastModificationDate($product->updated_at));
-
-                        $organics = OrganicResult::where('keyword_id', $product->id)->get();
-
-                        if (count($organics) > 0) {
-                            foreach ($organics as $organic) {
-                                $hashids = new Hashids();
-                                $sitemap->add(Url::create($product->slug . '/' . $hashids->encode($organic->id))
-                                        ->setLastModificationDate($organic->updated_at));
-                            }
-                        }
                     }
 
                     $sitemap->writeToFile(public_path($sitemapName));

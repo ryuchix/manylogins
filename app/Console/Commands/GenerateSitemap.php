@@ -44,7 +44,7 @@ class GenerateSitemap extends Command
 
             $posts = Post::where('status', 1)->get();
 
-            $productChunks = KeywordSearch::select(['slug', 'updated_at'])->skip(0)->take(10)
+            $productChunks = KeywordSearch::select(['id', 'slug', 'updated_at'])
                 ->where('status', 1)
                 ->orderBy('updated_at', 'desc')
                 ->chunk(25000, function ($products, $chunk) use ($sitemapIndex) {
