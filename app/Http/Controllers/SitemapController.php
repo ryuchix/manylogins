@@ -49,7 +49,7 @@ class SitemapController extends Controller
                     ->setLastModificationDate(Carbon::now()));
 
             foreach ($posts as $post) {
-                $_sitemap->add(Url::create('guide/'.$post->slug)
+                $_sitemap->add(Url::create('guides/'.$post->slug)
                         ->setLastModificationDate($post->updated_at));
             }
 

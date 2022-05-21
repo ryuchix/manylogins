@@ -56,7 +56,7 @@ Route::get('phptest', function() {
 });
 
 Route::get('guides', [PostController::class, 'blogLists'])->name('blog.lists');
-Route::get('guide/{blog}', [PostController::class, 'showBlog'])->name('show.blog');
+Route::get('guides/{blog}', [PostController::class, 'showBlog'])->name('show.blog');
 
 Route::get('/keywords/api/{search}', [PublicController::class, 'keywordSearch'])->name('keywords');
 
