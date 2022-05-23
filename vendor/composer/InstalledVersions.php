@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'fb72cd40eb3cab0f5d2ed75ac800fb25e54a2391',
+    'reference' => '8a885b8a6e2a8eb65ee7eddb0a16bed9f7712520',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -550,7 +550,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'fb72cd40eb3cab0f5d2ed75ac800fb25e54a2391',
+      'reference' => '8a885b8a6e2a8eb65ee7eddb0a16bed9f7712520',
     ),
     'laravel/sail' => 
     array (
@@ -970,6 +970,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '05c544b339b112226ad14803e1e5b09a61957454',
+    ),
+    'qcod/laravel-imageup' => 
+    array (
+      'pretty_version' => '1.2.2',
+      'version' => '1.2.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'f0b0af1db05a8b4539dd4adbc8c606c774d802fe',
     ),
     'ralouphie/getallheaders' => 
     array (

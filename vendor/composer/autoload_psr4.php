@@ -49,6 +49,7 @@ return array(
     'Spatie\\Browsershot\\' => array($vendorDir . '/spatie/browsershot/src'),
     'Ramsey\\Uuid\\' => array($vendorDir . '/ramsey/uuid/src'),
     'Ramsey\\Collection\\' => array($vendorDir . '/ramsey/collection/src'),
+    'QCod\\ImageUp\\' => array($vendorDir . '/qcod/laravel-imageup/src'),
     'Psy\\' => array($vendorDir . '/psy/psysh/src'),
     'Psr\\SimpleCache\\' => array($vendorDir . '/psr/simple-cache/src'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),

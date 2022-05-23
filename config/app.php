@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Spatie\Sitemap\SitemapServiceProvider::class,
         CyrildeWit\EloquentViewable\EloquentViewableServiceProvider::class,
+        QCod\ImageUp\ImageUpServiceProvider::class
 
     ],
 

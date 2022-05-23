@@ -17,6 +17,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravelium/sitemap": "^8.0",
+        "qcod/laravel-imageup": "^1.2",
         "spatie/laravel-sitemap": "^5.9"
     },
     "require-dev": {

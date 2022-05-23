@@ -49,7 +49,7 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|max:200',
             'content' => 'required',
-            'category' => 'required',
+            'category' => 'nullable',
             'slug' => 'required|unique:posts,slug',
             'cover' => 'image|mimes:jpg,png,jpeg,gif,svg,webp|max:2048',
         ]);
@@ -61,26 +61,25 @@ class PostController extends Controller
             'title' => $data['title'],
             'slug' => $data['slug'],
             'content' => $data['content'],
-            'user_id' => auth()->user()->id
+            'user_id' => auth()->user()->id,
+            'status' => $data['status'],
         ]);
 
-        foreach ($request->category as $cat) {
-            $category = Category::where('name', $cat)->first();
+        if ($request->category != null) {
+            foreach ($request->category as $cat) {
+                $category = Category::where('name', $cat)->first();
 
-            if (!empty($category)) {
-                $post->categories()->attach($category);
-            } else {
-                $category = Category::create([
-                    'name' => $cat,
-                    'slug' => $this->getSlug($cat),
-                    'user_id' => auth()->user()->id
-                ]);
-                $post->categories()->attach($category);
+                if (!empty($category)) {
+                    $post->categories()->attach($category);
+                } else {
+                    $category = Category::create([
+                        'name' => $cat,
+                        'slug' => $this->getSlug($cat),
+                        'user_id' => auth()->user()->id
+                    ]);
+                    $post->categories()->attach($category);
+                }
             }
-        }
-
-        if ($request->hasFile('cover')) {
-            $this->coverUpload($request->cover, $post->id);
         }
 
         return redirect()->route('posts.index')->with('success', 'Post added successfully.');
@@ -130,7 +129,7 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|max:200',
             'content' => 'required',
-            'category' => 'required',
+            'category' => 'nullable',
             'slug' => 'required|unique:posts,slug,'.$post->id,
             'cover' => 'image|mimes:jpg,png,jpeg,gif,svg,webp|max:2048',
         ]);
@@ -144,27 +143,27 @@ class PostController extends Controller
             'slug' => $data['slug'],
             'content' => $data['content'],
             'user_id' => $data['user_id'],
+            'status' => $data['status'],
         ]);
-
-        $post->categories()->detach();
         
-        foreach ($request->category as $cat) {
-            $category = Category::where('name', $cat)->first();
+        if ($request->category != null) {
+            
+            $post->categories()->detach();
 
-            if (!empty($category)) {
-                $post->categories()->attach($category);
-            } else {
-                $category = Category::create([
-                    'name' => $cat,
-                    'slug' => $this->getSlug($cat),
-                    'user_id' => auth()->user()->id
-                ]);
-                $post->categories()->attach($category);
+            foreach ($request->category as $cat) {
+                $category = Category::where('name', $cat)->first();
+
+                if (!empty($category)) {
+                    $post->categories()->attach($category);
+                } else {
+                    $category = Category::create([
+                        'name' => $cat,
+                        'slug' => $this->getSlug($cat),
+                        'user_id' => auth()->user()->id
+                    ]);
+                    $post->categories()->attach($category);
+                }
             }
-        }
-
-        if ($request->hasFile('cover')) {
-            $this->coverUpload($request->cover, $post->id);
         }
 
         return redirect()->route('posts.index')->with('success', 'Post updated successfully.');
@@ -240,7 +239,7 @@ class PostController extends Controller
 
     public function showBlog($blog)
     {
-        $blog = Post::where('slug', $blog)->first();
+        $blog = Post::where('slug', $blog)->where('status', 1)->first();
 
         if (empty($blog)) {
             return abort(404);

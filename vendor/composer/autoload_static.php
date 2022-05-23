@@ -36,9 +36,9 @@ class ComposerStaticInit8a983f4b5a04f5eaaa070565fa664316
         '9cdd7b9056abc3081735233ba9dd9c7f' => __DIR__ . '/..' . '/facade/flare-client-php/src/helpers.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
+        '55939d295627a904f01d5f2ab92e8d67' => __DIR__ . '/..' . '/cyrildewit/eloquent-viewable/src/helpers.php',
         'ed962a97bd972bc82007176b647d4e36' => __DIR__ . '/..' . '/facade/ignition/src/helpers.php',
         '17d016dc52a631c1e74d2eb8fdd57342' => __DIR__ . '/..' . '/laravel/helpers/src/helpers.php',
-        '55939d295627a904f01d5f2ab92e8d67' => __DIR__ . '/..' . '/cyrildewit/eloquent-viewable/src/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -102,6 +102,10 @@ class ComposerStaticInit8a983f4b5a04f5eaaa070565fa664316
         array (
             'Ramsey\\Uuid\\' => 12,
             'Ramsey\\Collection\\' => 18,
+        ),
+        'Q' => 
+        array (
+            'QCod\\ImageUp\\' => 13,
         ),
         'P' => 
         array (
@@ -381,6 +385,10 @@ class ComposerStaticInit8a983f4b5a04f5eaaa070565fa664316
         'Ramsey\\Collection\\' => 
         array (
             0 => __DIR__ . '/..' . '/ramsey/collection/src',
+        ),
+        'QCod\\ImageUp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/qcod/laravel-imageup/src',
         ),
         'Psy\\' => 
         array (
@@ -4981,6 +4989,9 @@ class ComposerStaticInit8a983f4b5a04f5eaaa070565fa664316
         'Psy\\VersionUpdater\\GitHubChecker' => __DIR__ . '/..' . '/psy/psysh/src/VersionUpdater/GitHubChecker.php',
         'Psy\\VersionUpdater\\IntervalChecker' => __DIR__ . '/..' . '/psy/psysh/src/VersionUpdater/IntervalChecker.php',
         'Psy\\VersionUpdater\\NoopChecker' => __DIR__ . '/..' . '/psy/psysh/src/VersionUpdater/NoopChecker.php',
+        'QCod\\ImageUp\\Exceptions\\InvalidUploadFieldException' => __DIR__ . '/..' . '/qcod/laravel-imageup/src/Exceptions/InvalidUploadFieldException.php',
+        'QCod\\ImageUp\\HasImageUploads' => __DIR__ . '/..' . '/qcod/laravel-imageup/src/HasImageUploads.php',
+        'QCod\\ImageUp\\ImageUpServiceProvider' => __DIR__ . '/..' . '/qcod/laravel-imageup/src/ImageUpServiceProvider.php',
         'Ramsey\\Collection\\AbstractArray' => __DIR__ . '/..' . '/ramsey/collection/src/AbstractArray.php',
         'Ramsey\\Collection\\AbstractCollection' => __DIR__ . '/..' . '/ramsey/collection/src/AbstractCollection.php',
         'Ramsey\\Collection\\AbstractSet' => __DIR__ . '/..' . '/ramsey/collection/src/AbstractSet.php',
