@@ -51,7 +51,7 @@ class PostController extends Controller
             'content' => 'required',
             'category' => 'nullable',
             'slug' => 'required|unique:posts,slug',
-            'cover' => 'image|mimes:jpg,png,jpeg,gif,svg,webp|max:2048',
+            'cover' => 'image|mimes:jpg,png,jpeg,gif,svg,webp|max:5000',
         ]);
 
         $data = array_filter($request->all());
@@ -131,7 +131,7 @@ class PostController extends Controller
             'content' => 'required',
             'category' => 'nullable',
             'slug' => 'required|unique:posts,slug,'.$post->id,
-            'cover' => 'image|mimes:jpg,png,jpeg,gif,svg,webp|max:2048',
+            'cover' => 'image|mimes:jpg,png,jpeg,gif,svg,webp|max:5000',
         ]);
 
         $data = array_filter($request->all());
