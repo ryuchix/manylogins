@@ -5,7 +5,7 @@ return [
     /**
      * Default upload storage disk
      */
-    'upload_disk' => 'storage',
+    'upload_disk' => 'public',
 
     /**
      * Default Image upload directory on the disc
