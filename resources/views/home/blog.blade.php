@@ -30,7 +30,7 @@
         </div>
     </div>
     <div class="w-full mt-4">
-        <img class="w-full object-cover" src="{{ asset('storage/'.$blog->cover) }}" alt="{{ $blog->title }}">
+        <img class="w-full object-cover" src="{{ \Storage::url($blog->cover) }}" alt="{{ $blog->title }}">
     </div>
     <div class="w-full mt-4 text-gray-700">
         {!! ($blog->content) !!}
