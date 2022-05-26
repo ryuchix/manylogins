@@ -82,6 +82,8 @@ class PostController extends Controller
             }
         }
 
+        
+
         return redirect()->route('posts.index')->with('success', 'Post added successfully.');
     }
 
