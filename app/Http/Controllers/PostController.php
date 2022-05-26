@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 use App\Models\Category;
 use App\Models\CategoryPost;
@@ -82,7 +83,7 @@ class PostController extends Controller
             }
         }
 
-        
+
 
         return redirect()->route('posts.index')->with('success', 'Post added successfully.');
     }
@@ -167,6 +168,8 @@ class PostController extends Controller
                 }
             }
         }
+
+        Storage::disk('public')->copy( $post->cover, public_path($post->cover) );
 
         return redirect()->route('posts.index')->with('success', 'Post updated successfully.');
     }

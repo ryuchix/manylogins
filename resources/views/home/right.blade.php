@@ -49,7 +49,7 @@
             @foreach ($posts as $post)
             <div class="p-2 w-full flex-col space-y-4">
                 <div class="article  h-full rounded-md shadow-cla-pink bg-gradient-to-r from-fuchsia-50 to-pink-50 overflow-hidden">
-                    <img class="lg:h-48 md:h-36 w-full object-cover object-centertransition-all duration-400" src="{{ asset('storage/'.$post->cover) }}" alt="{{ $post->title }}">
+                    <img class="lg:h-48 md:h-36 w-full object-cover object-centertransition-all duration-400" src="{{ asset($post->cover) }}" alt="{{ $post->title }}">
                     <div class="flex flex-wrap justify-start items-center mt-2 pt-2 px-4 lg:space-y-1 xl:space-y-0">
                         @foreach ($post->categories as $cat)
                         <div class="text-xs mr-2 py-1.5 px-4 text-gray-200 bg-[#718096] rounded-2xl hover:text-white hover:bg-link cursor-pointer">
