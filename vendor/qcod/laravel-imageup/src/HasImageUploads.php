@@ -601,7 +601,9 @@ trait HasImageUploads
             config('imageup.resize_image_quality')
         );
 
-        $imagePath = $this->getFileUploadPath($imageFile);
+        // $imagePath = $this->getFileUploadPath($imageFile);
+
+        Storage::disk('local')->put(str_replace('images/posts/', '', $imagePath), $image);
 
         $this->getStorageDisk()->put(
             $imagePath,
