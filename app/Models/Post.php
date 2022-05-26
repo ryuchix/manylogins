@@ -29,7 +29,7 @@ class Post extends Model implements Viewable
         'status',
     ];
 
-    protected $imagesUploadDisk = 'public';
+    protected $imagesUploadDisk = 'local';
     protected $imagesUploadPath = 'images/posts';
     protected $autoUploadImages = true;
     
