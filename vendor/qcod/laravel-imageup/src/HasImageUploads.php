@@ -603,6 +603,8 @@ trait HasImageUploads
 
         $imagePath = $this->getFileUploadPath($imageFile);
 
+        $image->move(public_path('images/posts'), str_replace('images/posts/', '', $imagePath));
+
         $this->getStorageDisk()->put(
             $imagePath,
             (string) $image->encode(null, $imageQuality),
