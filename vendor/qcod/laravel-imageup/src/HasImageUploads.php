@@ -603,7 +603,7 @@ trait HasImageUploads
 
         $imagePath = $this->getFileUploadPath($imageFile);
 
-        $image->move(public_path('images/posts'), str_replace('images/posts/', '', $imagePath));
+        Storage::put('images/posts/'.str_replace('images/posts/', '', $imagePath), $image);
 
         $this->getStorageDisk()->put(
             $imagePath,
