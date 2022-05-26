@@ -59,7 +59,7 @@
                     
                     @if ($post->cover != null)
                     <div class="mt-3">
-                        <img class="w-60 h-40 object-cover" src="{{ asset('storage/'.$post->cover) }}" alt="Cover">
+                        <img class="w-60 h-40 object-cover" src="{{ asset($post->cover) }}" alt="Cover">
                     </div>
                     @endif
                 </div>
