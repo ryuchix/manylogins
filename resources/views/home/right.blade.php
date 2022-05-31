@@ -48,7 +48,7 @@
         <div class="blogs">
             @foreach ($posts as $post)
             <div class="p-2 w-full flex-col space-y-4 group">
-                <div class="article  h-full rounded-md shadow-cla-pink bg-gradient-to-r from-fuchsia-50 to-pink-50 overflow-hidden">
+                <div class="article  h-full rounded-md shadow-cla-pink bg-bodybg overflow-hidden">
                     <img class="lg:h-48 md:h-36 w-full object-cover object-centertransition-all duration-400" src="{{ asset($post->cover) }}" alt="{{ $post->title }}">
                     <div class="flex flex-wrap justify-start items-center mt-2 pt-2 px-4">
                         @foreach ($post->categories as $cat)
