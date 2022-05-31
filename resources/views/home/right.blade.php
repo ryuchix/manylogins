@@ -47,7 +47,7 @@
         <div class="text-lg text-gray-700 p-2 w-full text-left font-semibold">Guides</div>
         <div class="blogs">
             @foreach ($posts as $post)
-            <div class="p-2 w-full flex-col space-y-4">
+            <div class="p-2 w-full flex-col space-y-4 group">
                 <div class="article  h-full rounded-md shadow-cla-pink bg-gradient-to-r from-fuchsia-50 to-pink-50 overflow-hidden">
                     <img class="lg:h-48 md:h-36 w-full object-cover object-centertransition-all duration-400" src="{{ asset($post->cover) }}" alt="{{ $post->title }}">
                     <div class="flex flex-wrap justify-start items-center mt-2 pt-2 px-4 lg:space-y-1 xl:space-y-0">
@@ -58,7 +58,7 @@
                         @endforeach
                     </div>
                     <div class="px-4 py-4">
-                        <div class="title-font text-lg font-medium mb-1"><a href="{{ route('show.blog', ['blog' => $post->slug]) }}" class="block text-xl text-gray-500 hover:text-link">{{ $post->title }}</a></div>
+                        <div class="title-font text-lg font-medium mb-1"><a href="{{ route('show.blog', ['blog' => $post->slug]) }}" class="block text-xl text-gray-500 group-hover:text-link">{{ $post->title }}</a></div>
                         <div class="leading-relaxed mb-3 text-gray-500">{!! substr_replace(strip_tags($post->content), strlen($post->content) <= 200 ? "" : "...", 200); !!}</div>
                         <div class="flex items-center flex-wrap mt-1">
                             <a href="{{ route('show.blog', ['blog' => $post->slug]) }}" class="w-full flex items-center py-2 px-4 rounded-sm text-sm bg-link hover:bg-opacity-80 text-white shadow-md text-center justify-center">Read more...</a>
