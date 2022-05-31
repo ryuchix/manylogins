@@ -12,7 +12,7 @@
         <meta property="og:title" content="@yield('title', $setting->site_title)" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="{{ \URL::current() }}" />
-        <meta property="og:image" content="{{ asset('images/settings/'.$setting->footer_logo) }}" />
+        <meta property="og:image" content="@yield('cover', asset('images/settings/'.$setting->footer_logo))" />
         <meta property="og:image:alt" content="{{ $setting->site_title }}" />
         <meta property="og:description" content="@yield('description', $setting->site_description)" />
         <meta property="og:locale" content="en_GB" />

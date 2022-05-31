@@ -3,6 +3,7 @@
 @section('title', $blog->title . ' - ' . $setting->site_title)
 @section('keyword', $blog->title)
 @section('description', substr_replace($blog->content, strlen($blog->content) <= 200 ? "" : "...", 200) )
+@section('cover', asset($blog->cover) )
 
 @section('style')
 <link rel="stylesheet" href="{{ asset('css/blog.css?t='.time()) }}">
@@ -30,7 +31,7 @@
         </div>
     </div>
     <div class="w-full mt-4">
-        <img class="w-full object-cover" src="{{ \Storage::url($blog->cover) }}" alt="{{ $blog->title }}">
+        <img class="w-full object-cover" src="{{ asset($blog->cover) }}" alt="{{ $blog->title }}">
     </div>
     <div class="w-full mt-4 text-gray-700">
         {!! ($blog->content) !!}
