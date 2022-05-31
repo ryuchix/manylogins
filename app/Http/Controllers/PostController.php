@@ -139,13 +139,11 @@ class PostController extends Controller
 
         $data = array_filter($request->all());
         $data['status'] = isset($request->status) && $request->status == 'on' ? 1 : 0;
-        $data['user_id'] = auth()->user()->id;
 
         $post->update([
             'title' => $data['title'],
             'slug' => $data['slug'],
             'content' => $data['content'],
-            'user_id' => $data['user_id'],
             'status' => $data['status'],
         ]);
         
