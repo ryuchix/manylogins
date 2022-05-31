@@ -169,7 +169,9 @@ class PostController extends Controller
             }
         }
 
-        Storage::disk('public')->copy( $post->cover, public_path($post->cover) );
+        if ($request->hasFile('cover')) {
+            Storage::disk('public')->copy( $post->cover, public_path($post->cover) );
+        }
 
         return redirect()->route('posts.index')->with('success', 'Post updated successfully.');
     }
