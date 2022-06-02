@@ -6,10 +6,10 @@
     
     <section class="bg-bodybg px-4">
         <div class="flex flex-col justify-center items-center py-28 text-center">
-            <h1 class="text-5xl font-bold text-darkblue mb-8">Effortlessly Access Login Pages</h1>
+            <h1 class="text-5xl font-bold text-darkblue mb-8">H1 Effortlessly Access Login Pages</h1>
 
             <div class="font-light md:text-lg text-gray-500 text-base mb-8">
-                Allow people to find and access login portals with the most optimized process.
+                Allowing people to find and access login portals with the most optimized process.
             </div>
 
             <div class="pt-2 relative mx-auto text-gray-600 flex flex-wrap justify-between md:flex-row md:w-1/2 w-full" id="keyword_search">
