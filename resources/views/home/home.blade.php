@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="title">
                                     <a href="{{ route('search', $keyword->slug) }}">
-                                        <span dir="auto" class=" break-words capitalize">{{ $keyword->keywords }}</span>
+                                        <span dir="auto" class=" break-words capitalize text-sm">{{ $keyword->keywords }}</span>
                                     </a>
                                 </div>
                             </a>
