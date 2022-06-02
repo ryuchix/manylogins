@@ -75,7 +75,7 @@
                 </div>
                 <div class="grid justify-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-5 lg:gap-7 mt-3 pb-10">
                     @foreach($posts as $blog)
-                    <div class="article h-full rounded-md shadow-cla-pink bg-gradient-to-r from-fuchsia-50 to-pink-50 overflow-hidden">
+                    <div class="article h-full rounded-md shadow-cla-pink bg-bodybg overflow-hidden">
                         <img class="lg:h-42 md:h-28 w-full object-cover object-centertransition-all duration-400" src="{{ asset($blog->cover) }}" alt="{{ $blog->title }}">
                         <div class="px-4 py-4">
                             <h1 class="title-font text-base font-medium mb-1 line-clamp-none md:line-clamp-2"><a href="{{ route('show.blog', ['blog' => $blog->slug]) }}" class="block text-xl text-link hover:text-opacity-80">{{ $blog->title }}</a></h1>
