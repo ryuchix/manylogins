@@ -1,0 +1,96 @@
+.top-sites-list {
+  margin: 0 -12px;
+  list-style: none;
+  padding: 0;
+}
+.top-sites-list .top-site-outer {
+  width: 120px;
+  padding: 20px 16px 4px;
+  border-radius: 8px;
+}
+.top-sites-list .top-site-outer:is(.active, :focus, :hover) {
+  background: #EDEDEE;
+}
+.top-sites-list .top-site-outer .top-site-inner {
+  position: relative;
+}
+.top-sites-list .top-site-outer .top-site-inner a {
+  color: inherit;
+  display: block;
+  outline: none;
+  text-decoration: none;
+}
+.top-sites-list .top-site-outer .context-menu-button {
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  fill: var(--newtab-text-primary-color);
+  -moz-context-properties: fill;
+  height: 20px;
+  width: 20px;
+  inset-inline-end: -9px;
+  opacity: 0;
+  position: absolute;
+  top: -20px;
+  transition: opacity 200ms;
+}
+.top-sites-list .top-site-outer .tile {
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  background-color: var(--newtab-background-color-secondary);
+  justify-content: center;
+  margin: 0 auto;
+  height: 80px;
+  width: 80px;
+  cursor: pointer;
+  position: relative;
+  align-items: center;
+  color: var(--newtab-text-secondary-color);
+  display: flex;
+  font-size: 32px;
+  font-weight: 200;
+  text-transform: uppercase;
+}
+.top-sites-list .top-site-outer .tile:not(.sponsored) .sponsored-label {
+  visibility: hidden;
+}
+.top-sites-list .top-site-outer .tile span {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.top-sites-list .top-site-outer .tile .sponsored-label {
+  color: var(--newtab-text-secondary-color);
+  font-size: 0.9em;
+}
+.top-sites-list .top-site-outer .tile .icon-wrapper {
+  border-radius: 4px;
+  width: 48px;
+  height: 48px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.top-sites-list .top-site-outer .tile .icon-wrapper.letter-fallback::before {
+  content: attr(data-fallback);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 64px;
+  font-weight: 800;
+  transform: rotate(-10deg);
+  top: 6px;
+  position: relative;
+  color: #FFF;
+}
+.top-sites-list .top-site-outer .title {
+  color: var(--newtab-text-primary-color);
+  padding-top: 8px;
+  font: caption;
+  text-align: center;
+  position: relative;
+}

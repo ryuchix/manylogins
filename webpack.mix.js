@@ -23,6 +23,7 @@ mix.js('resources/js/app.js', 'public/js')
         require('autoprefixer'),
     ])
     .sass('resources/css/app.scss', 'public/css', [])
+    .sass('resources/css/home.scss', 'public/css', [])
     .sass('resources/css/admin.scss', 'public/css', [])
     .sass('resources/css/blog.scss', 'public/css', [])
     .sass('resources/css/admin-blog.scss', 'public/css', [])

@@ -23,9 +23,13 @@ class PublicController extends Controller
     public function home()
     {
         $setting = Setting::find(1);
+        $posts = Post::where('status', 1)->limit(6)->orderBy('created_at', 'desc')->get();
+        $popularSearch = KeywordSearch::where('status', 1)->orderByViews()->take(9)->get();
 
         return view('home.home', [
             'setting' => $setting,
+            'posts' => $posts,
+            'popularSearch' => $popularSearch
         ]);
     }
 
