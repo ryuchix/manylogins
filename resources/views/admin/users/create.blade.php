@@ -40,8 +40,9 @@
                     </label>
 
                     <select id="role" name="role" required="required" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full">
-                        <option value="user">User</option>
-                        <option value="admin">Admin</option>
+                        @foreach ($roles as $role)
+                        <option value="{{ $role->name }}" {{ $role->name == 'editor' ? 'selected' : ''}}>{{ ucwords($role->name) }}</option>
+                        @endforeach
                     </select>
                 </div>
 

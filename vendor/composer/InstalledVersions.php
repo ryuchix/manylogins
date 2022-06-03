@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '8a885b8a6e2a8eb65ee7eddb0a16bed9f7712520',
+    'reference' => '36ffa2fd0cefb3fe1cdfd292dfed52653ed50e5c',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -550,7 +550,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '8a885b8a6e2a8eb65ee7eddb0a16bed9f7712520',
+      'reference' => '36ffa2fd0cefb3fe1cdfd292dfed52653ed50e5c',
     ),
     'laravel/sail' => 
     array (
@@ -587,6 +587,15 @@ private static $installed = array (
       array (
       ),
       'reference' => 'dff39b661e827dae6e092412f976658df82dbac5',
+    ),
+    'laravelcollective/html' => 
+    array (
+      'pretty_version' => 'v6.3.0',
+      'version' => '6.3.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '78c3cb516ac9e6d3d76cad9191f81d217302dea6',
     ),
     'laravelium/sitemap' => 
     array (
@@ -1193,6 +1202,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '6db75529cbf8fa84117046a9d513f277aead90a0',
+    ),
+    'spatie/laravel-permission' => 
+    array (
+      'pretty_version' => '5.5.4',
+      'version' => '5.5.4.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'cb86fd87b43fcfc493c3f2b1de6fad100c078146',
     ),
     'spatie/laravel-sitemap' => 
     array (

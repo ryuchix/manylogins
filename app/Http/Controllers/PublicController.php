@@ -11,6 +11,7 @@ use App\Models\OrganicResult;
 use App\Models\UserSearch;
 use App\Models\Setting;
 use App\Models\Post;
+use App\Models\User;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
@@ -20,6 +21,16 @@ use Hashids\Hashids;
 
 class PublicController extends Controller
 {
+    public function admin()
+    {
+        $posts = Post::where('status', 1)->count();
+        $users = User::count();
+        $search = UserSearch::count();
+        $keywords = KeywordSearch::where('status', 1)->count();
+
+        return view('admin.dashboard', ['posts' => $posts, 'users' => $users, 'search' => $search, 'keywords' => $keywords]);
+    }
+
     public function home()
     {
         $setting = Setting::find(1);

@@ -27,7 +27,7 @@ require __DIR__.'/auth.php';
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
 
-    Route::get('/', [UserController::class, 'admin'])->name('admin');
+    Route::get('/', [PublicController::class, 'admin'])->name('admin');
 
     Route::resource('users', UserController::class);
 

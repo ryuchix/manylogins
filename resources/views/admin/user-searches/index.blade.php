@@ -14,7 +14,7 @@
                 <div class="flex flex-row">
                     <div class="relative">
                         <select name="status"
-                            class="appearance-none h-full rounded-l rounded-r lg:rounded-r-none border-t border-r-1 lg:border-r-0 border-r border-b block appearance-none w-full bg-white border-gray-200 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:rounded lg:focus:border-r-2 focus:border-r focus:bg-white focus:border-[#2563eb]">
+                            class="appearance-none h-full rounded-l rounded-r lg:rounded-r-none border-t border-r-1 lg:border-r-0 border-r border-b block appearance-none w-full bg-white dark:bg-gray-700 border-gray-200 text-gray-700 dark:border-gray-500 dark:text-white py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:rounded lg:focus:border-r-2 focus:border-r focus:bg-white dark:focus:bg-gray-700 focus:border-[#2563eb]">
                             <option value="0">All</option>
                             <option value="1" {{ isset($_GET['status']) && $_GET['status'] == 1 ? 'selected' : '' }}>Active</option>
                             <option value="2" {{ !isset($_GET['status']) || $_GET['status'] == 2 ? 'selected' : '' }}>Pending</option>
@@ -31,7 +31,7 @@
                         </svg>
                     </span>
                     <input placeholder="Search" type="search" name="search" value="{{ request()->search }}"
-                        class="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-200 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:outline-none focus:border focus:bg-white focus:border-[#2563eb]" />
+                        class="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-200 dark:border-gray-500 border-b block pl-8 pr-6 py-2 w-full bg-white dark:bg-gray-700 text-sm placeholder-gray-400 text-gray-700 focus:outline-none focus:border focus:bg-white dark:focus:bg-gray-700 focus:border-[#2563eb]" />
                 </div>
                 <div class="block relative">
                     <button type="submit" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-sm font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-[#2563eb] disabled:opacity-25 transition ease-in-out duration-150 ml-2">
@@ -51,10 +51,10 @@
                 <input type="hidden" name="ids" class="updated_ids">
                 <input type="hidden" name="status" class="updated_status">
             </form>
-            <div class="bg-white shadow-md rounded mb-6 mt-4 overflow-x-auto">
+            <div class="bg-white dark:bg-gray-700 shadow-md rounded mb-6 mt-4 overflow-x-auto">
                 <table class="min-w-max w-full table-auto">
                     <thead>
-                        <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                        <tr class="bg-gray-200 dark:bg-gray-900 text-gray-600 dark:text-white uppercase text-sm leading-normal">
                             <th class="py-3 px-6 text-left">
                                 <div class="flex items-center">
                                     <input id="checkbox-all" type="checkbox" class="w-4 h-4 text-darkblue bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-darkblue dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
@@ -67,9 +67,9 @@
                             <th class="py-3 px-6 text-center">Actions</th>
                         </tr>
                     </thead>
-                    <tbody class="text-gray-600 text-sm font-light">
+                    <tbody class="text-gray-600 dark:text-white text-sm font-light">
                         @foreach ($user_searches as $keyword)
-                        <tr class="border-b border-gray-200 hover:bg-gray-100"> 
+                        <tr class="border-b border-gray-200 dark:border-gray-500 hover:bg-gray-100 dark:hover:bg-gray-600"> 
                             <td class="py-3 px-6 text-left whitespace-nowrap">
                                 <div class="flex items-center chk">
                                     <input value="{{ $keyword->id }}" name="chkid[]" type="checkbox" class="checkbox-id w-4 h-4 text-darkblue bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-darkblue dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
@@ -114,7 +114,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class='flex items-center justify-center mt-10 bg-gray-100'>
+            <div class='flex items-center justify-center mt-10 bg-gray-100 dark:bg-gray-700'>
                 <div class="flex flex-col items-center mb-8 px-4 mx-auto mt-8">
                     <div class="font-sans flex justify-end space-x-1 select-none">
                         {!! $user_searches->appends(['status' => request()->status, 'search' => request()->search])->links() !!}

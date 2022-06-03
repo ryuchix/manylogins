@@ -103,7 +103,7 @@
                 </span>
             </div>
             <div>
-                <div class="text-sm text-gray-700 leading-5">
+                <div class="text-sm text-gray-700 dark:text-white leading-5">
                     {!! __('Showing') !!}
                     @if ($paginator->firstItem())
                         <span class="font-medium">{{ $paginator->firstItem() }}</span>

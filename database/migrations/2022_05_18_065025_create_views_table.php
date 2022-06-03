@@ -12,7 +12,7 @@ class CreateViewsTable extends Migration
      * @var \Illuminate\Support\Facades\Schema
      */
     protected $schema;
-
+ 
     /**
      * The table name.
      *

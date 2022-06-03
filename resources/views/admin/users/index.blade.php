@@ -16,19 +16,19 @@
         </div>
         <div class="w-full px-4 md:px-10">
             @include('admin.partials.session-message')
-            <div class="bg-white shadow-md rounded my-6 overflow-x-auto">
+            <div class="bg-white dark:bg-gray-700 shadow-md rounded my-6 overflow-x-auto">
                 <table class="min-w-max w-full table-auto">
                     <thead>
-                        <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                        <tr class="bg-gray-200 dark:bg-gray-900 text-gray-600 dark:text-white uppercase text-sm leading-normal">
                             <th class="py-3 px-6 text-left">Name</th>
                             <th class="py-3 px-6 text-left">Email</th>
                             <th class="py-3 px-6 text-left">Role</th>
                             <th class="py-3 px-6 text-center">Actions</th>
                         </tr>
                     </thead>
-                    <tbody class="text-gray-600 text-sm font-light">
+                    <tbody class="text-gray-600 dark:text-white text-sm font-light">
                         @foreach ($users as $user)
-                        <tr class="border-b border-gray-200 hover:bg-gray-100">
+                        <tr class="border-b border-gray-200 dark:border-gray-500 hover:bg-gray-100 dark:hover:bg-gray-600">
                             <td class="py-3 px-6 text-left whitespace-nowrap">
                                 <div class="flex items-center">
                                     <div class="mr-2">
@@ -63,13 +63,12 @@
                                     <form action="{{ route('users.destroy', $user->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110 cursor-pointer">
+                                        <button type="button" class="delete-user-btn w-4 mr-2 transform hover:text-purple-500 hover:scale-110 cursor-pointer">
                                             <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                             </svg>
                                         </button>
                                     </form>
-
                                 </div>
                             </td>
                         </tr>
@@ -80,4 +79,22 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+<script>
+    $('.delete-user-btn').on('click', function(e) {
+        var self = $(this).parent('form');
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'This process is permanent!',
+            showCancelButton: true,
+            confirmButtonText: 'Delete',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                self.trigger('submit');
+            }
+        })
+    });
+</script>
 @endsection

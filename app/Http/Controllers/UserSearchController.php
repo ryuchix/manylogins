@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class UserSearchController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['role:admin|manager']);
+    }
+
     /**
      * Display a listing of the resource.
      *

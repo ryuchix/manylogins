@@ -16,10 +16,10 @@
         </div>
         <div class="w-full px-4 md:px-10">
             @include('admin.partials.session-message')
-            <div class="bg-white shadow-md rounded my-6 overflow-x-auto">
+            <div class="bg-white dark:bg-gray-700 shadow-md rounded my-6 overflow-x-auto">
                 <table class="min-w-max w-full table-auto">
                     <thead>
-                        <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                        <tr class="bg-gray-200 dark:bg-gray-900 text-gray-600 dark:text-white uppercase text-sm leading-normal">
                             <th class="py-3 px-6 text-left">Title</th>
                             <th class="py-3 px-6 text-left">Url</th>
                             <th class="py-3 px-6 text-left">Added by</th>
@@ -27,9 +27,9 @@
                             <th class="py-3 px-6 text-center">Actions</th>
                         </tr>
                     </thead>
-                    <tbody class="text-gray-600 text-sm font-light">
+                    <tbody class="text-gray-600 dark:text-white text-sm font-light">
                         @foreach ($posts as $post)
-                        <tr class="border-b border-gray-200 hover:bg-gray-100">
+                        <tr class="border-b border-gray-200 dark:border-gray-500 hover:bg-gray-100 dark:hover:bg-gray-600">
                             <td class="py-3 px-6 text-left whitespace-nowrap">
                                 <div class="flex items-center">
                                     <span class="font-medium">{{ $post->title }}</span>
@@ -87,7 +87,6 @@
 @endsection
 
 @section('script')
-
 <script>
     $('.delete-blog-btn').on('click', function(e) {
         var self = $(this).parent('form');

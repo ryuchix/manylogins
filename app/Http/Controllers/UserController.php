@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Hash;
 use App\Models\User;
+use App\Models\Role;
+use DB;
 
 class UserController extends Controller
 {
 
-    public function admin()
+    public function __construct()
     {
-        return view('admin.dashboard');
+        $this->middleware(['role:admin']);
     }
 
     /**
@@ -33,7 +35,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        $roles = Role::get();
+
+        return view('admin.users.create', ['roles' => $roles]);
     }
 
     /**
@@ -46,17 +50,21 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'role' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed|min:8',
         ]);
            
         $data = $request->all();
 
-        User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'role' => $data['role'],
             'password' => Hash::make($data['password'])
         ]);
+
+        $user->assignRole($request->role);
          
         return redirect()->route('users.index')->with('success', 'User created successfully.');
     } 
@@ -82,7 +90,9 @@ class UserController extends Controller
     {
         $user = User::find($id);
 
-        return view('admin.users.edit', ['user' => $user]);
+        $roles = Role::get();
+
+        return view('admin.users.edit', ['user' => $user, 'roles' => $roles]);
     }
 
     /**
@@ -98,11 +108,16 @@ class UserController extends Controller
 
         $request->validate([
             'name' => 'required',
+            'role' => 'required',
             'email' => 'required|unique:users,email,'.$user->id,
             'password' => 'nullable|min:8',
             'image' => 'image|mimes:jpg,png,jpeg,gif,svg,webp|max:2048'
         ]);
-           
+
+        $permission_roles = DB::table('model_has_roles')->where('model_id', $user->id)->delete();
+
+        $user->assignRole($request->role);
+
         $data = array_filter($request->all());
 
         $user->update($data);

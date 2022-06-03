@@ -6,6 +6,7 @@
                 <div class="text-sm tracking-wide text-gray-400 uppercase">Navigation</div>
                 </div>
             </li>
+            @role('admin')
             <li>
                 <a href="{{ route('users.index') }}" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
                     <span class="inline-flex justify-center items-center ml-4">
@@ -16,6 +17,8 @@
                     <span class="ml-2 text-sm tracking-wide truncate">Manage Users</span>
                 </a>
             </li>
+            @endrole
+            @hasanyrole('admin|manager')
             <li>
                 <a href="{{ route('keywords.index') }}" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
                     <span class="inline-flex justify-center items-center ml-4">
@@ -37,6 +40,8 @@
                 <span class="ml-2 text-sm tracking-wide truncate">User Search</span>
                 </a>
             </li>
+            @endhasanyrole
+            @hasanyrole('manager|admin|editor')
             <li>
                 <a href="{{ route('posts.index') }}" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
                 <span class="inline-flex justify-center items-center ml-4">
@@ -48,6 +53,8 @@
                 <span class="ml-2 text-sm tracking-wide truncate">Blog</span>
                 </a>
             </li>
+            @endhasanyrole
+            @role('admin')
             <li>
                 <a href="{{ route('settings.index') }}" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
                 <span class="inline-flex justify-center items-center ml-4">
@@ -59,6 +66,7 @@
                 <span class="ml-2 text-sm tracking-wide truncate">Settings</span>
                 </a>
             </li>
+            @endrole
             <li>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
