@@ -9,6 +9,7 @@ use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\KeywordController;
 use App\Http\Controllers\UserSearchController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\RelatedSearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,14 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::post('keywords/mass-delete', [KeywordController::class, 'massDelete'])->name('keywords.mass.delete');
 
     Route::post('keywords/mass-update', [KeywordController::class, 'massUpdate'])->name('keywords.mass.update');
+
+    Route::resource('related', RelatedSearchController::class);
+
+    Route::get('related/search-keyword/{id}', [RelatedSearchController::class, 'searchRelatedKeyword'])->name('related.search-keyword');
+
+    Route::post('related/mass-delete', [RelatedSearchController::class, 'massDelete'])->name('related.mass.delete');
+
+    Route::post('related/mass-update', [RelatedSearchController::class, 'massUpdate'])->name('related.mass.update');
 
     Route::resource('user-search', UserSearchController::class);
 

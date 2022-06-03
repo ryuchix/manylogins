@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Manage Keywords Search')
+@section('title', 'Manage Related Search')
 
 @section('content')
 <div class="overflow-x-auto">
@@ -10,7 +10,7 @@
         </div>
         <div class="w-full px-4 md:px-10">
             @include('admin.partials.session-message')
-            <form method="GET" action="{{ route('keywords.index') }}" class="my-2 flex md:flex-row flex-col mt-4 items-center space-y-2 md:space-y-0">
+            <form method="GET" action="{{ route('related.index') }}" class="my-2 flex md:flex-row flex-col mt-4 items-center space-y-2 md:space-y-0">
                 <div class="flex flex-row">
                     <div class="relative">
                         <select name="status"
@@ -43,18 +43,13 @@
                             Delete
                         </button>
                     </div>
-                    <div class="block relative">
-                        <button type="button" class="mass-update-btn hidden inline-flex items-center px-4 py-2 bg-gray-400 border border-transparent rounded-sm font-semibold text-xs text-white uppercase tracking-widest hover:bg-opacity-80 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-[#2563eb] disabled:opacity-25 transition ease-in-out duration-150 ml-2">
-                            Update
-                        </button>
-                    </div>
                 </div>
             </form>
-            <form id="mass-delete" class="hidden" method="POST" action="{{ route('keywords.mass.delete') }}">
+            <form id="mass-delete" class="hidden" method="POST" action="{{ route('related.mass.delete') }}">
                 @csrf
                 <input type="hidden" name="ids" class="deleted_ids">
             </form>
-            <form id="mass-update" class="hidden" method="POST" action="{{ route('keywords.mass.update') }}">
+            <form id="mass-update" class="hidden" method="POST" action="{{ route('related.mass.update') }}">
                 @csrf
                 <input type="hidden" name="ids" class="updated_ids">
                 <input type="hidden" name="status" class="updated_status">
@@ -70,16 +65,14 @@
                                 </div>
                             </th>
                             <th class="py-3 px-6 text-left">ID</th>
+                            <th class="py-3 px-6 text-left">Parent</th>
                             <th class="py-3 px-6 text-left">Keyword</th>
-                            <th class="py-3 px-6 text-left">Url</th>
-                            <th class="py-3 px-6 text-left">Organic</th>
-                            <th class="py-3 px-6 text-left">Related</th>
                             <th class="py-3 px-6 text-left">Status</th>
                             <th class="py-3 px-6 text-center">Actions</th>
                         </tr>
                     </thead>
                     <tbody class="text-gray-600 dark:text-white text-sm font-light">
-                        @foreach ($keywords as $keyword)
+                        @foreach ($related as $keyword)
                         <tr class="border-b border-gray-200 dark:border-gray-500 hover:bg-gray-100 dark:hover:bg-gray-600">
                             <td class="py-3 px-6 text-left whitespace-nowrap">
                                 <div class="flex items-center chk">
@@ -94,22 +87,12 @@
                             </td>
                             <td class="py-3 px-6 text-left whitespace-nowrap">
                                 <div class="flex items-center">
+                                    <span class="font-medium">{{ $keyword->keyword_search->keywords ?? '' }}</span>
+                                </div>
+                            </td>
+                            <td class="py-3 px-6 text-left whitespace-nowrap">
+                                <div class="flex items-center">
                                     <span class="font-medium">{{ $keyword->keywords }}</span>
-                                </div>
-                            </td>
-                            <td class="py-3 px-6 text-left whitespace-nowrap">
-                                <div class="flex items-center">
-                                    <span class="font-medium">{{ $keyword->slug }}</span>
-                                </div>
-                            </td>
-                            <td class="py-3 px-6 text-left whitespace-nowrap">
-                                <div class="flex items-center">
-                                    <span class="font-medium">{{ count($keyword->organic) }}</span>
-                                </div>
-                            </td>
-                            <td class="py-3 px-6 text-left whitespace-nowrap">
-                                <div class="flex items-center">
-                                    <span class="font-medium"><a class="underline" href="{{ route('related.search-keyword', ['id' => $keyword->id]) }}">{{ count($keyword->relatedSearch) }}</a></span>
                                 </div>
                             </td>
                             <td class="py-3 px-6 text-left">
@@ -143,7 +126,7 @@
             <div class='flex items-center justify-center mt-10 bg-gray-100 dark:bg-gray-700'>
                 <div class="flex flex-col items-center mb-8 px-4 mx-auto mt-8">
                     <div class="font-sans flex justify-end space-x-1 select-none">
-                        {!! $keywords->appends(['status' => request()->status, 'search' => request()->search])->links() !!}
+                        {!! $related->appends(['status' => request()->status, 'search' => request()->search])->links() !!}
                     </div>
                 </div>
             </div>
