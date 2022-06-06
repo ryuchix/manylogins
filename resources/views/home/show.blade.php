@@ -22,7 +22,7 @@
             </div>
 
             <div class="bg-white shadow rounded-md placeholder: mb-6 p-4 w-full mt-10">
-                <div class="block text-2xl text-gray-800 font-bold text-center">{{ $title }}</div>
+                <h1 class="block text-2xl text-gray-800 font-bold text-center">{{ $title }}</h1>
 
                 <div class="text-center mt-3">
                     {{ $result->desc }}

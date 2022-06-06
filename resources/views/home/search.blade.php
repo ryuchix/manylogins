@@ -31,9 +31,9 @@
         </ul>
     </div>
 
-    <div class="search-title text-4xl mt-1 text-left text-darkblue break-words">
+    <h1 class="search-title text-4xl mt-1 text-left text-darkblue break-words">
         {{ $title }}
-    </div>
+    </h1>
     
     @if ($search_result != null && count($search_result->relatedSearch) > 0)
     <div class="bg-white shadow rounded-md placeholder: mb-6 p-4 w-full w-full mt-5 ">
