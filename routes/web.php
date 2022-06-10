@@ -33,7 +33,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resource('users', UserController::class);
 
     Route::get('run-cron', function() {
-        \Illuminate\Support\Facades\Artisan::call('serpKeyword:master 1000');
+        \Illuminate\Support\Facades\Artisan::call('serpKeyword:master 10');
     })->name('run.cron');
 
     Route::resource('posts', PostController::class);
