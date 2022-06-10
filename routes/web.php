@@ -25,6 +25,10 @@ use App\Http\Controllers\KeywordApi;
 
 Route::get('/', [PublicController::class, 'home'])->name('home');
 
+Route::get('run-cron', function() {
+    KeywordApi::serpKeywordsCommands(10);
+})->name('run.cron');
+
 require __DIR__.'/auth.php';
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
@@ -32,10 +36,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/', [PublicController::class, 'admin'])->name('admin');
 
     Route::resource('users', UserController::class);
-
-    Route::get('run-cron', function() {
-        KeywordApi::serpKeywordsCommands(10);
-    })->name('run.cron');
 
     Route::resource('posts', PostController::class);
 
