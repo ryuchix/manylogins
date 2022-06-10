@@ -10,6 +10,7 @@ use App\Http\Controllers\KeywordController;
 use App\Http\Controllers\UserSearchController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\RelatedSearchController;
+use App\Http\Controllers\KeywordApi;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +34,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resource('users', UserController::class);
 
     Route::get('run-cron', function() {
-        \Illuminate\Support\Facades\Artisan::call('serpKeyword:master 10');
+        KeywordApi::serpKeywordsCommands(10);
     })->name('run.cron');
 
     Route::resource('posts', PostController::class);
