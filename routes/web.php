@@ -32,6 +32,10 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     Route::resource('users', UserController::class);
 
+    Route::get('run-cron', function() {
+        \Illuminate\Support\Facades\Artisan::call('serpKeyword:master 1000');
+    })->name('run.cron');
+
     Route::resource('posts', PostController::class);
 
     Route::post('upload', [PostController::class, 'upload'])->name('admin.upload');
