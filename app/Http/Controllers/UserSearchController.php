@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\UserSearch;
 use Illuminate\Http\Request;
 use App\Models\Setting;
+use App\Models\KeywordSearch;
+use App\Models\UserSearch;
+use Session;
 
 class UserSearchController extends Controller
 {
@@ -57,6 +59,9 @@ class UserSearchController extends Controller
      */
     public function store(Request $request)
     {
+        session()->forget('banned');
+        session()->forget('duplicate');
+
         $keywords = $request->keywords;
 
         $keywords = trim(preg_replace('/\s+/', ' ', str_replace(', ', ',', $keywords)));
@@ -67,22 +72,47 @@ class UserSearchController extends Controller
 
         $bannedWords = explode(',', trim($setting->banned_keywords));
 
+        $banned = [];
+        $duplicate = [];
+
         foreach ($keywordsArray as $key => $item) {
             $checker = [];
 
             foreach ($bannedWords as $key => $bannedWord) {
+                if (str_contains($item, trim($bannedWord))) {
+                    $banned[] = $item;
+                }
                 $checker[] = str_contains($item, trim($bannedWord));
             }
 
             if (!in_array(true, $checker)) {
-                UserSearch::firstOrCreate([
-                    'keywords' => $item,
-                    'status' => 2
-                ]);
+                $user_search = KeywordSearch::where('keywords', $item)->first();
+                $usersearch = UserSearch::where('keywords', $item)->first();
+
+                if (!empty($user_search)) {
+                    $duplicate[] = $item;
+                } else {
+                    if (!empty($usersearch)) {
+                        $duplicate[] = $item;
+                    } else {
+                        UserSearch::firstOrCreate([
+                            'keywords' => $item,
+                            'status' => 2
+                        ]);
+                    }
+                }
             }
         }
 
-        return redirect()->route('user-search.index')->with('success', 'Keywords added.');;
+        if (count($banned) > 0) {
+            Session::flash('banned', $banned);
+        }
+
+        if (count($duplicate) > 0) {
+            Session::flash('duplicate', $duplicate);
+        }
+
+        return redirect()->back();
     }
 
     /**

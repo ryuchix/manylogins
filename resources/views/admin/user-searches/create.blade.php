@@ -25,6 +25,30 @@
                     <span class="text-sm text-gray-500">Add keywords separated by comma.</span>
                 </div>
 
+                <div>
+                    @if (Session::has('banned'))
+                        <div class="mb-2 text-green-600 mt-2">
+                            <div>Banned keywords found and was skipped.</div>
+                            <ul class="list-disc list-inside">
+                            @foreach (Session::get('banned') as $message)
+                                <li class="text-red-600">{{ $message }}</li>
+                            @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    @if (Session::has('duplicate'))
+                        <div class="mb-2 text-green-600 mt-2">
+                            <div>Some keywords already exists and was skipped.</div>
+                            <ul class="list-disc list-inside">
+                            @foreach (Session::get('duplicate') as $message)
+                                <li class="text-red-600">{{ $message }}</li>
+                            @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                </div>
+
                 <div class="flex items-center justify-end mt-4">
                     <button type="reset" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 ml-4">
                         Clear
