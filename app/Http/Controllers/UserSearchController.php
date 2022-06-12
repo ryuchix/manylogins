@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\UserSearch;
 use Illuminate\Http\Request;
+use App\Models\Setting;
 
 class UserSearchController extends Controller
 {
@@ -45,7 +46,7 @@ class UserSearchController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.user-searches.create');
     }
 
     /**
@@ -56,7 +57,32 @@ class UserSearchController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $keywords = $request->keywords;
+
+        $keywords = trim(preg_replace('/\s+/', ' ', str_replace(', ', ',', $keywords)));
+
+        $keywordsArray = explode(",", $keywords);
+
+        $setting = Setting::find(1);
+
+        $bannedWords = explode(',', trim($setting->banned_keywords));
+
+        foreach ($keywordsArray as $key => $item) {
+            $checker = [];
+
+            foreach ($bannedWords as $key => $bannedWord) {
+                $checker[] = str_contains($item, trim($bannedWord));
+            }
+
+            if (!in_array(true, $checker)) {
+                UserSearch::firstOrCreate([
+                    'keywords' => $item,
+                    'status' => 2
+                ]);
+            }
+        }
+
+        return redirect()->route('user-search.index')->with('success', 'Keywords added.');;
     }
 
     /**
