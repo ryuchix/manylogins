@@ -160,8 +160,10 @@ class PublicController extends Controller
             return redirect()->back();
         }
 		
-		if ($result->first()->count() >= 1) {
+		if ($result != null && $result->first()->count() >= 1) {
 			$result_link = $result->first();
+        } else {
+            return redirect()->route('home');
         }
 		
         $setting = Setting::find(1);
