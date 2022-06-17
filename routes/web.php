@@ -26,7 +26,7 @@ use App\Http\Controllers\KeywordApi;
 Route::get('/', [PublicController::class, 'home'])->name('home');
 
 Route::get('run-cron', function() {
-    KeywordApi::serpKeywordsCommands(2);
+    KeywordApi::serpKeywordsCommands(10);
 })->name('run.cron');
 
 require __DIR__.'/auth.php';
