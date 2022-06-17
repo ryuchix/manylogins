@@ -29,8 +29,9 @@ class KeywordApi
 
     public static function serpKeywords($int)
     {
-        $keywords = KeywordSearch::limit($int)
-            ->where('status', '=', null)
+        $keywords = KeywordSearch::offset(0)->limit($int)
+            ->where('status', NULL)
+            ->where('api_result', NULL)
             ->get();
      
         $keywords->each(
