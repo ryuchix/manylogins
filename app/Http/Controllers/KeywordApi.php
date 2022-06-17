@@ -63,7 +63,7 @@ class KeywordApi
     public static function updateKeywords($id, $slug, $result) 
     {
         $keyword = KeywordSearch::find($id);
-        if ($keyword->slug != self::clean($slug)) {
+        if ($keyword->slug == self::clean($slug)) {
             $keyword_search = KeywordSearch::find($id);
             $keyword_search->slug = self::clean($slug);
             $keyword_search->api_result = json_encode($result);
