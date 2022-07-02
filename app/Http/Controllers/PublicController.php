@@ -23,7 +23,7 @@ class PublicController extends Controller
 {
     public function admin()
     {
-        $posts = Post::where('status', 1)->count();
+        $posts = Post::query()->where('status', 1)->count();
         $users = User::count();
         $search = UserSearch::count();
         $keywords = KeywordSearch::query()->where('status', 1)->count();
@@ -34,8 +34,8 @@ class PublicController extends Controller
     public function home()
     {
         $setting = Setting::find(1);
-        $posts = Post::where('status', 1)->limit(6)->orderBy('created_at', 'desc')->get();
-        $popularSearch = KeywordSearch::where('status', 1)->orderByViews()->take(9)->get();
+        $posts = Post::query()->where('status', 1)->limit(6)->orderBy('created_at', 'desc')->get();
+        $popularSearch = KeywordSearch::query()->where('status', 1)->orderByViews()->take(9)->get();
 
         return view('home.home', [
             'setting' => $setting,
@@ -49,7 +49,7 @@ class PublicController extends Controller
         $search = $request->search;
         $search_result = null;
         $meta_keywords = '';
-        $keywords = KeywordSearch::with('organic')
+        $keywords = KeywordSearch::query()->with('organic')
             ->with('relatedSearch')
             ->where('status', 1)
             ->when(
@@ -96,8 +96,8 @@ class PublicController extends Controller
                 ->record();
         }
 
-        $popularSearch = KeywordSearch::where('status', 1)->orderByViews()->take(10)->get();
-        $posts = Post::where('status', 1)->limit(4)->get();
+        $popularSearch = KeywordSearch::query()->where('status', 1)->orderByViews()->take(10)->get();
+        $posts = Post::query()->where('status', 1)->limit(4)->get();
 
         return view('home.search', [
             'title' => ucwords($search_result->keywords ?? str_replace('-', ' ', $search)),
@@ -117,7 +117,7 @@ class PublicController extends Controller
 
         $search_result = null;
         $meta_keywords = '';
-        $keywords = KeywordSearch::with('organic')
+        $keywords = KeywordSearch::query()->with('organic')
             ->with('relatedSearch')
             ->when(
                 $request->user_input, 
@@ -168,8 +168,8 @@ class PublicController extends Controller
 		
         $setting = Setting::find(1);
 
-        $popularSearch = KeywordSearch::where('status', 1)->orderByViews()->take(10)->get();
-        $posts = Post::where('status', 1)->limit(4)->get();
+        $popularSearch = KeywordSearch::query()->where('status', 1)->orderByViews()->take(10)->get();
+        $posts = Post::query()->where('status', 1)->limit(4)->get();
 
         return view('home.show', [
             'title' => ucfirst($result->title),

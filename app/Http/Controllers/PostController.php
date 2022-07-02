@@ -226,11 +226,11 @@ class PostController extends Controller
 
     public function blogLists()
     {
-        $blogs = Post::where('status', 1)->paginate(20);
+        $blogs = Post::query()->where('status', 1)->paginate(20);
 
-        $popularSearch = KeywordSearch::where('status', 1)->orderByViews()->take(10)->get();
+        $popularSearch = KeywordSearch::query()->where('status', 1)->orderByViews()->take(10)->get();
 
-        $posts = Post::where('status', 1)->orderByViews()->take(10)->get();
+        $posts = Post::query()->where('status', 1)->orderByViews()->take(10)->get();
 
         $setting = Setting::find(1);
 
@@ -244,19 +244,19 @@ class PostController extends Controller
 
     public function showBlog($blog)
     {
-        $blog = Post::where('slug', $blog)->where('status', 1)->first();
+        $blog = Post::query()->where('slug', $blog)->where('status', 1)->first();
 
         if (empty($blog)) {
             return abort(404);
         }
 
-        $popularSearch = KeywordSearch::where('status', 1)->orderByViews()->take(10)->get();
+        $popularSearch = KeywordSearch::query()->where('status', 1)->orderByViews()->take(10)->get();
 
         $setting = Setting::find(1);
 
-        $posts = Post::where('status', 1)->orderByViews()->take(10)->get();
+        $posts = Post::query()->where('status', 1)->orderByViews()->take(10)->get();
 
-        $related = Post::whereHas('categories', function ($q) use ($blog) {
+        $related = Post::query()->whereHas('categories', function ($q) use ($blog) {
             return $q->whereIn('name', $blog->categories->pluck('name')); 
         })
         ->where('id', '!=', $blog->id) // So you won't fetch same post
