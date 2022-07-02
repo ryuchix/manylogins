@@ -26,7 +26,7 @@ class PublicController extends Controller
         $posts = Post::where('status', 1)->count();
         $users = User::count();
         $search = UserSearch::count();
-        $keywords = KeywordSearch::where('status', 1)->count();
+        $keywords = KeywordSearch::query()->where('status', 1)->count();
 
         return view('admin.dashboard', ['posts' => $posts, 'users' => $users, 'search' => $search, 'keywords' => $keywords]);
     }

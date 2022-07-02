@@ -46,10 +46,13 @@ class KeywordApi
     public static function serpKeywordsCommands($int)
     {
         $keywords = KeywordSearch::offset(0)->limit($int)
+            ->select('status', 'api_result', 'keywords')
             ->where('status', NULL)
             ->where('api_result', NULL)
             ->get();
-     
+
+            dd($keywords);
+
         $keywords->each(
             function ($item, $key) {
                 $result = self::searchKeywords($item->keywords);
@@ -117,7 +120,10 @@ class KeywordApi
                 function ($item, $key) use ($id, $related_insert) {
                     $exists = RelatedSearch::where('keyword_id', $id)
                                         ->where('keywords', $item)->exists();
-                    if (!$exists) {
+
+                    $hasWords = strpos($item, 'login') !== false || strpos($item, 'portal') !== false;
+
+                    if (!$exists && $hasWords) {
                         $related_insert->push(
                             [
                                 'keyword_id' => $id,
