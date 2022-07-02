@@ -97,7 +97,7 @@ class PublicController extends Controller
         }
 
         $popularSearch = KeywordSearch::where('status', 1)->orderByViews()->take(10)->get();
-        $posts = Post::where('status', 1)->limit(10)->get();
+        $posts = Post::where('status', 1)->limit(4)->get();
 
         return view('home.search', [
             'title' => ucwords($search_result->keywords ?? str_replace('-', ' ', $search)),
@@ -169,7 +169,7 @@ class PublicController extends Controller
         $setting = Setting::find(1);
 
         $popularSearch = KeywordSearch::where('status', 1)->orderByViews()->take(10)->get();
-        $posts = Post::where('status', 1)->limit(10)->get();
+        $posts = Post::where('status', 1)->limit(4)->get();
 
         return view('home.show', [
             'title' => ucfirst($result->title),
