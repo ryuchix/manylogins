@@ -26,6 +26,7 @@ class Setting extends Model
         'youtube_url',
         'footer_logo',
         'header_logo',
+        'privacy'
     ];
 }
 

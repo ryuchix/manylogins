@@ -138,7 +138,6 @@ class ComposerStaticInit8a983f4b5a04f5eaaa070565fa664316
         'L' => 
         array (
             'League\\MimeTypeDetection\\' => 25,
-            'League\\Glide\\' => 13,
             'League\\Flysystem\\' => 17,
             'League\\Config\\' => 14,
             'League\\CommonMark\\' => 18,
@@ -456,10 +455,6 @@ class ComposerStaticInit8a983f4b5a04f5eaaa070565fa664316
         array (
             0 => __DIR__ . '/..' . '/league/mime-type-detection/src',
         ),
-        'League\\Glide\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/league/glide/src',
-        ),
         'League\\Flysystem\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/flysystem/src',
@@ -679,6 +674,7 @@ class ComposerStaticInit8a983f4b5a04f5eaaa070565fa664316
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Requests\\Auth\\LoginRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Auth/LoginRequest.php',
         'App\\JSVars' => __DIR__ . '/../..' . '/app/JSVars.php',
+        'App\\Mail\\ContactUs' => __DIR__ . '/../..' . '/app/Mail/ContactUs.php',
         'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
         'App\\Models\\CategoryPost' => __DIR__ . '/../..' . '/app/Models/CategoryPost.php',
         'App\\Models\\KeywordSearch' => __DIR__ . '/../..' . '/app/Models/KeywordSearch.php',
@@ -3680,29 +3676,6 @@ class ComposerStaticInit8a983f4b5a04f5eaaa070565fa664316
         'League\\Flysystem\\Util\\ContentListingFormatter' => __DIR__ . '/..' . '/league/flysystem/src/Util/ContentListingFormatter.php',
         'League\\Flysystem\\Util\\MimeType' => __DIR__ . '/..' . '/league/flysystem/src/Util/MimeType.php',
         'League\\Flysystem\\Util\\StreamHasher' => __DIR__ . '/..' . '/league/flysystem/src/Util/StreamHasher.php',
-        'League\\Glide\\Exceptions\\FileNotFoundException' => __DIR__ . '/..' . '/league/glide/src/Exceptions/FileNotFoundException.php',
-        'League\\Glide\\Exceptions\\FilesystemException' => __DIR__ . '/..' . '/league/glide/src/Exceptions/FilesystemException.php',
-        'League\\Glide\\Exceptions\\SignatureException' => __DIR__ . '/..' . '/league/glide/src/Exceptions/SignatureException.php',
-        'League\\Glide\\Helpers\\Color' => __DIR__ . '/..' . '/league/glide/src/Helpers/Color.php',
-        'League\\Glide\\Helpers\\Dimension' => __DIR__ . '/..' . '/league/glide/src/Helpers/Dimension.php',
-        'League\\Glide\\Image' => __DIR__ . '/..' . '/league/glide/src/Image.php',
-        'League\\Glide\\Manipulators\\Background' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Background.php',
-        'League\\Glide\\Manipulators\\Blur' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Blur.php',
-        'League\\Glide\\Manipulators\\Border' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Border.php',
-        'League\\Glide\\Manipulators\\Brightness' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Brightness.php',
-        'League\\Glide\\Manipulators\\Contrast' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Contrast.php',
-        'League\\Glide\\Manipulators\\Crop' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Crop.php',
-        'League\\Glide\\Manipulators\\Encode' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Encode.php',
-        'League\\Glide\\Manipulators\\Filter' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Filter.php',
-        'League\\Glide\\Manipulators\\Gamma' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Gamma.php',
-        'League\\Glide\\Manipulators\\Manipulator' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Manipulator.php',
-        'League\\Glide\\Manipulators\\ManipulatorInterface' => __DIR__ . '/..' . '/league/glide/src/Manipulators/ManipulatorInterface.php',
-        'League\\Glide\\Manipulators\\Orientation' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Orientation.php',
-        'League\\Glide\\Manipulators\\Pixelate' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Pixelate.php',
-        'League\\Glide\\Manipulators\\Sharpen' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Sharpen.php',
-        'League\\Glide\\Manipulators\\Size' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Size.php',
-        'League\\Glide\\Manipulators\\Watermark' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Watermark.php',
-        'League\\Glide\\Server' => __DIR__ . '/..' . '/league/glide/src/Server.php',
         'League\\MimeTypeDetection\\EmptyExtensionToMimeTypeMap' => __DIR__ . '/..' . '/league/mime-type-detection/src/EmptyExtensionToMimeTypeMap.php',
         'League\\MimeTypeDetection\\ExtensionMimeTypeDetector' => __DIR__ . '/..' . '/league/mime-type-detection/src/ExtensionMimeTypeDetector.php',
         'League\\MimeTypeDetection\\ExtensionToMimeTypeMap' => __DIR__ . '/..' . '/league/mime-type-detection/src/ExtensionToMimeTypeMap.php',

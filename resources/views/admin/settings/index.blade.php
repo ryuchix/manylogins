@@ -30,6 +30,7 @@
         margin-bottom: 15px;
     }
 </style>
+<link rel="stylesheet" href="{{ asset('trumbowyg/dist/ui/trumbowyg.min.css') }}">
 @endsection
 @section('content')
 <div class="overflow-x-auto">
@@ -161,6 +162,15 @@
                     <input type="file" accept="image/*" name="footer_logo" class="block w-max text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"/>
                 </div>
 
+                <!-- Privacy -->
+                <div class="mt-4">
+                    <label class="block font-medium text-sm text-gray-700" for="Privacy">
+                        Privacy Policy
+                    </label>
+
+                    <textarea id="privacy" name="privacy" cols="30" rows="10" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full">{{ $setting->privacy }}</textarea>
+                </div>
+
                 <div class="flex items-center justify-end mt-4">
                     <button type="submit" class="submit-btn inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 ml-4">
                         Update
@@ -173,6 +183,11 @@
 @endsection
 
 @section('script')
+<script src="{{ asset('trumbowyg/dist/trumbowyg.min.js') }}"></script>
+
+<script src="{{ asset('trumbowyg/dist/jquery-resizable.min.js') }}"></script>
+<script src="{{ asset('trumbowyg/dist/plugins/upload/trumbowyg.upload.min.js') }}"></script>
+<script src="{{ asset('trumbowyg/dist/plugins/resizimg/trumbowyg.resizimg.min.js') }}"></script>
 
 <script>
 $(function() {
@@ -190,6 +205,50 @@ $(function() {
 
     $('.description').on('keyup', function() {
         init()
+    });
+
+    $('.submit-btn').on('click', function() {
+        var content = $('#privacy').trumbowyg('html');
+    });
+
+    $('#privacy').trumbowyg({
+        changeActiveDropdownIcon: true,
+        btns: [
+            ['viewHTML'],
+            ['undo', 'redo'],
+            ['formatting'],
+            ['strong', 'em', 'del'],
+            ['superscript', 'subscript'],
+            ['link'],
+            ['image'], // Our fresh created dropdown
+            ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+            ['unorderedList', 'orderedList'],
+            ['horizontalRule'],
+            ['removeformat'],
+            ['fullscreen']
+        ],
+        btnsDef: {
+            // Create a new dropdown
+            image: {
+                dropdown: ['insertImage', 'upload'],
+                ico: 'insertImage'
+            }
+        },
+        plugins: {
+            // Add imagur parameters to upload plugin for demo purposes
+            upload: {
+                serverPath: "{{ route('admin.upload') }}",
+                fileFieldName: 'image',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                urlPropertyName: 'link'
+            },
+            resizimg: {
+                minSize: 64,
+                step: 16,
+            }
+        }
     });
 })
 </script>

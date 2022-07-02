@@ -69,6 +69,11 @@ Route::get('phptest', function() {
     return view('test');
 });
 
+Route::post('contact-us', [PublicController::class, 'contactUs'])->name('contact');
+Route::get('contact-us', [PublicController::class, 'viewContactUs'])->name('view.contact');
+
+Route::get('privacy-policy', [PublicController::class, 'privacyPolicy'])->name('privacy');
+
 Route::get('guides', [PostController::class, 'blogLists'])->name('blog.lists');
 Route::get('guides/{blog}', [PostController::class, 'showBlog'])->name('show.blog');
 

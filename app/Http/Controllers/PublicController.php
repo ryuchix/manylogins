@@ -200,4 +200,37 @@ class PublicController extends Controller
         $string = str_replace(' ', '-', $string);
         return preg_replace('/[^A-Za-z0-9\-]/', '-', strtolower($string));
     }
+
+    public static function viewContactUs()
+    {
+        $setting = Setting::find(1);
+
+        $popularSearch = KeywordSearch::query()->where('status', 1)->orderByViews()->take(10)->get();
+        $posts = Post::query()->where('status', 1)->limit(4)->get();
+
+        return view('home.contact-us', [
+            'setting' => $setting,
+            'posts' => $posts,
+            'popular_posts' => $popularSearch
+        ]);
+    }
+
+    public static function contactUs(Request $request)
+    {
+        dd($request->all());
+    }
+
+    public static function privacyPolicy()
+    {
+        $setting = Setting::find(1);
+
+        $popularSearch = KeywordSearch::query()->where('status', 1)->orderByViews()->take(10)->get();
+        $posts = Post::query()->where('status', 1)->limit(4)->get();
+        
+        return view('home.privacy-policy', [
+            'setting' => $setting,
+            'posts' => $posts,
+            'popular_posts' => $popularSearch
+        ]);
+    }
 }
