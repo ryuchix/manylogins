@@ -24,8 +24,8 @@ class PublicController extends Controller
     public function admin()
     {
         $posts = Post::query()->where('status', 1)->count();
-        $users = User::count();
-        $search = UserSearch::count();
+        $users = User::query()->count();
+        $search = UserSearch::query()->count();
         $keywords = KeywordSearch::query()->where('status', 1)->count();
 
         return view('admin.dashboard', ['posts' => $posts, 'users' => $users, 'search' => $search, 'keywords' => $keywords]);
@@ -86,7 +86,7 @@ class PublicController extends Controller
 
         $setting = Setting::find(1);
 
-        $keyword = KeywordSearch::where('slug', $search)->first();
+        $keyword = KeywordSearch::query()->where('slug', $search)->first();
 
         if (!empty($keyword)) {
             $expiresAt = now()->addHours(1);
@@ -187,7 +187,7 @@ class PublicController extends Controller
     public function keywordSearch(Request $request)
     {
         $query = $request->search;
-        $filterResult = KeywordSearch::where('keywords', 'LIKE', '%'.$query.'%')
+        $filterResult = KeywordSearch::query()->where('keywords', 'LIKE', '%'.$query.'%')
             ->where('status', 1)
             ->take(20)
             ->get(['slug', 'keywords']);

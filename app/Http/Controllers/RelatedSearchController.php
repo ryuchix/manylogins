@@ -22,7 +22,7 @@ class RelatedSearchController extends Controller
      */
     public function index(Request $request)
     {
-        $related = RelatedSearch::when($request->status, function($query) use ($request) {
+        $related = RelatedSearch::query()->when($request->status, function($query) use ($request) {
                             if ($request->status == 1) {
                                 $query->where('status', '=', 1); 
                             } elseif ($request->status == 2) {
@@ -40,7 +40,7 @@ class RelatedSearchController extends Controller
         $keyword = KeywordSearch::find($id);
 
         if (!empty($keyword)) {
-            $related = RelatedSearch::where('keyword_id', $keyword->id)->paginate(30);
+            $related = RelatedSearch::query()->where('keyword_id', $keyword->id)->paginate(30);
             
             // when($request->status, function($query) use ($request) {
             //                     if ($request->status == 1) {
