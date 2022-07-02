@@ -51,8 +51,6 @@ class KeywordApi
             ->where('api_result', NULL)
             ->get();
 
-            dd($keywords);
-
         $keywords->each(
             function ($item, $key) {
                 $result = self::searchKeywords($item->keywords);
