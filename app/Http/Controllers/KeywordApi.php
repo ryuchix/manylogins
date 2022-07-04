@@ -13,18 +13,20 @@ class KeywordApi
 {
     public static function searchKeywords($keywords): ?array
     {
-        $response = Http::withBasicAuth(
-            config('serpmaster.serp_master_username'),
-            config('serpmaster.serp_master_password')
-        )->post(
-            'https://rt.serpmaster.com/', 
-            [
-            'q' => $keywords,
-            'parse' => true,
-            ]
-        );
-                        
-        return ($response->successful()) ? $response->json() : null;
+        if ($keywords != null) {
+            $response = Http::withBasicAuth(
+                config('serpmaster.serp_master_username'),
+                config('serpmaster.serp_master_password')
+            )->post(
+                'https://rt.serpmaster.com/', 
+                [
+                'q' => $keywords,
+                'parse' => true,
+                ]
+            );
+                            
+            return ($response->successful()) ? $response->json() : null;
+        }
     }
 
     public static function serpKeywords($int)
