@@ -16,6 +16,18 @@ class KeywordSearch extends Model implements Viewable
     protected $table = 'keyword_search';
     public $timestamps = true;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'keywords',
+        'slug',
+        'status',
+        'api_result',
+    ];
+
     public function organic(): HasMany
     {
         return $this->hasMany(OrganicResult::class, 'keyword_id');
