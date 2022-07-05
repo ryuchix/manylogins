@@ -72,9 +72,12 @@ class KeywordApi
 
         $keywords->each(
             function ($item, $key) {
-                $result = self::searchKeywords($item->keywords);
-                if ($result != null) {
-                    self::updateRelatedKeywords($item->id, $item->keywords, $result, $item->keyword_id);
+                $keywords_search = KeywordSearch::where('slug', self::clean($item->keywords))->first();
+                if (empty($keywords_search)) {
+                    $result = self::searchKeywords($item->keywords);
+                    if ($result != null) {
+                        self::updateRelatedKeywords($item->id, $item->keywords, $result, $item->keyword_id);
+                    }
                 }
             }
         );
