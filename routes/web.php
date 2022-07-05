@@ -29,6 +29,10 @@ Route::get('run-cron', function() {
     KeywordApi::serpKeywordsCommands(5);
 })->name('run.cron');
 
+Route::get('run-related-cron', function() {
+    KeywordApi::serpRelatedKeywordsCommands(10);
+})->name('run.cron');
+
 require __DIR__.'/auth.php';
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {

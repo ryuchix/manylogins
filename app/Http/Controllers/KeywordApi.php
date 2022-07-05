@@ -63,6 +63,39 @@ class KeywordApi
         );
     }
 
+    public static function serpRelatedKeywordsCommands($int)
+    {
+        $keywords = RelatedSearch::offset(0)->limit($int)
+            ->select('status', 'keyword_id', 'keywords', 'id')
+            ->where('status', 2)
+            ->get();
+
+        $keywords->each(
+            function ($item, $key) {
+                $result = self::searchKeywords($item->keywords);
+                if ($result != null) {
+                    self::updateRelatedKeywords($item->id, $item->keywords, $result, $item->keyword_id);
+                }
+            }
+        );
+    }
+
+    public static function updateRelatedKeywords($id, $keywords, $result, $keyword_id) 
+    {
+        $keyword = RelatedSearch::find($id);
+        $keyword->status = 1;
+        $keyword->save();
+
+        $keyword_search = KeywordSearch::create([
+            'keywords' => $keywords,
+            'slug' => self::clean($keywords),
+            'api_result' => json_encode($result),
+            'status' => 1
+        ]);
+
+        self::insertOrganicResult($keyword_search->id, $result);
+    }
+
     public static function updateKeywords($id, $slug, $result) 
     {
         $keyword = KeywordSearch::find($id);
