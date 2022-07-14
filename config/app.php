@@ -176,8 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Spatie\Sitemap\SitemapServiceProvider::class,
         CyrildeWit\EloquentViewable\EloquentViewableServiceProvider::class,
-        QCod\ImageUp\ImageUpServiceProvider::class
-
+        QCod\ImageUp\ImageUpServiceProvider::class,
     ],
 
     /*
@@ -232,7 +231,6 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
     ],
 
 ];

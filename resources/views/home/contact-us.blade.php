@@ -40,6 +40,10 @@
                         Send message
                     </button>
                 </div>
+
+                @if(session()->has('message'))
+                <div class="w-full text-center mt-4">{{ session()->get('message') }}</div>
+                @endif
             </form>
         </div>
     </div>

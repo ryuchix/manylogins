@@ -16,8 +16,11 @@ use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 
 use Hashids\Hashids;
+
+use App\Mail\ContactUs;
 
 class PublicController extends Controller
 {
@@ -217,7 +220,16 @@ class PublicController extends Controller
 
     public static function contactUs(Request $request)
     {
-        dd($request->all());
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'message' => $request->message,
+            'subject' => $request->subject,
+        ];
+
+        $mail = Mail::to('nitronetdavid@gmail.com')->send(new ContactUs($data));
+
+        return redirect()->back()->with(['message' => 'Email sent']);
     }
 
     public static function privacyPolicy()
