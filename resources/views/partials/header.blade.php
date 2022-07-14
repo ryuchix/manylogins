@@ -10,6 +10,9 @@
                 <div class="flex-shrink-0 flex items-center">
                     <a class="text-white" href="{{ route('view.contact') }}">Contact Us</a>
                 </div>
+                <div class="flex-shrink-0 flex items-center ml-4">
+                    <a class="text-white" href="{{ route('privacy') }}">Privacy Policy</a>
+                </div>
             </div>
         </div>
     </div>
