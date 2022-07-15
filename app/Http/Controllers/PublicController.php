@@ -187,7 +187,7 @@ class PublicController extends Controller
             return redirect()->back();
         }
 		
-		if ($result != null && $result->first()->count() >= 1) {
+		if ($result != null) {
 			$result_link = $result->first();
         } else {
             return redirect()->route('home');
