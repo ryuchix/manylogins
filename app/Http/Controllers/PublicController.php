@@ -24,6 +24,10 @@ use App\Mail\ContactUs;
 
 use CyrildeWit\EloquentViewable\Support\Period;
 
+use Illuminate\Support\Facades\Cache;
+
+use Carbon\Carbon;
+
 class PublicController extends Controller
 {
     public function admin()
@@ -40,7 +44,13 @@ class PublicController extends Controller
     {
         $setting = Setting::find(1);
         $posts = Post::query()->where('status', 1)->limit(6)->orderBy('created_at', 'desc')->get();
-        $popularSearch = KeywordSearch::query()->where('status', 1)->orderByViews()->take(9)->get();
+
+        if (!Cache::has('popular_search')) {
+            $popularSearch = KeywordSearch::query()->where('status', 1)->orderByViews('desc', Period::pastDays(10))->take(9)->get();
+            Cache::put('popular_search', $popularSearch, Carbon::now()->addDays(10));
+        } else {
+            $popularSearch = Cache::get('popular_search');
+        }
 
         return view('home.home', [
             'setting' => $setting,
@@ -101,7 +111,13 @@ class PublicController extends Controller
                 ->record();
         }
 
-        $popularSearch = [];
+        if (!Cache::has('popular_search')) {
+            $popularSearch = KeywordSearch::query()->where('status', 1)->orderByViews('desc', Period::pastDays(10))->take(10)->get();
+            Cache::put('popular_search', $popularSearch, Carbon::now()->addDays(10));
+        } else {
+            $popularSearch = Cache::get('popular_search');
+        }
+
         $posts = Post::query()->where('status', 1)->limit(4)->get();
 
         return view('home.search', [
@@ -173,7 +189,13 @@ class PublicController extends Controller
 		
         $setting = Setting::find(1);
 
-        $popularSearch = KeywordSearch::query()->where('status', 1)->orderByViews()->take(10)->get();
+        if (!Cache::has('popular_search')) {
+            $popularSearch = KeywordSearch::query()->where('status', 1)->orderByViews('desc', Period::pastDays(10))->take(10)->get();
+            Cache::put('popular_search', $popularSearch, Carbon::now()->addDays(10));
+        } else {
+            $popularSearch = Cache::get('popular_search');
+        }
+
         $posts = Post::query()->where('status', 1)->limit(4)->get();
 
         return view('home.show', [
@@ -210,7 +232,13 @@ class PublicController extends Controller
     {
         $setting = Setting::find(1);
 
-        $popularSearch = KeywordSearch::query()->where('status', 1)->orderByViews()->take(10)->get();
+        if (!Cache::has('popular_search')) {
+            $popularSearch = KeywordSearch::query()->where('status', 1)->orderByViews('desc', Period::pastDays(10))->take(10)->get();
+            Cache::put('popular_search', $popularSearch, Carbon::now()->addDays(10));
+        } else {
+            $popularSearch = Cache::get('popular_search');
+        }
+
         $posts = Post::query()->where('status', 1)->limit(4)->get();
 
         return view('home.contact-us', [
@@ -238,7 +266,13 @@ class PublicController extends Controller
     {
         $setting = Setting::find(1);
 
-        $popularSearch = KeywordSearch::query()->where('status', 1)->orderByViews()->take(10)->get();
+        if (!Cache::has('popular_search')) {
+            $popularSearch = KeywordSearch::query()->where('status', 1)->orderByViews('desc', Period::pastDays(10))->take(10)->get();
+            Cache::put('popular_search', $popularSearch, Carbon::now()->addDays(10));
+        } else {
+            $popularSearch = Cache::get('popular_search');
+        }
+
         $posts = Post::query()->where('status', 1)->limit(4)->get();
         
         return view('home.privacy-policy', [
