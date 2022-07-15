@@ -101,7 +101,7 @@ class PublicController extends Controller
                 ->record();
         }
 
-        $popularSearch = KeywordSearch::query()->where('status', 1)->orderByViews('desc', Period::pastDays(5))->take(10)->get();
+        $popularSearch = [];
         $posts = Post::query()->where('status', 1)->limit(4)->get();
 
         return view('home.search', [
