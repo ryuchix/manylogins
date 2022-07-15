@@ -10,6 +10,9 @@ use App\Models\Category;
 use App\Models\CategoryPost;
 use App\Models\KeywordSearch;
 use App\Models\Setting;
+use Illuminate\Support\Facades\Cache;
+
+use CyrildeWit\EloquentViewable\Support\Period;
 
 class PostController extends Controller
 {
