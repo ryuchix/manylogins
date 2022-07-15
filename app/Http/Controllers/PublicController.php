@@ -35,7 +35,13 @@ class PublicController extends Controller
         $posts = Post::query()->where('status', 1)->count();
         $users = User::query()->count();
         $search = UserSearch::query()->count();
-        $keywords = KeywordSearch::query()->where('status', 1)->count();
+
+        if (!Cache::has('keywords_count')) {
+            $keywords = KeywordSearch::query()->where('status', 1)->count();
+            Cache::put('keywords_count', $keywords, Carbon::now()->addDays(2));
+        } else {
+            $keywords = Cache::get('keywords_count');
+        }
 
         return view('admin.dashboard', ['posts' => $posts, 'users' => $users, 'search' => $search, 'keywords' => $keywords]);
     }

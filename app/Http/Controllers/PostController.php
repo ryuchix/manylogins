@@ -228,7 +228,12 @@ class PostController extends Controller
     {
         $blogs = Post::query()->where('status', 1)->paginate(20);
 
-        $popularSearch = KeywordSearch::query()->where('status', 1)->orderByViews()->take(10)->get();
+        if (!Cache::has('popular_search')) {
+            $popularSearch = KeywordSearch::query()->where('status', 1)->orderByViews('desc', Period::pastDays(10))->take(10)->get();
+            Cache::put('popular_search', $popularSearch, Carbon::now()->addDays(10));
+        } else {
+            $popularSearch = Cache::get('popular_search');
+        }
 
         $posts = Post::query()->where('status', 1)->orderByViews()->take(10)->get();
 
@@ -250,7 +255,12 @@ class PostController extends Controller
             return abort(404);
         }
 
-        $popularSearch = KeywordSearch::query()->where('status', 1)->orderByViews()->take(10)->get();
+        if (!Cache::has('popular_search')) {
+            $popularSearch = KeywordSearch::query()->where('status', 1)->orderByViews('desc', Period::pastDays(10))->take(10)->get();
+            Cache::put('popular_search', $popularSearch, Carbon::now()->addDays(10));
+        } else {
+            $popularSearch = Cache::get('popular_search');
+        }
 
         $setting = Setting::find(1);
 
