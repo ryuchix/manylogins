@@ -9940,6 +9940,7 @@
         "hamcrest/hamcrest-php",
         "laravel/breeze",
         "laravel/sail",
+        "laravel/telescope",
         "mockery/mockery",
         "myclabs/deep-copy",
         "nunomaduro/collision",
