@@ -52,7 +52,7 @@
                         <div class="top-site-inner">
                             <a class="top-site-button" href="{{ route('search', $keyword->slug) }}" tabindex="0" draggable="true">
                                 <div class="tile" aria-hidden="true">
-                                    <div class="icon-wrapper letter-fallback" data-fallback="{{ $keyword->keywords[0] }}" style="background-color: {{ $randomColors[$k] }};">
+                                    <div class="icon-wrapper letter-fallback" data-fallback="{{ $keyword->keywords[0] ?? '' }}" style="background-color: {{ $randomColors[$k] ?? '' }};">
                                     <div class=""></div>
                                     </div>
                                 </div>

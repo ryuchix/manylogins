@@ -1,8 +1,39 @@
 <footer class="shadow bg-darkblue">
-    <div class="pt-10 md:pt-20 pb-5 px-4">
-        <div class="flex justify-center">
-            <a href="{{ route('home') }}"><img src="{{ asset('images/settings/'.$setting->footer_logo) }}" alt="Logo" class="h-36"></a>
+    <div class="pt-10 md:pt-5 pb-5 px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-evenly gap-10 pt-10 w-full max-w-5xl mx-auto">
+            <div class="overflow-hidden w-full transform transition duration-200 ease-in">
+                <div class="text-xl text-white">About ManyLogins.com</div>
+                <div class="text-gray-400 leading-6 pt-4">Many Logins is a useful website for people all over the world to find the correct login pages, and helps seekers easily access the login portals of the thousands of websites without a lot of effort.</div>
+                
+                {{-- <div class="flex justify-center">
+                    <a href="{{ route('home') }}"><img src="{{ asset('images/settings/'.$setting->footer_logo) }}" alt="Logo" class="h-36"></a>
+                </div> --}}
+
+            </div>
+
+            <div class="overflow-hidden w-full transform transition duration-200 ease-in md:ml-10">
+                <div class="text-xl text-white">Links</div>
+                <ul class="text-gray-400 leading-6 pt-4 list-inside list-disc">
+                    <li><a class="text-gray-400 hover:text-white capitalize" href="{{ route('home') }}">Home</a></li>
+                    <li><a class="text-gray-400 hover:text-white capitalize" href="{{ route('blog.lists') }}">Guides</a></li>
+                    <li><a class="text-gray-400 hover:text-white capitalize" href="{{ route('view.contact') }}">Contact Us</a></li>
+                    <li><a class="text-gray-400 hover:text-white capitalize" href="{{ route('privacy') }}">Privacy Policy</a></li>
+                </ul>
+
+            </div>
+
+            <div class="overflow-hidden w-full transform transition duration-200 ease-in">
+                <div class="text-xl text-white">Popular Logins</div>
+                <ul class="text-gray-400 leading-6 pt-4 list-inside list-disc">
+                    @foreach ($popular_posts as $popular)
+                        <li class="ml-1 ">
+                            <a href="{{ route('search', $popular->slug) }}" class="text-gray-400 hover:text-white capitalize">{{ $popular->keywords }}</a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
         </div>
+
         <div class="flex justify-center border-t border-gray-700 pt-5 mt-10 w-full max-w-5xl mx-auto">
             <div class="flex md:justify-between flex-col md:flex-row w-full space-y-3 md:space-y-0">
                 <div class="font-light text-gray-400 md:text-left text-center">

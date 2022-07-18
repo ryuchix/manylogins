@@ -52,7 +52,7 @@ class PublicController extends Controller
         $posts = Post::query()->where('status', 1)->limit(6)->orderBy('created_at', 'desc')->get();
 
         if (!Cache::has('popular_search')) {
-            $popularSearch = KeywordSearch::query()->where('status', 1)->orderByViews('desc', Period::pastDays(10))->take(9)->get();
+            $popularSearch = KeywordSearch::query()->where('status', 1)->orderByViews('desc', Period::pastDays(10))->take(8)->get();
             Cache::put('popular_search', $popularSearch, Carbon::now()->addDays(10));
         } else {
             $popularSearch = Cache::get('popular_search');
