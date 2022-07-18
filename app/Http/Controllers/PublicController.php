@@ -61,7 +61,8 @@ class PublicController extends Controller
         return view('home.home', [
             'setting' => $setting,
             'posts' => $posts,
-            'popularSearch' => $popularSearch
+            'popularSearch' => $popularSearch,
+            'popular_posts' => $popularSearch,
         ]);
     }
 
