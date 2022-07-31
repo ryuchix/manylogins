@@ -30,7 +30,7 @@ Route::get('run-cron', function() {
 })->name('run.cron');
 
 Route::get('run-related-cron', function() {
-    KeywordApi::serpRelatedKeywordsCommands(8);
+    KeywordApi::serpRelatedKeywordsCommands(2);
 })->name('run.cron');
 
 require __DIR__.'/auth.php';
