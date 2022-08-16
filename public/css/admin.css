@@ -1352,6 +1352,9 @@ select {
   margin-right: calc(2rem * var(--tw-space-x-reverse));
   margin-left: calc(2rem * calc(1 - var(--tw-space-x-reverse)));
 }
+.self-center {
+  align-self: center;
+}
 .overflow-hidden {
   overflow: hidden;
 }
@@ -1916,6 +1919,10 @@ select {
 .text-indigo-700 {
   --tw-text-opacity: 1;
   color: rgb(67 56 202 / var(--tw-text-opacity));
+}
+.text-red-500 {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
 .underline {
   -webkit-text-decoration-line: underline;

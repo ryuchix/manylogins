@@ -30,7 +30,8 @@ class ContactUs extends Mailable
      */
     public function build()
     {
-        return $this->subject('New have new message from Contact Us form')
+        return $this->subject('Manylogins ' . $this->details['subject'])
+                    ->replyTo($this->details['email'], $this->details['name'])
                     ->view('emails.contact-us');
     }
 }

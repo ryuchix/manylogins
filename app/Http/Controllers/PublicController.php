@@ -257,14 +257,15 @@ class PublicController extends Controller
 
     public static function contactUs(Request $request)
     {
-        $data = [
-            'name' => $request->name,
-            'email' => $request->email,
-            'message' => $request->message,
-            'subject' => $request->subject,
-        ];
+        $validated = $request->validate([
+            'name' =>  'required',
+            'email' =>  'required|email',
+            'message' => 'required',
+            'subject' =>  'required',
+            'g-recaptcha-response' => 'required'
+        ]);
 
-        $mail = Mail::to('nitronetdavid@gmail.com')->send(new ContactUs($data));
+        $mail = Mail::to('nitronetdavid@gmail.com')->send(new ContactUs($validated));
 
         return redirect()->back()->with(['message' => 'Email sent']);
     }
