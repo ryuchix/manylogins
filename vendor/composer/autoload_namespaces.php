@@ -8,4 +8,5 @@ $baseDir = dirname($vendorDir);
 return array(
     'Mockery' => array($vendorDir . '/mockery/mockery/library'),
     'Laravelium\\Sitemap' => array($vendorDir . '/laravelium/sitemap/src'),
+    'HTMLPurifier' => array($vendorDir . '/ezyang/htmlpurifier/library'),
 );

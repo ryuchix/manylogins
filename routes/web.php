@@ -11,7 +11,8 @@ use App\Http\Controllers\UserSearchController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\RelatedSearchController;
 use App\Http\Controllers\KeywordApi;
-
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\KeywordSearchImport;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -65,6 +66,14 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     Route::resource('settings', SettingController::class);
 
+    Route::post('import', function () {
+        Excel::import(new KeywordSearchImport, request()->file('file'));
+        return redirect()->back()->with('success','Data Imported Successfully');
+    })->name('import-excel');
+
+    Route::get('upload-excel', function () {
+        return view('upload-excel');
+    });
 });
 
 Route::get('generate-sitemap', [SitemapController::class, 'create'])->name('create.sitemap');
@@ -87,6 +96,3 @@ Route::get('/{search?}', [PublicController::class, 'search'])->name('search');
 Route::post('search', [PublicController::class, 'processSearch'])->name('search.post');
 
 Route::get('/{visit?}/{cid?}', [PublicController::class, 'visitPage'])->name('visit');
-
-
-
