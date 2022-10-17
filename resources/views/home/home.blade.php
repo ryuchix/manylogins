@@ -44,7 +44,28 @@
                 </div>
             </div>
 
-            <div class="keywords-buttons mb-12">
+            <div class="login-guides">
+                <div class="flex space-x-4 items-end">
+                    <h3 class="text-3xl font-semibold text-gray-700">Login Guides</h3>
+                    <a href="{{ route('blog.lists') }}" class="text-blue-500 hover:text-blue-600 mb-1 text-sm">View all</a>
+                </div>
+                <div class="grid justify-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-5 lg:gap-7 mt-3 pb-10">
+                    @foreach($posts as $blog)
+                    <div class="article h-full rounded-md shadow-cla-pink bg-white overflow-hidden">
+                        <img class="lg:h-42 md:h-28 w-full object-cover object-centertransition-all duration-400" src="{{ asset($blog->cover) }}" alt="{{ $blog->title }}">
+                        <div class="px-4 py-4">
+                            <h1 class="title-font text-base font-medium mb-1 line-clamp-none md:line-clamp-2"><a href="{{ route('show.blog', ['blog' => $blog->slug]) }}" class="block text-xl text-link hover:text-opacity-80">{{ $blog->title }}</a></h1>
+                            <div class="leading-relaxed mb-3 text-gray-500 text-sm">{!! substr_replace(strip_tags($blog->content), strlen($blog->content) <= 100 ? "" : "...", 100); !!}</div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+
+            <div class="keywords-buttons pb-12 mt-5">
+                <div class="flex space-x-4 items-end">
+                    <h3 class="text-3xl font-semibold text-gray-700">Popular logins</h3>
+                </div>
                 <ul class="top-sites-list justify-center grid justify-items-center grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-8 gap-2 lg:gap-2 mt-3 mb-10">
                     @php $shuff = shuffle($randomColors) @endphp
                     @foreach($popularSearch as $k => $keyword)
@@ -66,24 +87,6 @@
                     </li>
                     @endforeach
                 </ul>
-            </div>
-
-            <div class="login-guides">
-                <div class="flex space-x-4 items-end">
-                    <h3 class="text-3xl font-semibold text-gray-700">Login Guides</h3>
-                    <a href="{{ route('blog.lists') }}" class="text-blue-500 hover:text-blue-600 mb-1 text-sm">View all</a>
-                </div>
-                <div class="grid justify-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-5 lg:gap-7 mt-3 pb-10">
-                    @foreach($posts as $blog)
-                    <div class="article h-full rounded-md shadow-cla-pink bg-white overflow-hidden">
-                        <img class="lg:h-42 md:h-28 w-full object-cover object-centertransition-all duration-400" src="{{ asset($blog->cover) }}" alt="{{ $blog->title }}">
-                        <div class="px-4 py-4">
-                            <h1 class="title-font text-base font-medium mb-1 line-clamp-none md:line-clamp-2"><a href="{{ route('show.blog', ['blog' => $blog->slug]) }}" class="block text-xl text-link hover:text-opacity-80">{{ $blog->title }}</a></h1>
-                            <div class="leading-relaxed mb-3 text-gray-500 text-sm">{!! substr_replace(strip_tags($blog->content), strlen($blog->content) <= 100 ? "" : "...", 100); !!}</div>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
             </div>
 
         </div>

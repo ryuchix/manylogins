@@ -1,5 +1,5 @@
 <aside class="right-sidebar order-3 lg:order-3 xl:min-w-[22rem] w-full lg:w-[22rem]">
-    <div class="mt-3">
+    {{-- <div class="mt-3">
         <div class="text-lg text-gray-700 p-2 w-full text-left font-semibold">Popular Search</div>
         <div class="popular">
             <ul class="ml-2 flex flex-col space-y-1">
@@ -13,7 +13,7 @@
                 @endforeach
             </ul>
         </div>
-    </div>
+    </div> --}}
 
     @if (\Request::route()->getName() == 'blog.lists' || \Request::route()->getName() == 'show.blog')
     <div class="mt-4">

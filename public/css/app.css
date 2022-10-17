@@ -1636,6 +1636,9 @@ select {
 .pb-1 {
   padding-bottom: 0.25rem;
 }
+.pb-12 {
+  padding-bottom: 3rem;
+}
 .text-left {
   text-align: left;
 }
