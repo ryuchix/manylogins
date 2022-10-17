@@ -30,7 +30,7 @@
                     Allowing people to find and access login portals with the most optimized process.
                 </div>
 
-                <div class="pt-2 relative mx-auto text-gray-600 flex flex-wrap justify-between md:flex-row md:w-4/5 w-full" id="keyword_search">
+                <div class="pt-2 relative mx-auto text-gray-600 lg:hidden flex-wrap justify-between md:flex-row md:w-4/5 w-full flex" id="keyword_search">
                     <form method="POST" action="{{ route('search.post') }}" class="search-form flex flex-initial justify-between md:flex-row border-2 bg-white items-center rounded-md w-full group" id="search-keyword">
                         @csrf
                         <input id="typeahead" type="search" name="search" placeholder="Ex: Facebook Login..." required="required" class="typeahead w-full flex-1 h-12 md:h-10 px-4 rounded-none text-gray-700 placeholder-gray-400 bg-transparent border-none appearance-none lg:h-12 dark:text-gray-200 group-focus:outline-none group-focus:placeholder-transparent group-focus:ring-0"> 

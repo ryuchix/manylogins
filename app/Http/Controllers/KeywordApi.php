@@ -77,6 +77,10 @@ class KeywordApi
                     $result = self::searchKeywords($item->keywords);
                     if ($result != null) {
                         self::updateRelatedKeywords($item->id, $item->keywords, $result, $item->keyword_id);
+                    } else {
+                        $keyword = RelatedSearch::find($item->id);
+                        $keyword->status = 1;
+                        $keyword->save();
                     }
                 } else {
                     $keyword = RelatedSearch::find($item->id);
