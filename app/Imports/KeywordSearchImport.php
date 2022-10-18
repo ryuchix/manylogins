@@ -26,7 +26,9 @@ class KeywordSearchImport implements ToModel, WithCustomCsvSettings, WithUpserts
 
     public function model(array $row)
     {
-        if (!isset($row[0])) {
+        $keywords = KeywordSearch::where('keywords', $row[0])->first();
+
+        if (!isset($row[0]) || !empty($keywords)) {
             return null;
         }
 
