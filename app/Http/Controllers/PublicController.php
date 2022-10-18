@@ -49,7 +49,7 @@ class PublicController extends Controller
     public function home()
     {
         $setting = Setting::find(1);
-        $posts = Post::query()->where('status', 1)->limit(6)->orderBy('created_at', 'desc')->get();
+        $posts = Post::query()->where('status', 1)->limit(9)->orderBy('created_at', 'desc')->get();
 
         if (!Cache::has('popular_search')) {
             $popularSearch = KeywordSearch::query()->where('status', 1)->orderByViews('desc', Period::pastDays(10))->take(8)->get();
