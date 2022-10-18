@@ -21,23 +21,24 @@
 
         <div class="blog_card flex space-y-4 flex-col">
             @foreach ($posts as $post)
-            <div class="card-container">
-                <article class="border-link group">
-                    <div class="contents">
-                        <a class="group-hover:text-link line-clamp-2" href="{{ route('show.blog', ['blog' => $post->slug]) }}">{{ $post->title }}</a>
-                        <div class="content">
-                            <div class="inside">
-                                <div class="author">
-                                    <strong>{{ $post->user->name }}</strong>
-                                </div>
-                                <div class="metas">
-                                    @php $date = date_create($post->created_at); @endphp
-                                    <div class="date">{{ date_format($date,"M d, Y") }}</div>
-                                </div>
-                            </div>
+            <div class="p-2 w-full flex-col space-y-4 group">
+                <div class="article  h-full rounded-md shadow-cla-pink bg-bodybg overflow-hidden">
+                    <img class="lg:h-48 md:h-36 w-full object-cover object-centertransition-all duration-400" src="{{ asset($post->cover) }}" alt="{{ $post->title }}">
+                    <div class="flex flex-wrap justify-start items-center mt-2 pt-2 px-4">
+                        @foreach ($post->categories as $cat)
+                        <div class="text-xs mr-2 mt-1 py-1.5 px-4 text-gray-200 bg-[#718096] rounded-2xl hover:text-white hover:bg-link cursor-pointer">
+                            {{ $cat->name }}
+                        </div>
+                        @endforeach
+                    </div>
+                    <div class="px-4 py-4">
+                        <div class="title-font text-lg font-medium mb-1"><a href="{{ route('show.blog', ['blog' => $post->slug]) }}" class="block text-xl text-gray-500 group-hover:text-link">{{ $post->title }}</a></div>
+                        <div class="leading-relaxed mb-3 text-gray-500">{!! substr_replace(strip_tags($post->content), strlen($post->content) <= 200 ? "" : "...", 200); !!}</div>
+                        <div class="flex items-center flex-wrap mt-1">
+                            <a href="{{ route('show.blog', ['blog' => $post->slug]) }}" class="w-full flex items-center py-2 px-4 rounded-sm text-sm bg-link hover:bg-opacity-80 text-white shadow-md text-center justify-center">Read more...</a>
                         </div>
                     </div>
-                </article>
+                </div>
             </div>
             @endforeach
         </div>
