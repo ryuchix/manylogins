@@ -238,7 +238,7 @@ class PostController extends Controller
             $popularSearch = Cache::get('popular_search');
         }
 
-        $posts = Post::query()->where('status', 1)->orderByViews()->take(10)->get();
+        $posts = Post::query()->where('status', 1)->orderByViews()->take(4)->get();
 
         $setting = Setting::find(1);
 
@@ -267,7 +267,7 @@ class PostController extends Controller
 
         $setting = Setting::find(1);
 
-        $posts = Post::query()->where('status', 1)->orderByViews()->take(10)->get();
+        $posts = Post::query()->where('status', 1)->orderByViews()->take(4)->get();
 
         $related = Post::query()->whereHas('categories', function ($q) use ($blog) {
             return $q->whereIn('name', $blog->categories->pluck('name')); 
