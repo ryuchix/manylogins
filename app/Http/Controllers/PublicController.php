@@ -265,7 +265,7 @@ class PublicController extends Controller
             'g-recaptcha-response' => 'required'
         ]);
 
-        $mail = Mail::to('nitronetdavid@gmail.com')->send(new ContactUs($validated));
+        $mail = Mail::to('findlogins@gmail.com')->send(new ContactUs($validated));
 
         return redirect()->back()->with(['message' => 'Email sent']);
     }
